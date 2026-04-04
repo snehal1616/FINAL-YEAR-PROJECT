@@ -1,5 +1,32 @@
 {
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/public/$1" }
+  "version": 2,
+  "public": true,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "routes": [
+    {
+      "src": "/css/(.*)",
+      "dest": "/public/css/$1"
+    },
+    {
+      "src": "/js/(.*)",
+      "dest": "/public/js/$1"
+    },
+    {
+      "src": "/assets/(.*)",
+      "dest": "/public/assets/$1"
+    },
+    {
+      "src": "/",
+      "dest": "/public/index.html"
+    },
+    {
+      "src": "/(.*)\\.html",
+      "dest": "/public/$1.html"
+    },
+    {
+      "src": "/(login|signup|dashboard|chatbot|wellness|reports|profile)",
+      "dest": "/public/$1.html"
+    }
   ]
 }
