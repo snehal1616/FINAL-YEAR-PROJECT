@@ -1,5 +1,5 @@
 ﻿{
-  "name": "Cureastic-ai",
+  "name": "cureastic-ai",
   "version": "1.0.0",
   "description": "Cureastic - AI-Driven Public Health Assistant for Disease Awareness",
   "main": "server.js",
