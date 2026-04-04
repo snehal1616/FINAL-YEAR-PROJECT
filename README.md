@@ -58,13 +58,25 @@ http://localhost:3005
 
 ## 🌐 Deployment
 
-See [RENDER_DEPLOYMENT_GUIDE.md](./RENDER_DEPLOYMENT_GUIDE.md) for detailed deployment instructions to Render.
+### Recommended: Split Deployment (Best Performance)
 
-### Quick Deploy to Render:
-1. Push code to GitHub
-2. Connect repository on Render
-3. Add environment variables
-4. Deploy!
+**Frontend on Vercel + Backend on Render**
+
+1. **Deploy Backend to Render**
+   - See [RENDER_DEPLOYMENT_GUIDE.md](./RENDER_DEPLOYMENT_GUIDE.md)
+   - Get your backend URL: `https://cureastic-app.onrender.com`
+
+2. **Deploy Frontend to Vercel**
+   - See [VERCEL_DEPLOYMENT_GUIDE.md](./VERCEL_DEPLOYMENT_GUIDE.md)
+   - Update `public/js/config.js` with your Render URL
+   - Deploy to Vercel
+
+3. **Architecture Overview**
+   - See [DEPLOYMENT_ARCHITECTURE.md](./DEPLOYMENT_ARCHITECTURE.md)
+
+### Alternative: All-in-One Deployment
+
+Deploy everything to Render or Vercel (see respective guides)
 
 ## 🛠️ Tech Stack
 
