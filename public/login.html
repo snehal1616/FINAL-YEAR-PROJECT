@@ -1,0 +1,296 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Cureastic</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        :root {
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --font-heading: 'Outfit', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 50%, #fce7f3 100%);
+            overflow-y: auto;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102,126,234,0.08) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveBackground 20s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes moveBackground {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .auth-wrapper {
+            position: relative;
+            z-index: 1;
+            background: none;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        /* Remove old background elements */
+        .bg-gradient {
+            display: none;
+        }
+
+        .floating-blob {
+            display: none;
+        }
+
+        .auth-card {
+            border: 1px solid rgba(255,255,255,0.4);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            border-radius: 32px;
+            padding: 45px;
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .auth-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-wrapper {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(14, 165, 233, 0.35);
+            margin-bottom: 15px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .auth-logo h1 { 
+            font-family: var(--font-heading); 
+            font-weight: 800; 
+            font-size: 2.4rem; 
+            letter-spacing: -1.5px;
+            margin: 0;
+        }
+
+        .form-group label { font-family: var(--font-heading); font-weight: 700; font-size: 0.95rem; color: #334155; }
+        .form-group input { border-radius: 16px; border: 1.5px solid #e2e8f0; font-weight: 500; font-size: 1rem; }
+        .form-group input:focus { border-color: var(--p); box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); }
+
+        .btn-primary { 
+            height: 60px; border-radius: 18px; font-family: var(--font-heading); 
+            font-weight: 800; font-size: 1.1rem; letter-spacing: -0.3px;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+        }
+
+        /* Loading Screen */
+        #loadingOverlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: white;
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .loader-logo {
+            font-size: 5rem;
+            color: var(--p);
+            animation: pulse 1.5s infinite ease-in-out;
+            margin-bottom: 30px;
+        }
+
+        .loader-text {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--text-heading);
+            letter-spacing: -0.8px;
+        }
+
+        .loader-bar {
+            width: 200px;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            margin-top: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .loader-progress {
+            width: 0%;
+            height: 100%;
+            background: var(--p);
+            border-radius: 10px;
+            animation: progress 2.5s ease forwards;
+        }
+
+        @keyframes progress { from { width: 0%; } to { width: 100%; } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.8; } }
+
+        .auth-footer { margin-top: 30px; border-top: 1px solid #e2e8f0; padding-top: 20px; }
+    </style>
+</head>
+<body class="auth-wrapper">
+    <div class="bg-gradient"></div>
+    <div class="floating-blob"></div>
+
+    <!-- The Loading Page / Splash Screen -->
+    <div id="loadingOverlay">
+        <div class="loader-logo"><i class="fa-solid fa-heart-pulse"></i></div>
+        <div class="loader-text">Loading Cureastic...</div>
+        <div class="loader-bar"><div class="loader-progress"></div></div>
+        <p style="margin-top: 25px; color: #64748b; font-weight: 500;">Securing your health data panel</p>
+    </div>
+
+    <div class="auth-box">
+        <div class="card auth-card">
+            <div class="auth-logo">
+                <div class="logo-wrapper">
+                    <div class="logo-icon">+</div>
+                </div>
+                <h1>Cureastic</h1>
+                <p style="color:var(--muted); font-weight: 500; font-size: 1.05rem; margin-top: -10px">Intelligent Health Guardian</p>
+            </div>
+
+            <div class="error-msg" id="errorMsg" style="border-radius: 12px; margin-bottom: 25px; font-weight: 500;"></div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>E-mail Access</label>
+                    <div style="position:relative">
+                        <i class="fa-solid fa-envelope" style="position:absolute; left:18px; top:19px; color:#94a3b8"></i>
+                        <input type="email" id="email" placeholder="you@health.com" style="padding-left:50px; height: 55px;" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Secret Password</label>
+                    <div style="position:relative">
+                        <i class="fa-solid fa-shield-halved" style="position:absolute; left:18px; top:19px; color:#94a3b8"></i>
+                        <input type="password" id="password" placeholder="••••••••" style="padding-left:50px; height: 55px;" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    Enter Dashboard <i class="fa-solid fa-chevron-right" style="margin-left:10px; font-size: 0.9rem"></i>
+                </button>
+            </form>
+
+            <div class="divider">or quick access</div>
+            
+            <button class="btn btn-secondary btn-block" id="guestBtn" style="height:55px; border-radius:18px; border: 1.5px solid #cbd5e1; font-weight: 700; color: #475569">
+                <i class="fa-solid fa-bolt" style="color: #f59e0b; margin-right: 8px"></i> Guest Demo
+            </button>
+
+            <div class="auth-footer">
+                Don't have an account? <a href="/signup" style="font-weight:800; color: var(--p)">Create one now</a>
+            </div>
+        </div>
+        <p style="text-align:center; font-size:0.8rem; color:#64748b; margin-top:30px; font-weight: 500;">© 2026 Cureastic • Built for Universal Health Awareness.</p>
+    </div>
+
+    <script>
+        const form = document.getElementById('loginForm');
+        const err = document.getElementById('errorMsg');
+        const guestBtn = document.getElementById('guestBtn');
+        const overlay = document.getElementById('loadingOverlay');
+
+        function showLoading() {
+            overlay.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            err.style.display = 'none';
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Show authentication feedback on button
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Verifying...';
+            submitBtn.disabled = true;
+
+            try {
+                const res = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await res.json();
+                
+                if (data.success) {
+                    showLoading();
+                    setTimeout(() => {
+                        window.location = '/dashboard';
+                    }, 2000); // 2 second medical pre-load feel
+                } else {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    err.textContent = data.error || 'Identity verification failed.';
+                    err.style.display = 'block';
+                }
+            } catch (error) {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                err.textContent = 'Clinical database connection failed.';
+                err.style.display = 'block';
+            }
+        });
+
+        guestBtn.addEventListener('click', async () => {
+            try {
+                const res = await fetch('/api/guest', { method: 'POST' });
+                const data = await res.json();
+                if (data.success) {
+                    showLoading();
+                    setTimeout(() => {
+                        window.location = '/dashboard';
+                    }, 2000);
+                }
+            } catch (e) {
+                alert("Express access failed.");
+            }
+        });
+
+        // Initialize Theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+</body>
+</html>
+

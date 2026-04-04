@@ -1,0 +1,1500 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot | Cureastic</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script src="/js/i18n.js"></script>
+    <style>
+        :root {
+            --p: #2563eb;
+            --p-light: #dbeafe;
+            --p-vivid: #1d4ed8;
+            --bg: #f8fafc;
+            --sidebar-bg: #f0f7ff;
+            --card: #ffffff;
+            --text: #1e293b;
+            --text-heading: #0f172a;
+            --border: #cbd5e1;
+            --bot-bubble: #ffffff;
+            --user-bubble: #2563eb;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --med-pattern: url('https://www.transparenttextures.com/patterns/cubes.png');
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --font-heading: 'Outfit', sans-serif;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --sidebar-bg: #1e293b;
+            --card: #1e293b;
+            --text: #f1f5f9;
+            --text-heading: #ffffff;
+            --border: #334155;
+            --bot-bubble: #1e293b;
+            --user-bubble: #3b82f6;
+            --p-light: #1e3a8a;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        body { 
+            font-family: var(--font-main); 
+            color: var(--text); 
+            transition: all 0.3s ease; 
+        }
+
+        /* Component Overrides for "Impressive" look */
+        .app-layout { display: flex; height: 100vh; overflow: hidden; }
+        
+        /* CHATBOT-SPECIFIC LAYOUT HEIGHT */
+        body .chat-layout {
+            height: calc(100vh - 60px) !important;
+            gap: 0 !important;
+        }
+        
+        body .main-content {
+            padding: 15px 20px !important;
+        }
+        
+        /* CHATBOT-SPECIFIC SIDEBAR OVERRIDE */
+        body .sidebar { 
+            background: var(--sidebar-bg); 
+            border-right: 1.5px solid var(--border); 
+            width: 220px;
+            backdrop-filter: blur(10px);
+            background: var(--glass);
+            flex-shrink: 0;
+        }
+        
+        body .main-content {
+            margin-left: 220px;
+        }
+        
+        .chat-main { 
+            border-top: 5px solid var(--p-vivid);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 0;
+            max-width: 75%;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            height: 100%;
+        }
+
+        .chat-top-bar { 
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: white !important;
+            padding: 1.5rem 3rem !important;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            flex-shrink: 0;
+        }
+        
+        .chat-top-bar .bot-avatar {
+            width: 44px !important;
+            height: 44px !important;
+            font-size: 1.3rem !important;
+        }
+        
+        .chat-top-bar .bot-name {
+            font-weight: 700 !important;
+            font-size: 1.15rem !important;
+        }
+        
+        .chat-top-bar .bot-status {
+            font-size: 0.85rem !important;
+        }
+
+        .bot-name { 
+            color: white !important; 
+            font-weight: 800; 
+            font-size: 1.2rem;
+            margin-bottom: 2px;
+        }
+
+        .bot-status { color: rgba(255,255,255,0.8) !important; font-size: 0.8rem; }
+
+        .chat-messages {
+            flex: 1;
+            padding: 2.5rem 4rem !important;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem !important;
+            /* Normal Light Wallpaper - Medical Subtle */
+            background-color: #f0f7ff;
+            background-image: 
+                radial-gradient(#2563eb 0.5px, transparent 0.5px),
+                linear-gradient(rgba(240, 247, 255, 0.96), rgba(240, 247, 255, 0.96)),
+                url('https://www.transparenttextures.com/patterns/micro-fabrics.png');
+            background-size: 20px 20px, 100%, 100px;
+            position: relative;
+            transition: all 0.4s;
+            min-height: 0;
+        }
+        
+        /* CHATBOT-SPECIFIC MESSAGE BUBBLE OVERRIDE */
+        body .msg-bubble {
+            max-width: 90% !important;
+            padding: 16px 22px !important;
+            border-radius: 20px !important;
+            font-size: 1rem !important;
+            line-height: 1.6 !important;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08) !important;
+        }
+        
+        body .msg-bubble.user {
+            box-shadow: 0 4px 15px rgba(14,165,233,0.3) !important;
+        }
+        
+        body .typing-indicator {
+            padding: 12px 18px !important;
+            border-radius: 14px !important;
+        }
+        
+        body .typing-indicator span {
+            width: 8px !important;
+            height: 8px !important;
+        }
+
+        [data-theme="dark"] .chat-messages {
+            /* Clean Tech Dark Background (No patterns) */
+            background-color: #0b1121;
+            background-image: none !important;
+        }
+
+        .chat-sidebar { 
+            width: 280px;
+            background: var(--sidebar-bg); 
+            border-left: 2px solid var(--p-light); 
+            padding: 1rem 0.75rem; 
+            overflow-y: auto; 
+            max-height: 100vh;
+            scrollbar-width: thin;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .chat-sidebar h4 {
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.8;
+        }
+
+        /* CHILD MODE THEME TOKENS */
+        [data-mode="child"][data-theme="dark"] {
+            --bg: #0b0b0f;
+            --sidebar-bg: #14141d;
+            --card: #1c1c27;
+            --text: #ffffff;
+            --text-heading: #ffffff;
+            --border: #2d2d3a;
+            --bot-bubble: #1c1c27;
+            --user-bubble: linear-gradient(135deg, #8b5cf6, #d946ef);
+            --p: #8b5cf6;
+            --p-light: rgba(139, 92, 246, 0.2);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --banner-bg: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+            --banner-text: #ffffff;
+        }
+
+        [data-mode="child"][data-theme="light"] {
+            --bg: #fdfcff;
+            --sidebar-bg: #f5f3ff;
+            --card: #ffffff;
+            --text: #4c1d95;
+            --text-heading: #1e1b4b;
+            --border: #ddd6fe;
+            --bot-bubble: #ffffff;
+            --user-bubble: linear-gradient(135deg, #8b5cf6, #d946ef);
+            --p: #8b5cf6;
+            --p-light: rgba(139, 92, 246, 0.1);
+            --shadow: 0 8px 24px rgba(139, 92, 246, 0.1);
+            --banner-bg: linear-gradient(135deg, #ffffff 0%, #f5f3ff 100%);
+            --banner-text: #4c1d95;
+        }
+
+        [data-mode="child"] .chat-main {
+            border-top: none;
+            background: var(--bg);
+        }
+
+        [data-mode="child"] .chat-top-bar {
+            background: linear-gradient(135deg, #4c1d95 0%, #8b5cf6 100%) !important;
+            border-bottom: none;
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+            padding: 1.5rem 2.5rem;
+        }
+
+        [data-mode="child"] .bot-name, [data-mode="child"] .bot-status {
+            color: #ffffff !important;
+        }
+
+        /* Improved Mode Toggle & Lang Visibility in Child Mode */
+        [data-mode="child"] #modeToggle {
+            background: rgba(255, 255, 255, 0.15) !important;
+            border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        }
+
+        [data-mode="child"] #modeNormal {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        [data-mode="child"] #modeNormal:hover {
+            color: #ffffff !important;
+            background: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        [data-mode="child"] #chatLang {
+            background: rgba(255, 255, 255, 0.2) !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(255, 255, 255, 0.4) !important;
+        }
+
+        [data-mode="child"] #chatLang option {
+            background: #4c1d95 !important;
+            color: #ffffff !important;
+        }
+
+        [data-mode="child"][data-theme="dark"] .chat-messages {
+            /* Clean Immersive Dark (No mascot/pattern) */
+            background-color: #0b0b0f;
+            background-image: none !important;
+        }
+
+        [data-mode="child"][data-theme="light"] .chat-messages {
+            /* Child Light - Dreamy Clouds Theme */
+            background-color: #fdfcff;
+            background-image: 
+                url('/assets/child-mascot.png'),
+                linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
+                url('/assets/child-bg-light.png');
+            background-size: 160px, cover, cover;
+            background-position: bottom 30px right -20px, center, center;
+            background-repeat: no-repeat;
+            background-blend-mode: luminosity, normal, normal;
+        }
+
+        [data-mode="child"] .chat-messages::after {
+            display: none; /* Clear previous pattern */
+        }
+
+        /* Language Picker Contrasts */
+        #chatLang {
+            background: rgba(139, 92, 246, 0.2) !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(255, 255, 255, 0.3) !important;
+            padding: 8px 12px !important;
+            border-radius: 12px !important;
+            font-weight: 600 !important;
+        }
+
+        #chatLang option {
+            background: #1e1b4b !important;
+            color: #ffffff !important;
+        }
+
+        [data-theme="light"][data-mode="child"] #chatLang {
+            background: rgba(255, 255, 255, 0.2) !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(255, 255, 255, 0.4) !important;
+        }
+
+        [data-theme="light"][data-mode="child"] #chatLang option {
+            background: #ffffff !important;
+            color: #4c1d95 !important;
+        }
+
+        [data-mode="child"] .msg-bubble {
+            border-radius: 24px;
+            font-size: 1rem;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        [data-mode="child"] .msg-bubble.bot {
+            background: var(--bot-bubble);
+            color: var(--text);
+            border-bottom-left-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        [data-mode="child"] .msg-bubble.user {
+            background: var(--user-bubble);
+            border-bottom-right-radius: 8px;
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+            color: white;
+        }
+
+        [data-mode="child"] .chat-input-area {
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+        }
+        
+        /* CHATBOT-SPECIFIC INPUT AREA OVERRIDE */
+        body .chat-input-area {
+            background: var(--surface);
+            border-top: 2px solid var(--border);
+            padding: 20px 30px !important;
+            flex-shrink: 0;
+        }
+        
+        body .chat-input-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px !important;
+            padding: 0 !important;
+        }
+        
+        body .chat-input-bar input {
+            flex: 1;
+            padding: 16px 24px !important;
+            border: 2px solid var(--border) !important;
+            border-radius: 25px !important;
+            font-size: 1rem !important;
+            transition: all 0.3s;
+        }
+        
+        body .chat-input-bar input:focus {
+            outline: none;
+            border-color: var(--p) !important;
+            box-shadow: 0 0 0 4px rgba(14,165,233,0.1) !important;
+        }
+        
+        body .chat-input-bar button {
+            width: 50px !important;
+            height: 50px !important;
+            font-size: 1.2rem !important;
+            box-shadow: 0 4px 12px rgba(14,165,233,0.3) !important;
+        }
+        
+        body .chat-input-bar button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 18px rgba(14,165,233,0.4) !important;
+        }
+
+        [data-mode="child"] .chat-input-bar {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 10px 25px;
+        }
+
+        [data-mode="child"] .theme-toggle {
+            background: var(--card) !important;
+            color: var(--text) !important;
+            border: 1px solid var(--border) !important;
+        }
+
+        [data-mode="child"] .theme-toggle:hover {
+            background: #2d2d3a !important;
+            border-color: #8b5cf6 !important;
+        }
+
+        [data-mode="child"] .chat-sidebar h4 {
+            font-size: 0.95rem !important;
+            margin-bottom: 12px !important;
+            letter-spacing: 0.5px;
+        }
+
+        /* Professional Banner for Child Mode */
+        .hero-banner {
+            display: none;
+            background: var(--banner-bg);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            align-items: center;
+            gap: 20px;
+        }
+
+        [data-mode="child"] .hero-banner {
+            display: flex;
+        }
+
+        .hero-text h3 { margin: 0; font-size: 1.2rem; color: var(--banner-text); font-weight: 800; }
+        .hero-text p { margin: 5px 0 0; font-size: 0.85rem; color: var(--banner-text); opacity: 0.8; line-height: 1.4; }
+
+        /* Mascot Widget */
+        .mascot-container {
+            display: none;
+            text-align: center;
+            padding: 30px 10px;
+            animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            background: linear-gradient(180deg, rgba(139, 92, 246, 0.1) 0%, transparent 100%);
+            border-radius: 30px;
+            margin-bottom: 20px;
+        }
+
+        [data-mode="child"] .mascot-container {
+            display: block;
+        }
+
+        .mascot-img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            filter: drop-shadow(0 15px 30px rgba(139, 92, 246, 0.5));
+            margin-bottom: 15px;
+        }
+
+        .mascot-bubble {
+            background: var(--p-light);
+            backdrop-filter: blur(15px);
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: 700;
+            color: var(--text);
+            border: 1px solid var(--border);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            font-size: 0.85rem;
+        }
+
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { opacity: 1; transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+
+        #hospitalMap { height: 350px; width: 100%; border-radius: 10px; margin-top: 10px; border: 2px solid var(--p-light); z-index: 1; box-shadow: var(--shadow); }
+        .map-popup-btn { background: var(--p); color: white; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; margin-top: 5px; display: inline-block; text-align: center; width: 100%; font-weight: 600; text-decoration: none; }
+        .leaflet-popup-content-wrapper { border-radius: 10px; padding: 5px; }
+
+        /* ===== WEATHER WIDGET ===== */
+        .weather-widget {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 12px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            animation: fadeSlideIn 0.6s ease;
+        }
+
+        [data-theme="dark"] .weather-widget {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1d4ed8 100%);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .weather-widget::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 100px;
+            height: 100px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50%;
+        }
+
+        .weather-widget .w-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            opacity: 0.85;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .weather-widget .w-main {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 12px;
+        }
+
+        .weather-widget .w-temp {
+            font-size: 1.8rem;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+
+        .weather-widget .w-icon {
+            font-size: 1.6rem;
+            animation: weatherPulse 3s ease-in-out infinite;
+        }
+
+        .weather-widget .w-condition {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .weather-widget .w-details {
+            display: flex;
+            gap: 12px;
+            font-size: 0.72rem;
+            opacity: 0.9;
+            flex-wrap: wrap;
+        }
+
+        .weather-widget .w-detail-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(255,255,255,0.12);
+            padding: 4px 8px;
+            border-radius: 8px;
+        }
+
+        .weather-widget .w-location {
+            font-size: 0.72rem;
+            opacity: 0.75;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .weather-loading {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .weather-loading .spinner {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes weatherPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        @keyframes fadeSlideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Health alert badge on weather */
+        .weather-health-alert {
+            margin-top: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 10px;
+            padding: 8px 12px;
+            font-size: 0.75rem;
+            line-height: 1.4;
+            backdrop-filter: blur(5px);
+        }
+
+        .weather-health-alert .alert-icon {
+            margin-right: 5px;
+        }
+
+        /* ===== ENHANCED BOT MESSAGE SECTIONS ===== */
+        .msg-bubble.bot .response-section {
+            margin: 10px 0;
+            padding: 12px 15px;
+            border-radius: 12px;
+            border-left: 4px solid;
+            background: rgba(0, 0, 0, 0.03);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .msg-bubble.bot .response-section:hover {
+            transform: translateX(3px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        [data-theme="dark"] .msg-bubble.bot .response-section {
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .msg-bubble.bot .response-section.section-answer {
+            border-left-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.06);
+        }
+
+        .msg-bubble.bot .response-section.section-risk {
+            border-left-color: #f59e0b;
+            background: rgba(245, 158, 11, 0.06);
+        }
+
+        .msg-bubble.bot .response-section.section-advice {
+            border-left-color: #10b981;
+            background: rgba(16, 185, 129, 0.06);
+        }
+
+        .msg-bubble.bot .response-section.section-actions {
+            border-left-color: #8b5cf6;
+            background: rgba(139, 92, 246, 0.06);
+        }
+
+        .msg-bubble.bot .response-section.section-doctor {
+            border-left-color: #ef4444;
+            background: rgba(239, 68, 68, 0.06);
+        }
+
+        .msg-bubble.bot .response-section .section-title {
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .msg-bubble.bot .response-section .section-body {
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+
+        .msg-bubble.bot .response-disclaimer {
+            margin-top: 12px;
+            padding: 8px 12px;
+            background: rgba(0, 0, 0, 0.04);
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-style: italic;
+            opacity: 0.7;
+            text-align: center;
+        }
+
+        [data-theme="dark"] .msg-bubble.bot .response-disclaimer {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Child mode section overrides */
+        [data-mode="child"] .msg-bubble.bot .response-section {
+            border-radius: 16px;
+        }
+
+        [data-mode="child"] .msg-bubble.bot .response-section.section-answer { border-left-color: #8b5cf6; background: rgba(139, 92, 246, 0.08); }
+        [data-mode="child"] .msg-bubble.bot .response-section.section-risk { border-left-color: #f472b6; background: rgba(244, 114, 182, 0.08); }
+        [data-mode="child"] .msg-bubble.bot .response-section.section-advice { border-left-color: #34d399; background: rgba(52, 211, 153, 0.08); }
+
+        /* ===== LEFT SIDEBAR MAP ===== */
+        .sidebar { display: flex; flex-direction: column; }
+        .sidebar-nav { flex-shrink: 0; }
+        .sidebar-map-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 12px;
+            overflow: hidden;
+            min-height: 0;
+        }
+
+        .sidebar-map-section .find-doctor-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            background: linear-gradient(135deg, var(--p), var(--p-vivid, #1d4ed8));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .sidebar-map-section .find-doctor-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.4);
+        }
+
+        .sidebar-map-section .find-doctor-btn i {
+            font-size: 1rem;
+        }
+
+        #hospitalMap {
+            width: 100%;
+            height: 350px;
+            border-radius: 10px;
+            border: 2px solid var(--p-light);
+            box-shadow: var(--shadow);
+            z-index: 1;
+        }
+
+        [data-mode="child"] .sidebar-map-section .find-doctor-btn {
+            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+        }
+        
+        /* CHATBOT-SPECIFIC RESPONSIVE STYLES */
+        @media(max-width:1200px){
+            body .sidebar{width:200px !important}
+            body .main-content{margin-left:200px !important; padding:15px !important}
+            .chat-sidebar{width:260px}
+            .chat-messages{padding:25px 40px !important}
+            body .chat-layout{height:calc(100vh - 60px) !important}
+        }
+        
+        @media(max-width:768px){
+            body .sidebar{width:220px !important}
+            body .main-content{margin-left:0 !important; padding:10px !important}
+            .chat-sidebar{display:none}
+            .chat-main{max-width:100% !important}
+            .chat-messages{padding:20px !important}
+            body .msg-bubble{max-width:95% !important;padding:14px 18px !important}
+            body .chat-input-area{padding:15px 20px !important}
+            body .chat-input-bar input{padding:14px 20px !important}
+            body .chat-layout{height:calc(100vh - 50px) !important}
+        }
+        
+        @media(max-width:480px){
+            .chat-messages{padding:15px !important}
+            body .msg-bubble{font-size:0.9rem !important;padding:12px 16px !important}
+            body .chat-input-bar input{font-size:0.95rem !important;padding:12px 18px !important}
+            body .chat-input-bar button{width:45px !important;height:45px !important}
+            body .chat-layout{height:calc(100vh - 40px) !important}
+        }
+    </style>
+</head>
+<body>
+    <button class="mobile-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="logo"><div class="logo-icon"></div><span>Cureastic</span></div>
+            <nav class="sidebar-nav">
+                <a href="/dashboard"><i class="fa-solid fa-house"></i> <span data-i18n="nav_dashboard">Dashboard</span></a>
+                <a href="/chatbot" class="active"><i class="fa-solid fa-comment-dots"></i> <span data-i18n="nav_chatbot">AI Chatbot</span></a>
+                <a href="/wellness"><i class="fa-solid fa-person-running"></i> <span data-i18n="nav_wellness">Wellness</span></a>
+                <a href="/reports"><i class="fa-solid fa-chart-line"></i> <span data-i18n="nav_reports">Health Reports</span></a>
+                <a href="/profile"><i class="fa-solid fa-user-gear"></i> <span data-i18n="nav_profile">Profile Settings</span></a>
+            </nav>
+            <!-- Hospital Map in left sidebar -->
+            <div class="sidebar-map-section" style="display: none;">
+                <div id="hospitalMapOld" style="display:none"></div>
+            </div>
+            <div class="sidebar-bottom">
+                <button class="theme-toggle" id="themeToggleBtn"><i class="fa-solid fa-moon"></i> Dark Mode</button>
+                <button class="btn btn-danger btn-sm btn-block" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+            </div>
+        </aside>
+        <main class="main-content">
+            <div class="chat-layout">
+                <div class="chat-main">
+                    <div class="chat-top-bar">
+                        <div class="bot-avatar"><i class="fa-solid fa-robot"></i></div>
+                        <div style="flex: 1">
+                            <div class="bot-name" id="botNameDisplay" data-i18n="bot_name">Cureastic Assistant <i class="fa-solid fa-circle-check" style="color: #25d366; font-size: 0.8rem"></i></div>
+                            <div class="bot-status" id="botStatusDisplay" data-i18n="bot_status">Online • Normal Health Mode</div>
+                        </div>
+                        <div style="display: flex; gap: 10px; align-items:center">
+                            <!-- Dual Mode Toggle -->
+                            <div class="mode-toggle" id="modeToggle" style="display:flex; background: rgba(0,0,0,0.1); border-radius: 20px; padding: 2px; cursor:pointer">
+                                <button id="modeNormal" onclick="setMode('normal')" style="border:none; background: var(--p); color:white; border-radius: 18px; padding: 5px 12px; font-size: 0.75rem; font-weight: bold; cursor:pointer"><i class="fa-solid fa-user-md"></i> Normal</button>
+                                <button id="modeChild" onclick="setMode('child')" style="border:none; background: transparent; color:white; border-radius: 18px; padding: 5px 12px; font-size: 0.75rem; font-weight: bold; cursor:pointer"><i class="fa-solid fa-baby"></i> Child Care</button>
+                            </div>
+
+                            <div class="lang-picker">
+                                <select id="chatLang" onchange="window.i18n.setLang(this.value)" style="padding: 6px; border-radius: 8px; border: none; font-size: 0.8rem; background: rgba(255,255,255,0.1); color:white; outline:none">
+                                    <option value="en">English</option>
+                                    <option value="hi">Hindi (हिन्दी)</option>
+                                    <option value="bn">Bengali (বাংলা)</option>
+                                    <option value="mr">Marathi (मराठी)</option>
+                                    <option value="gu">Gujarati (ગુજરાતી)</option>
+                                    <option value="ta">Tamil (தமிழ்)</option>
+                                    <option value="te">Telugu (తెలుగు)</option>
+                                    <option value="kn">Kannada (ಕನ್ನಡ)</option>
+                                    <option value="ml">Malayalam (മലയാളം)</option>
+                                    <option value="pa">Punjabi (ਪੰਜਾਬੀ)</option>
+                                    <option value="ur">Urdu (اردو)</option>
+                                </select>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="hero-banner">
+                            <img src="/assets/child-mascot.png" style="width: 50px; height: 50px; object-fit: contain;">
+                            <div class="hero-text">
+                                <h3>Health Hero Plan</h3>
+                                <p>Stay strong and super fast like a cheetah! ✨</p>
+                            </div>
+                        </div>
+                        <div class="msg-bubble bot">Namaste! 👋 I'm **Cureastic**. I can find hospitals or analyze health photos.</div>
+                    </div>
+                    <div class="typing-indicator" id="typingIndicator"><span></span><span></span><span></span></div>
+
+                    <!-- Media Choice Modal (Floating) -->
+                    <div id="mediaChoiceModal" style="display:none; position: absolute; bottom: 80px; left: 20px; right: 20px; background: white; border-radius: 20px; box-shadow: var(--shadow); z-index: 1000; padding: 15px; border: 1px solid #f0f0f0;">
+                        <h4 style="margin: 0 0 15px; font-size: 0.9rem; text-align: center; color: var(--muted);">Choose Capture Method</h4>
+                        <div style="display: flex; gap: 10px;">
+                            <button onclick="startRealCamera()" class="btn btn-primary" style="flex: 1; border-radius: 12px; display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 0.85rem;">
+                                <i class="fa-solid fa-camera" style="font-size: 1.2rem;"></i> Live Camera
+                            </button>
+                            <button onclick="document.getElementById('imageGallery').click(); closeMediaModal();" class="btn" style="flex: 1; background: #f3f0ff; color: var(--p); border-radius: 12px; display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 0.85rem; border: none; font-weight: 600; cursor:pointer">
+                                <i class="fa-solid fa-images" style="font-size: 1.2rem;"></i> Gallery
+                            </button>
+                        </div>
+                        <button onclick="closeMediaModal()" style="width: 100%; border: none; background: transparent; color: #9ca3af; margin-top: 15px; font-size: 0.8rem; cursor:pointer">Cancel</button>
+                    </div>
+
+                    <!-- Live Camera Feed Section with Switch Toggle -->
+                    <div id="cameraSection" style="display:none; margin: 15px; position: relative; border-radius: 12px; overflow: hidden; background: #000; border: 2px solid var(--p);">
+                        <video id="videoFeed" autoplay playsinline style="width: 100%;"></video>
+                        <canvas id="photoCanvas" style="display:none;"></canvas>
+                        <!-- Floating Switch Gallery Link -->
+                        <div style="position: absolute; top: 10px; right: 10px;">
+                           <button onclick="document.getElementById('imageGallery').click(); closeCamera();" style="background: rgba(0,0,0,0.5); color:white; border:none; padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; cursor:pointer">
+                              <i class="fa-solid fa-rotate"></i> Switch to Gallery
+                           </button>
+                        </div>
+                        <div style="position: absolute; bottom: 15px; width: 100%; display: flex; justify-content: center; gap: 15px;">
+                            <button onclick="capturePhoto()" class="btn btn-primary" style="padding: 10px 25px; font-weight: bold; border-radius: 30px;">CAPTURE</button>
+                            <button onclick="closeCamera()" class="btn btn-danger" style="border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="chat-input-area">
+                        <div class="chat-input-bar">
+                            <div class="action-menu" style="display:flex; gap:15px; align-items:center;">
+                                <button onclick="toggleMediaModal()" title="Camera & Gallery" style="color: var(--p); background: transparent; border:none; font-size: 1.2rem; cursor:pointer">
+                                    <i class="fa-solid fa-camera"></i>
+                                </button>
+                                <button onclick="findHospitals()" title="Hospitals" style="color: var(--muted); background: transparent; border:none; font-size: 1.2rem; cursor:pointer"><i class="fa-solid fa-location-dot"></i></button>
+                                <button onclick="startVoice()" title="Voice" style="color: var(--muted); background: transparent; border:none; font-size: 1.2rem; cursor:pointer"><i class="fa-solid fa-microphone"></i></button>
+                            </div>
+                            <input type="text" id="chatInput" data-i18n="input_placeholder" placeholder="How can I help you?..." autocomplete="off">
+                            <button id="sendBtn"><i class="fa-solid fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-sidebar">
+                    <!-- Weather Widget -->
+                    <div id="weatherWidgetContainer">
+                        <div class="weather-widget" id="weatherWidget" style="display:none"></div>
+                        <div class="weather-loading" id="weatherLoading">
+                            <span class="spinner"></span> Fetching weather...
+                        </div>
+                    </div>
+
+                    <!-- Hospital Map Section -->
+                    <div style="margin-top: 20px;">
+                        <h4 style="margin-bottom:15px; display: flex; align-items: center; gap: 8px;">
+                            <i class="fa-solid fa-hospital" style="color:#60a5fa"></i> 
+                            Nearby Hospitals
+                        </h4>
+                        <button onclick="findHospitals()" style="width: 100%; padding: 12px; background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%); color: white; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.3s;">
+                            <i class="fa-solid fa-location-dot"></i> Find Hospitals
+                        </button>
+                        <div id="hospitalMap" style="display:none"></div>
+                        <div id="hospitalMapLoading" style="display:none; text-align: center; padding: 20px; color: var(--muted);">
+                            <span class="spinner" style="display: inline-block; width: 30px; height: 30px; border: 3px solid #e5e7eb; border-top-color: #60a5fa; border-radius: 50%; animation: spin 1s linear infinite;"></span>
+                            <p style="margin-top: 10px; font-size: 0.9rem;">Searching hospitals...</p>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-bottom:15px; margin-top: 20px;"><i class="fa-solid fa-lightbulb" style="color:#fbbf24"></i> Daily Hero Tips</h4>
+                    <div id="dailyTipsContainer">
+                        <!-- Tips will be injected here -->
+                        <div class="card quick-q" style="background: linear-gradient(135deg, #1c1c27, #2d1b4e)">
+                            <i class="fa-solid fa-apple-whole"></i>
+                            <div style="font-size:0.9rem">Eat an apple a day to keep your superpower strong!</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+    <input type="file" id="imageGallery" accept="image/*" style="display:none" onchange="handleImageUpload(event)">
+    <script>
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const typingInd = document.getElementById('typingIndicator');
+        const chatLang = document.getElementById('chatLang');
+
+        // ===== WEATHER STATE =====
+        let currentWeather = null;
+
+        // ===== WEATHER ICON MAPPER =====
+        function getWeatherEmoji(condition) {
+            const c = (condition || '').toLowerCase();
+            if (c.includes('sunny') || c.includes('clear')) return '☀️';
+            if (c.includes('partly cloudy')) return '⛅';
+            if (c.includes('cloudy') || c.includes('overcast')) return '☁️';
+            if (c.includes('rain') || c.includes('drizzle') || c.includes('shower')) return '🌧️';
+            if (c.includes('thunder')) return '⛈️';
+            if (c.includes('snow') || c.includes('blizzard')) return '❄️';
+            if (c.includes('fog') || c.includes('mist') || c.includes('haze')) return '🌫️';
+            if (c.includes('wind')) return '💨';
+            if (c.includes('dust') || c.includes('sand')) return '🌪️';
+            return '🌤️';
+        }
+
+        // ===== WEATHER HEALTH ALERT =====
+        function getWeatherHealthAlert(weather) {
+            if (!weather) return '';
+            const temp = parseFloat(weather.temp);
+            const humidity = parseFloat(weather.humidity);
+            const c = (weather.condition || '').toLowerCase();
+
+            if (c.includes('rain') || c.includes('thunder') || c.includes('shower')) {
+                return '🦟 <strong>Dengue & Malaria Alert:</strong> Stagnant water breeds mosquitoes. Use repellent & cover up.';
+            }
+            if (temp > 35) {
+                return '🔥 <strong>Heatstroke Risk:</strong> Stay hydrated, avoid direct sun between 11am-3pm.';
+            }
+            if (temp > 30) {
+                return '💧 <strong>Dehydration Alert:</strong> Drink 3-4L water today. Watch for dizziness.';
+            }
+            if (temp < 10) {
+                return '🥶 <strong>Hypothermia Risk:</strong> Layer up and keep extremities warm.';
+            }
+            if (temp < 18) {
+                return '🤧 <strong>Cold & Flu Season:</strong> Wash hands frequently, stay warm.';
+            }
+            if (humidity > 80) {
+                return '🍄 <strong>High Humidity:</strong> Watch for fungal infections & skin rashes.';
+            }
+            if (c.includes('fog') || c.includes('haze') || c.includes('dust')) {
+                return '😷 <strong>Air Quality Alert:</strong> Wear a mask outdoors, avoid heavy exercise.';
+            }
+            return '✅ <strong>Conditions are moderate.</strong> Stay active & hydrated!';
+        }
+
+        // ===== FETCH WEATHER =====
+        async function fetchWeather() {
+            const widget = document.getElementById('weatherWidget');
+            const loading = document.getElementById('weatherLoading');
+
+            try {
+                // Try geolocation first with longer timeout
+                const position = await new Promise((resolve, reject) => {
+                    navigator.geolocation.getCurrentPosition(resolve, reject, { 
+                        timeout: 15000, 
+                        enableHighAccuracy: true 
+                    });
+                });
+
+                const { latitude: lat, longitude: lon } = position.coords;
+                const res = await fetch(`/api/weather?lat=${lat}&lon=${lon}`);
+                const data = await res.json();
+
+                if (data.error) throw new Error(data.error);
+                currentWeather = data;
+                renderWeatherWidget(data);
+            } catch (geoErr) {
+                // Fallback: fetch without coords (uses server IP location)
+                try {
+                    const res = await fetch('/api/weather');
+                    const data = await res.json();
+                    if (data.error) throw new Error(data.error);
+                    currentWeather = data;
+                    renderWeatherWidget(data);
+                } catch (e) {
+                    loading.innerHTML = '<i class="fa-solid fa-cloud-sun" style="opacity:0.4"></i> Weather unavailable';
+                }
+            }
+        }
+
+        function renderWeatherWidget(data) {
+            const widget = document.getElementById('weatherWidget');
+            const loading = document.getElementById('weatherLoading');
+            const emoji = getWeatherEmoji(data.condition);
+            const healthAlert = getWeatherHealthAlert(data);
+
+            widget.innerHTML = `
+                <div class="w-header">
+                    <i class="fa-solid fa-cloud-sun"></i> LIVE WEATHER
+                </div>
+                <div class="w-main">
+                    <div class="w-icon">${emoji}</div>
+                    <div>
+                        <div class="w-temp">${data.temp}°C</div>
+                        <div class="w-condition">${data.condition}</div>
+                    </div>
+                </div>
+                <div class="w-details">
+                    <div class="w-detail-item"><i class="fa-solid fa-temperature-half"></i> Feels ${data.feelsLike}°C</div>
+                    <div class="w-detail-item"><i class="fa-solid fa-droplet"></i> ${data.humidity}%</div>
+                    <div class="w-detail-item"><i class="fa-solid fa-wind"></i> ${data.windSpeed} km/h</div>
+                </div>
+                <div class="weather-health-alert">
+                    <span class="alert-icon">🩺</span> ${healthAlert}
+                </div>
+                <div class="w-location">
+                    <i class="fa-solid fa-location-dot"></i> ${data.location}
+                </div>
+            `;
+
+            widget.style.display = 'block';
+            loading.style.display = 'none';
+        }
+
+        // ===== ENHANCED MESSAGE RENDERER =====
+        function formatBotResponse(text) {
+            // Section mapping with icons and CSS classes
+            const sectionMap = [
+                { patterns: ['🔍 Direct Answer:', '**🔍 Direct Answer:**', '**Direct Answer:**', 'Direct Answer:'], cls: 'section-answer', icon: '🔍', title: 'Direct Answer' },
+                { patterns: ['⚠️ Health Risk:', '**⚠️ Health Risk:**', '**Health Risk:**', 'Health Risk:', '**Health Risk (', '**Health Risk**'], cls: 'section-risk', icon: '⚠️', title: 'Health Risk' },
+                { patterns: ['💡 Advice:', '**💡 Advice:**', '**Advice:**', 'Advice:'], cls: 'section-advice', icon: '💡', title: 'Advice' },
+                { patterns: ['⚡ Quick Actions:', '**⚡ Quick Actions:**', '**Quick Actions:**', 'Quick Actions:'], cls: 'section-actions', icon: '⚡', title: 'Quick Actions' },
+                { patterns: ['🏥 When to See a Doctor:', '**🏥 When to See a Doctor:**', '**When to See a Doctor:**', 'When to See a Doctor:'], cls: 'section-doctor', icon: '🏥', title: 'When to See a Doctor' },
+                // Child mode sections
+                { patterns: ['Key Points:', '**Key Points:**'], cls: 'section-risk', icon: '🧸', title: 'Key Points' },
+                { patterns: ['Extra:', '**Extra:**'], cls: 'section-actions', icon: '💉', title: 'Extra Info' },
+                { patterns: ['Care Tip', '**Care Tip'], cls: 'section-advice', icon: '💡', title: 'Care Tip' },
+            ];
+
+            // Check if this looks like a structured response
+            let hasStructure = false;
+            for (const sec of sectionMap) {
+                for (const p of sec.patterns) {
+                    if (text.includes(p)) { hasStructure = true; break; }
+                }
+                if (hasStructure) break;
+            }
+
+            if (!hasStructure) {
+                // Simple markdown render for unstructured responses
+                return text
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                    .replace(/\n/g, '<br>');
+            }
+
+            // Parse sections
+            let html = '';
+            let remaining = text;
+            let sections = [];
+
+            // Find all section positions
+            for (const sec of sectionMap) {
+                for (const pattern of sec.patterns) {
+                    const idx = remaining.indexOf(pattern);
+                    if (idx !== -1) {
+                        sections.push({ ...sec, pattern, index: idx });
+                        break;
+                    }
+                }
+            }
+
+            // Sort by position
+            sections.sort((a, b) => a.index - b.index);
+
+            // Extract content before first section
+            if (sections.length > 0 && sections[0].index > 0) {
+                const prolog = remaining.substring(0, sections[0].index).trim();
+                if (prolog) {
+                    html += `<div style="margin-bottom:8px">${formatInline(prolog)}</div>`;
+                }
+            }
+
+            // Extract each section's content
+            for (let i = 0; i < sections.length; i++) {
+                const start = sections[i].index + sections[i].pattern.length;
+                const end = i + 1 < sections.length ? sections[i + 1].index : remaining.length;
+                let content = remaining.substring(start, end).trim();
+
+                // Clean up trailing --- or disclaimer markers
+                content = content.replace(/^---$/gm, '').trim();
+
+                if (content) {
+                    html += `
+                        <div class="response-section ${sections[i].cls}">
+                            <div class="section-title">${sections[i].icon} ${sections[i].title}</div>
+                            <div class="section-body">${formatInline(content)}</div>
+                        </div>
+                    `;
+                }
+            }
+
+            // Check for disclaimer
+            const disclaimerPatterns = [
+                'This is for awareness only',
+                'Please consult a healthcare professional',
+                '⚕️'
+            ];
+            let hasDisclaimer = disclaimerPatterns.some(d => text.includes(d));
+            if (hasDisclaimer) {
+                html += `<div class="response-disclaimer">⚕️ This is for awareness only. Please consult a healthcare professional.</div>`;
+            }
+
+            return html;
+        }
+
+        function formatInline(text) {
+            return text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/^\s*•\s*/gm, '<br>• ')
+                .replace(/^\s*-\s*/gm, '<br>• ')
+                .replace(/\n\n/g, '<br>')
+                .replace(/\n/g, '<br>')
+                .replace(/^<br>/, '');
+        }
+
+        function addMessage(text, sender, isHTML = false) {
+            const bubble = document.createElement('div');
+            bubble.className = `msg-bubble ${sender}`;
+
+            if (isHTML) {
+                bubble.innerHTML = text;
+            } else if (sender === 'bot') {
+                bubble.innerHTML = formatBotResponse(text);
+            } else {
+                bubble.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+            }
+
+            chatMessages.appendChild(bubble);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        let userName = "Hero";
+        async function loadUserName() {
+            try {
+                const res = await fetch('/api/me');
+                if (res.ok) {
+                    const user = await res.json();
+                    userName = user.name || "Hero";
+                }
+            } catch (e) {}
+        }
+        loadUserName().then(() => {
+            if (window.i18n) {
+                document.getElementById('chatLang').value = window.i18n.currentLang;
+                window.i18n.applyTranslations();
+            }
+        });
+
+        let currentMode = 'normal';
+        function setMode(mode) {
+            currentMode = mode;
+            const chatBox = document.getElementById('chatMessages');
+            const normBtn = document.getElementById('modeNormal');
+            const childBtn = document.getElementById('modeChild');
+            const botName = document.getElementById('botNameDisplay');
+            const botStatus = document.getElementById('botStatusDisplay');
+            const botAvatar = document.querySelector('.bot-avatar i');
+            
+            chatBox.setAttribute('data-mode', mode);
+            document.body.setAttribute('data-mode', mode);
+
+            if (mode === 'normal') {
+                normBtn.style.background = '#2563eb';
+                childBtn.style.background = 'transparent';
+                botName.innerHTML = 'Cureastic Assistant <i class="fa-solid fa-circle-check" style="color: #25d366; font-size: 0.8rem"></i>';
+                botStatus.textContent = 'Online • Normal Health Mode';
+                document.documentElement.style.setProperty('--p', '#2563eb');
+                botAvatar.className = 'fa-solid fa-robot';
+            } else {
+                childBtn.style.background = '#8b5cf6';
+                normBtn.style.background = 'transparent';
+                botName.innerHTML = `Cureastic Hero: ${userName} <i class="fa-solid fa-star" style="color: #fbbf24; margin-left: 5px"></i>`;
+                botStatus.textContent = 'Online • Ready to play & help!';
+                document.documentElement.style.setProperty('--p', '#8b5cf6');
+                botAvatar.className = 'fa-solid fa-face-grin-stars';
+                const mascotBubble = document.querySelector('.mascot-bubble');
+                if (mascotBubble) mascotBubble.innerText = `Hi ${userName}! I'm your health buddy! ✨`;
+            }
+        }
+
+        // Daily Kid Tips Rotation
+        const kidTips = [
+            { icon: "fa-apple-whole", text: "Eat colorful fruits to unlock new energy levels!" },
+            { icon: "fa-glass-water", text: "Water is your engine's fuel. Drink up, Hero!" },
+            { icon: "fa-bed", text: "Sleep 9 hours to let your brain recharge its super-battery." },
+            { icon: "fa-soap", text: "Wash hands for 20 seconds to defeat the Germ Villains!" },
+            { icon: "fa-mask-face", text: "Brushing twice a day keeps the Tooth-Monsters away!" },
+            { icon: "fa-person-running", text: "Jump, run, or dance for 30 mins to stay super fast!" }
+        ];
+
+        function rotateTips() {
+            const container = document.getElementById('dailyTipsContainer');
+            if (currentMode !== 'child') {
+                container.innerHTML = `
+                    <div class="card quick-q" onclick="askQ('Dengue symptoms')">Dengue Symptoms</div>
+                    <div class="card quick-q" onclick="askQ('Healthy diet tips')">Healthy Diet</div>
+                    <div class="card quick-q" onclick="askQ('I feel tired')">Feeling Tired</div>
+                    <div class="card quick-q" onclick="askQ('Headache remedies')">Headache Help</div>
+                `;
+                return;
+            }
+            const tip = kidTips[Math.floor(Math.random() * kidTips.length)];
+            container.innerHTML = `
+                <div class="card quick-q" onclick="askQ('${tip.text}')">
+                    ${tip.text}
+                </div>
+            `;
+        }
+        setInterval(rotateTips, 8000);
+        rotateTips();
+
+        // ===== SEND MESSAGE WITH WEATHER =====
+        async function sendMessage() {
+            const msg = chatInput.value.trim();
+            if (!msg) return;
+            addMessage(msg, 'user');
+            chatInput.value = '';
+            typingInd.style.display = 'block';
+
+            try {
+                const payload = {
+                    message: msg,
+                    lang: chatLang.value,
+                    mode: currentMode,
+                    weather: currentWeather || null
+                };
+
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+                typingInd.style.display = 'none';
+                addMessage(data.text, 'bot');
+            } catch (err) {
+                typingInd.style.display = 'none';
+                addMessage("Connection error. Please check your network.", 'bot');
+            }
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
+        function askQ(q) { chatInput.value = q; sendMessage(); }
+
+        function toggleMediaModal() {
+            const m = document.getElementById('mediaChoiceModal');
+            m.style.display = m.style.display === 'none' ? 'block' : 'none';
+        }
+        function closeMediaModal() { document.getElementById('mediaChoiceModal').style.display = 'none'; }
+        
+        function startRealCamera() {
+            closeMediaModal();
+            openLiveCamera();
+        }
+
+        let cameraStream = null;
+        async function openLiveCamera() {
+            try {
+                cameraStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+                document.getElementById('videoFeed').srcObject = cameraStream;
+                document.getElementById('cameraSection').style.display = 'block';
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            } catch (e) { alert("Enable camera access."); }
+        }
+        function closeCamera() { if (cameraStream) cameraStream.getTracks().forEach(t => t.stop()); document.getElementById('cameraSection').style.display = 'none'; }
+        function capturePhoto() {
+            const video = document.getElementById('videoFeed'); const canvas = document.getElementById('photoCanvas');
+            canvas.width = video.videoWidth; canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0); closeCamera();
+            canvas.toBlob(blob => handleImageUpload({ target: { files: [new File([blob], "capture.jpg", { type: "image/jpeg" })] } }), 'image/jpeg');
+        }
+
+        async function handleImageUpload(event) {
+            const file = event.target.files[0]; if (!file) return;
+            addMessage(`<i>Analyzing health photo...</i>`, 'user', true); typingInd.style.display = 'block';
+            const formData = new FormData(); formData.append('image', file); formData.append('lang', chatLang.value);
+            formData.append('mode', currentMode);
+            try {
+                const res = await fetch('/api/analyze-image', { method: 'POST', body: formData });
+                const data = await res.json(); 
+                typingInd.style.display = 'none'; 
+                addMessage(data.text, 'bot');
+            } catch (e) { 
+                typingInd.style.display = 'none'; 
+                addMessage("Vision module temporarily unavailable. Please ensure your image is clear and try again.", 'bot'); 
+            }
+        }
+
+        // Voice Input
+        function startVoice() {
+           const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+           if (!SR) return alert("Speech recognition not supported.");
+           const rec = new SR(); rec.lang = 'en-IN'; rec.start();
+           rec.onstart = () => { chatInput.placeholder = "Listening..."; };
+           rec.onresult = (e) => { chatInput.value = e.results[0][0].transcript; sendMessage(); };
+        }
+
+        // --- REAL LIVE HOSPITAL FINDER (Overpass API) ---
+        let mapInstance = null;
+        function getDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371; // km
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c;
+
+        }
+
+
+
+        async function findHospitals() {
+            const mapDiv = document.getElementById('hospitalMap');
+            const loadingDiv = document.getElementById('hospitalMapLoading');
+            
+            mapDiv.style.display = 'none';
+            loadingDiv.style.display = 'block';
+            
+            console.log("Starting hospital search...");
+            addMessage("📍 Scanning your area for healthcare facilities...", "bot");
+
+            if (mapInstance) { 
+                mapInstance.remove();
+                mapInstance = null;
+            }
+
+            navigator.geolocation.getCurrentPosition(async (pos) => {
+                const { latitude: lat, longitude: lon } = pos.coords;
+                console.log(`Location found: ${lat}, ${lon}`);
+                
+                loadingDiv.style.display = 'none';
+                mapDiv.style.display = 'block';
+                mapDiv.innerHTML = '';
+                
+                mapInstance = L.map('hospitalMap').setView([lat, lon], 14);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; OpenStreetMap'
+                }).addTo(mapInstance);
+
+                L.marker([lat, lon]).addTo(mapInstance).bindPopup("<b>You are here</b>").openPopup();
+
+                const query = `[out:json][timeout:25];(node["amenity"~"hospital|clinic|doctors|pharmacy"](around:5000,${lat},${lon});way["amenity"~"hospital|clinic"](around:5000,${lat},${lon}););out center;`;
+                const servers = [
+                    'https://overpass-api.de/api/interpreter', 
+                    'https://lz4.overpass-api.de/api/interpreter', 
+                    'https://overpass.kumi.systems/api/interpreter',
+                    'https://overpass.openstreetmap.ru/cgi/interpreter'
+                ];
+
+                let data = null;
+                for (const server of servers) {
+                    try {
+                        console.log(`Trying Overpass server: ${server}`);
+                        const url = `${server}?data=${encodeURIComponent(query)}`;
+                        const res = await fetch(url);
+                        if (!res.ok) {
+                            console.warn(`Server ${server} returned status: ${res.status}`);
+                            continue;
+                        }
+                        data = await res.json();
+                        if (data && data.elements) {
+                            console.log(`Success from ${server}. Elements found: ${data.elements.length}`);
+                            break;
+                        }
+                    } catch (e) { 
+                        console.error(`Error with ${server}:`, e); 
+                    }
+                }
+
+                if (data && data.elements && data.elements.length > 0) {
+                    let nearest = null;
+                    let minDist = Infinity;
+                    let hospitalCount = 0;
+
+                    data.elements.forEach(elt => {
+                        const name = elt.tags.name || "Healthcare Facility";
+                        const type = elt.tags.amenity || "Medical Center";
+                        const eltLat = elt.lat || (elt.center && elt.center.lat);
+                        const eltLon = elt.lon || (elt.center && elt.center.lon);
+                        
+                        if (eltLat && eltLon) {
+                            const dist = getDistance(lat, lon, eltLat, eltLon);
+                            if (type === 'hospital' || type === 'clinic') hospitalCount++;
+                            
+                            if (type === 'hospital' && dist < minDist) {
+                                minDist = dist;
+                                nearest = elt;
+                            }
+
+                            const icon = type === 'pharmacy' ? '💊' : '🏥';
+                            L.marker([eltLat, eltLon]).addTo(mapInstance).bindPopup(`
+                                <div style="font-family:inherit; min-width:140px; padding:2px;">
+                                    <b style="color:var(--p); font-size:0.85rem;">${icon} ${name}</b><br>
+                                    <small style="color:#666; font-size:0.7rem;">${dist.toFixed(1)} km away</small><br>
+                                    <a href="https://www.google.com/maps/dir/${lat},${lon}/${eltLat},${eltLon}" target="_blank" style="display:block; margin-top:8px; padding:6px; background:var(--p); color:white; text-align:center; border-radius:6px; text-decoration:none; font-size:0.7rem; font-weight:bold;">Directions</a>
+                                </div>
+                            `);
+                        }
+                    });
+
+                    let botMsg = `✅ I've located **${data.elements.length}** medical centers within 5km! \n\n`;
+                    if (nearest) {
+                        const nearestName = nearest.tags.name || "Nearby Hospital";
+                        const addr = [nearest.tags['addr:street'], nearest.tags['addr:suburb'], nearest.tags['addr:city']].filter(Boolean).join(', ') || "Address details on map";
+                        botMsg += `🏥 **Closest Recommended Hospital:**\n**${nearestName}**\n📍 Distance: **${minDist.toFixed(1)} km**\n🏠 ${addr}\n\n*Check the map in the left sidebar to see all locations.*`;
+                    } else {
+                        botMsg += `*Check the map in the sidebar to see all nearby clinics and pharmacies.*`;
+                    }
+                    addMessage(botMsg, "bot");
+                } else if (data && data.elements) {
+                    addMessage("🔍 I searched but couldn't find any hospitals in a 5km radius. Try moving to a different location or checking your internet.", "bot");
+                } else {
+                    addMessage("❌ Sorry, our hospital databases are temporarily overloaded. Please try again in 1 minute.", "bot");
+                }
+            }, (err) => {
+                console.error("GPS Error:", err);
+                let errMsg = "GPS Denied. Enable location to find nearby hospitals.";
+                if (err.code === 1) errMsg = "Location permission denied. Please allow location access in your browser settings.";
+                if (err.code === 3) errMsg = "Location search timed out. Please try again.";
+                mapDiv.innerHTML = `<div style="padding:20px; color:var(--danger); text-align:center; font-size:0.8rem;">${errMsg}</div>`;
+                addMessage(`❌ ${errMsg}`, "bot");
+            }, { timeout: 15000, enableHighAccuracy: true });
+        }
+        function logout() { fetch('/api/logout', { method: 'POST' }).then(() => window.location = '/login'); }
+
+        // Theme Toggle Logic
+        const themeBtn = document.getElementById('themeToggleBtn');
+        themeBtn.addEventListener('click', () => {
+            const h = document.documentElement;
+            const current = h.getAttribute('data-theme') || 'light';
+            const next = current === 'light' ? 'dark' : 'light';
+            h.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            themeBtn.innerHTML = next === 'light' ? '<i class="fa-solid fa-moon"></i> Dark Mode' : '<i class="fa-solid fa-sun"></i> Light Mode';
+        });
+        
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        themeBtn.innerHTML = savedTheme === 'light' ? '<i class="fa-solid fa-moon"></i> Dark Mode' : '<i class="fa-solid fa-sun"></i> Light Mode';
+
+        // ===== INIT: Fetch weather on page load =====
+        fetchWeather();
+        // Refresh weather every 15 minutes
+        setInterval(fetchWeather, 15 * 60 * 1000);
+    </script>
+</body>
+</html>

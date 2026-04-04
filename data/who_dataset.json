@@ -1,0 +1,88 @@
+{
+  "diseases": {
+    "dengue": {
+      "symptoms": ["High fever", "Severe headache", "Pain behind eyes", "Joint and muscle pain", "Rash", "Mild bleeding"],
+      "prevention": ["Eliminate standing water", "Use mosquito repellent", "Wear protective clothing", "Use mosquito nets"],
+      "weather_risk": "rainy",
+      "severity": "high"
+    },
+    "malaria": {
+      "symptoms": ["Fever", "Chills", "Sweating", "Headache", "Nausea", "Vomiting", "Fatigue"],
+      "prevention": ["Use mosquito nets", "Apply insect repellent", "Take antimalarial medication if traveling", "Eliminate breeding sites"],
+      "weather_risk": "rainy",
+      "severity": "high"
+    },
+    "heatstroke": {
+      "symptoms": ["High body temperature", "Altered mental state", "Rapid breathing", "Racing heart", "Headache", "Nausea"],
+      "prevention": ["Stay hydrated", "Avoid direct sunlight", "Wear light clothing", "Take frequent breaks in shade"],
+      "weather_risk": "hot",
+      "severity": "critical"
+    },
+    "dehydration": {
+      "symptoms": ["Thirst", "Dry mouth", "Fatigue", "Dizziness", "Dark urine", "Decreased urination"],
+      "prevention": ["Drink plenty of water", "Avoid alcohol and caffeine", "Eat water-rich foods", "Monitor urine color"],
+      "weather_risk": "hot",
+      "severity": "medium"
+    },
+    "common_cold": {
+      "symptoms": ["Runny nose", "Sore throat", "Cough", "Sneezing", "Mild fever", "Body aches"],
+      "prevention": ["Wash hands frequently", "Avoid close contact with sick people", "Keep warm", "Boost immunity with vitamin C"],
+      "weather_risk": "cold",
+      "severity": "low"
+    },
+    "flu": {
+      "symptoms": ["High fever", "Severe body aches", "Fatigue", "Dry cough", "Headache", "Chills"],
+      "prevention": ["Get flu vaccine", "Wash hands regularly", "Avoid crowded places", "Maintain good hygiene"],
+      "weather_risk": "cold",
+      "severity": "medium"
+    },
+    "pneumonia": {
+      "symptoms": ["Chest pain", "Cough with phlegm", "Fever", "Shortness of breath", "Fatigue", "Confusion"],
+      "prevention": ["Get vaccinated", "Practice good hygiene", "Don't smoke", "Strengthen immune system"],
+      "weather_risk": "cold",
+      "severity": "high"
+    },
+    "typhoid": {
+      "symptoms": ["Prolonged fever", "Weakness", "Stomach pain", "Headache", "Loss of appetite", "Rash"],
+      "prevention": ["Drink clean water", "Eat properly cooked food", "Wash hands before eating", "Get vaccinated"],
+      "weather_risk": "rainy",
+      "severity": "high"
+    },
+    "cholera": {
+      "symptoms": ["Severe diarrhea", "Vomiting", "Dehydration", "Muscle cramps", "Rapid heart rate"],
+      "prevention": ["Drink safe water", "Proper sanitation", "Wash hands frequently", "Avoid raw food"],
+      "weather_risk": "rainy",
+      "severity": "critical"
+    }
+  },
+  "health_tips": {
+    "hot_weather": [
+      "Drink at least 8-10 glasses of water daily",
+      "Avoid going out between 11 AM - 3 PM",
+      "Wear light-colored, loose-fitting clothes",
+      "Use sunscreen with SPF 30+",
+      "Eat water-rich fruits like watermelon and cucumber"
+    ],
+    "rainy_weather": [
+      "Avoid walking through stagnant water",
+      "Keep your surroundings clean and dry",
+      "Use mosquito repellent and nets",
+      "Drink boiled or purified water only",
+      "Wash hands before eating"
+    ],
+    "cold_weather": [
+      "Dress in layers to stay warm",
+      "Drink warm fluids like soup and tea",
+      "Wash hands frequently to prevent infections",
+      "Get adequate sleep to boost immunity",
+      "Exercise indoors to stay active"
+    ],
+    "general": [
+      "Exercise for at least 30 minutes daily",
+      "Eat a balanced diet with fruits and vegetables",
+      "Get 7-8 hours of sleep",
+      "Manage stress through meditation or yoga",
+      "Regular health check-ups"
+    ]
+  }
+}
