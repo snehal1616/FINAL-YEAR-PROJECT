@@ -10,7 +10,7 @@ const multer = require('multer');
 require('dotenv').config();
 
 const app = express();
-const PORT = 3005;
+const PORT = process.env.PORT || 3005;
 const upload = multer({ limits: { fileSize: 5 * 1024 * 1024 } }); // 5MB limit
 
 // --- Middleware ---
