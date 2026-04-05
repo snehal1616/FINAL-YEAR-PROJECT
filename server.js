@@ -18,6 +18,7 @@ app.use(cors({
     origin: [
         'https://final-year-project-rjja.vercel.app',
         'https://final-year-project-flame-three.vercel.app',
+        'https://final-year-project-mu-rose.vercel.app',
         'http://localhost:3005'
     ],
     credentials: true
