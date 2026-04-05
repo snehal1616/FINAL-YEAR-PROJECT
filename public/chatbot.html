@@ -2,7 +2,7 @@
 <html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
     <title>AI Chatbot | Cureastic</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -906,6 +906,7 @@
             .chat-layout {
                 flex-direction: column !important;
                 height: 100vh !important;
+                height: 100dvh !important; /* Dynamic viewport height for mobile browsers */
                 gap: 0 !important;
             }
             
@@ -916,6 +917,8 @@
                 border-radius: 0 !important;
                 flex: 1;
                 min-height: 0;
+                display: flex !important;
+                flex-direction: column !important;
             }
             
             /* Right sidebar - slides in from right */
@@ -943,19 +946,32 @@
             
             /* Compact Top Bar on Mobile */
             .chat-top-bar {
-                padding: 8px 12px !important;
-                gap: 8px !important;
+                padding: 8px 10px !important;
+                gap: 6px !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: space-between !important;
+            }
+            
+            .chat-top-bar > div:nth-child(2) {
+                flex: 1 !important;
+                min-width: 0 !important;
+                overflow: hidden !important;
             }
             
             .chat-top-bar .bot-avatar {
                 width: 32px !important;
                 height: 32px !important;
                 font-size: 1rem !important;
+                flex-shrink: 0 !important;
             }
             
             .chat-top-bar .bot-name {
-                font-size: 0.9rem !important;
+                font-size: 0.85rem !important;
                 font-weight: 600 !important;
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
             }
             
             .chat-top-bar .bot-status {
@@ -967,6 +983,9 @@
             .chat-messages {
                 padding: 10px !important;
                 -webkit-overflow-scrolling: touch;
+                flex: 1 !important;
+                min-height: 0 !important;
+                overflow-y: auto !important;
             }
             
             /* Message Bubbles - Larger on mobile */
@@ -976,13 +995,21 @@
                 padding: 10px 14px !important;
             }
             
-            /* Input Area - Compact */
+            /* Input Area - Compact and always visible */
             body .chat-input-area {
                 padding: 8px !important;
+                padding-bottom: calc(8px + env(safe-area-inset-bottom)) !important;
+                flex-shrink: 0 !important;
+                background: var(--surface) !important;
+                border-top: 1px solid var(--border) !important;
+                position: relative !important;
+                bottom: 0 !important;
             }
             
             body .chat-input-bar {
                 gap: 6px !important;
+                display: flex !important;
+                align-items: center !important;
             }
             
             body .chat-input-bar input {
