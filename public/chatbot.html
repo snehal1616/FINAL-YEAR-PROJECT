@@ -910,23 +910,31 @@
             flex-direction: column;
             flex: 1;
             min-width: 0;
+            position: relative;
         }
         
         .chat-top-bar {
             flex-shrink: 0;
+            position: relative;
+            z-index: 10;
         }
         
         .chat-messages {
             flex: 1;
             overflow-y: auto;
+            overflow-x: hidden;
             padding: 15px;
             min-height: 0;
+            scroll-behavior: smooth;
         }
         
         .chat-input-area {
             flex-shrink: 0;
-            background: white;
+            background: var(--surface);
             padding: 10px;
+            border-top: 1px solid var(--border);
+            position: relative;
+            z-index: 10;
         }
         
         .chat-sidebar {
@@ -1102,9 +1110,10 @@
                 height: 100vh !important;
                 height: 100dvh !important; /* Dynamic viewport height for mobile browsers */
                 gap: 0 !important;
+                overflow: hidden !important;
             }
             
-            /* Chat Main - Full width, proper flex */
+            /* Chat Main - Full width, proper flex container */
             .chat-main {
                 width: 100%;
                 max-width: 100%;
@@ -1113,6 +1122,8 @@
                 min-height: 0;
                 display: flex !important;
                 flex-direction: column !important;
+                position: relative !important;
+                overflow: hidden !important;
             }
             
             /* Right sidebar - slides in from right */
@@ -1139,13 +1150,17 @@
                 transform: translateX(0);
             }
             
-            /* Chat Messages - Proper scrolling area */
+            /* Chat Messages - Proper scrolling with padding for input */
             .chat-messages {
-                padding: 12px !important;
-                -webkit-overflow-scrolling: touch;
                 flex: 1 !important;
                 min-height: 0 !important;
                 overflow-y: auto !important;
+                overflow-x: hidden !important;
+                padding: 12px !important;
+                padding-bottom: 80px !important; /* Space for input bar */
+                -webkit-overflow-scrolling: touch !important;
+                scroll-behavior: smooth !important;
+                position: relative !important;
             }
             
             /* Message Bubbles */
@@ -1153,15 +1168,26 @@
                 max-width: 85% !important;
                 font-size: 14px !important;
                 padding: 10px 14px !important;
+                margin-bottom: 8px !important;
             }
             
-            /* Input Area - Always visible at bottom with safe area */
+            /* Input Area - Fixed at bottom with shadow */
             body .chat-input-area {
+                position: absolute !important;
+                bottom: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
                 padding: 10px 12px !important;
                 padding-bottom: calc(10px + env(safe-area-inset-bottom)) !important;
                 flex-shrink: 0 !important;
                 background: var(--surface) !important;
                 border-top: 1px solid var(--border) !important;
+                box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1) !important;
+                z-index: 20 !important;
+            }
+            
+            [data-theme="dark"] body .chat-input-area {
+                box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3) !important;
             }
             
             body .chat-input-bar {
@@ -1726,7 +1752,14 @@
             }
 
             chatMessages.appendChild(bubble);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // Smooth scroll to bottom with a slight delay for rendering
+            setTimeout(() => {
+                chatMessages.scrollTo({
+                    top: chatMessages.scrollHeight,
+                    behavior: 'smooth'
+                });
+            }, 100);
         }
 
         let userName = "Hero";
@@ -2060,6 +2093,16 @@
         // Mode Switch Modal
         const botInfoClick = document.getElementById('botInfoClick');
         const modeSwitchModal = document.getElementById('modeSwitchModal');
+        
+        // ===== MOBILE INPUT FOCUS HANDLER =====
+        // Ensure input stays visible when keyboard opens
+        if (chatInput && window.innerWidth <= 768) {
+            chatInput.addEventListener('focus', function() {
+                setTimeout(() => {
+                    this.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 300);
+            });
+        }
         
         // Open mode switch modal when clicking bot info on mobile
         if (botInfoClick && modeSwitchModal) {
