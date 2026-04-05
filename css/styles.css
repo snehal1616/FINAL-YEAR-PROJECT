@@ -189,8 +189,9 @@ a{text-decoration:none;color:var(--p)}
 .mobile-toggle{
     display:none;
     position:fixed;
-    top:15px;
-    left:15px;
+    top:50%;
+    right:15px;
+    transform:translateY(-50%);
     z-index:200;
     background:var(--p);
     color:#fff;
