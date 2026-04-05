@@ -1,10 +1,4 @@
 server.js
-package.json
-package-lock.json
-node_modules
-.env
-.env.*
-data/users.json
 chatbot-engine.js
 find-model.js
 find-vision.js
@@ -12,4 +6,6 @@ get-id.js
 list-groq-models.js
 list-models.js
 model_id.txt
+data/users.json
 *.md
+!README.md
