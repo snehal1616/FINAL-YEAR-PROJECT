@@ -1,0 +1,431 @@
+[
+  {
+    "id": "2b0446dc-b9db-445a-b6df-642855d7905f",
+    "name": "Test User",
+    "email": "test@demo.com",
+    "password": "$2a$10$QjJHEOSLQjCzSGqX8q/POenQ.cbI9luDiFfA1rh9GqKvj1/iaWHPe",
+    "lang": "en",
+    "chatHistory": [
+      {
+        "q": "sick",
+        "a": "I'm still learning! I couldn't fully understand your query.\n\n🔍 Here are things I can help with:\n• **Disease info:** dengue, malaria, COVID-19, typhoid, cholera, TB\n• **Vaccination:** schedules for all ages\n• **First aid:** burns, cuts, snake bites\n• **Health tips**\n\n💡 **Tip:** Eat 5 servings of fruits and vegetables every day.",
+        "topic": "unknown",
+        "ts": "2026-03-30T07:11:18.715Z"
+      },
+      {
+        "q": "How to prevent malaria?",
+        "a": "**How to Prevent Malaria:**\n✅ Sleep under insecticide-treated mosquito nets (ITNs)\n✅ Use indoor residual spraying (IRS)\n✅ Take antimalarial medication if in endemic area\n✅ Wear protective clothing at dusk and dawn\n✅ Remove standing water near homes\n\n⚠️ Source: WHO Global Malaria Programme",
+        "topic": "malaria",
+        "ts": "2026-03-30T07:11:23.936Z"
+      },
+      {
+        "q": "First aid for burns",
+        "a": "**First Aid — BURNS:**\nCool the burn under cool running water for 10-15 minutes. Do NOT use ice, butter, or toothpaste. Cover loosely with a sterile, non-stick bandage. Take OTC pain relievers if needed. Seek medical help for severe burns.",
+        "topic": "first_aid",
+        "ts": "2026-03-30T07:11:28.157Z"
+      }
+    ],
+    "created": "2026-03-30T07:09:44.601Z"
+  },
+  {
+    "id": "ab014761-3a13-402c-ae6f-50e286f95f8a",
+    "name": "Snehalkumar S.B",
+    "email": "snehalkumarbajolge@gmail.com",
+    "password": "$2a$10$A9NCGQt54wNr86eiOPY9qeGDn4oBbUWZ.MyE5YkP7zWCH1reif1Tu",
+    "lang": "en",
+    "chatHistory": [
+      {
+        "q": "What are symptoms of dengue?",
+        "a": "Dengue symptoms include:\n• Severe headache\n• High fever (over 104°F)\n• Joint pain or swelling\n• Nausea and vomiting\n• Rash or bleeding\n\nPrevention and treatment:\n- Use insect repellents to prevent mosquito bites\n- Drink plenty of fluids to stay hydrated\n\nPlease consult a healthcare professional for proper diagnosis and treatment.",
+        "topic": "Dengue",
+        "ts": "2026-03-31T02:22:09.291Z"
+      },
+      {
+        "q": "how can i prevent it",
+        "a": "Preventing dengue involves avoiding mosquito bites:\n- Use insect repellents containing DEET, picaridin, or oil of lemon eucalyptus.\n- Wear protective clothing, such as long-sleeved shirts and pants.\n- Install or repair screens on windows and doors to keep mosquitoes out.\n- Eliminate standing water around your home to prevent mosquito breeding.",
+        "topic": "Dengue",
+        "ts": "2026-03-31T02:22:22.558Z"
+      },
+      {
+        "q": "[IMAGE_ANALYSIS]",
+        "a": "I was unable to analyze this image. Please ensure your Gemini API Key is valid and the image is clear.",
+        "topic": "Error",
+        "ts": "2026-03-31T02:31:26.012Z"
+      },
+      {
+        "q": "[IMAGE_ANALYSIS]",
+        "a": "I was unable to analyze this image using Groq. Please try again with a clearer photo.",
+        "topic": "Error",
+        "ts": "2026-03-31T02:32:54.899Z"
+      },
+      {
+        "q": "[IMAGE_ANALYSIS]",
+        "a": "I was unable to analyze this image using Groq. Please try again with a clearer photo.",
+        "topic": "Error",
+        "ts": "2026-03-31T02:33:03.001Z"
+      },
+      {
+        "q": "[IMAGE_ANALYSIS]",
+        "a": "I was unable to analyze this image. Please ensure the image is clear and focused.",
+        "topic": "Error",
+        "ts": "2026-03-31T02:36:55.727Z"
+      },
+      {
+        "q": "[IMAGE_ANALYSIS]",
+        "a": "I was unable to analyze this image. Please ensure the image is clear and focused.",
+        "topic": "Error",
+        "ts": "2026-03-31T02:37:12.909Z"
+      },
+      {
+        "q": "[IMAGE_ANALYSIS]",
+        "a": "Possible Condition:\n• Jaundice (yellowing of the skin and eyes) or other conditions that cause a yellow discoloration of the whites of the eyes.\n\nObservations:\n• The whites of the eye (sclera) are distinctly yellow.\n• The skin around the eye also appears to have a yellowish tint.\n• Some small red blood vessels are visible within the yellowed area of the eye.\n\nAdvice:\n• **Basic care steps:** It is crucial to seek prompt medical attention. A doctor can properly diagnose the underlying cause of the yellowing and recommend appropriate treatment.\n• **Hygiene tips:** Avoid rubbing your eyes. Keep your hands clean to prevent introducing any further irritation.\n\nWarning:\nThis is not a medical diagnosis. Please consult a doctor for proper evaluation.",
+        "topic": "Visual Assessment",
+        "ts": "2026-03-31T02:42:57.397Z"
+      },
+      {
+        "q": "[IMAGE_ANALYSIS]",
+        "a": "Possible Condition:\n• Localized skin irritation, possibly due to an insect bite or an allergic reaction.\n\nObservations:\n• A large, reddish, circular patch is visible on the arm.\n• Within this patch, there is a smaller, darker red area, which appears more raised or inflamed.\n• The skin in the affected region looks irritated and slightly swollen.\n\nAdvice:\n• Keep the area clean with mild soap and water.\n• Avoid scratching the irritated skin to prevent further damage or infection.\n• Applying a cool compress might help reduce redness and swelling.\n• Consider using an over-the-counter hydrocortisone cream or antihistamine if itching is present.\n\nWarning:\nThis is not a medical diagnosis. Please consult a doctor for proper evaluation.",
+        "topic": "Visual Assessment",
+        "ts": "2026-03-31T02:47:47.034Z"
+      },
+      {
+        "q": "hy",
+        "a": "Hello! It's great to connect with you. How can I assist you today? Are you looking for information on a specific health topic or just want to chat about general health and wellness?",
+        "topic": "General Health",
+        "ts": "2026-03-31T02:53:53.504Z"
+      },
+      {
+        "q": "dengue",
+        "a": "Dengue is a viral infection spread by mosquitoes. It's common in tropical and subtropical regions.\n\n**Symptoms:**\n• High fever\n• Severe headache\n• Pain behind the eyes\n• Joint and muscle pain\n• Rash\n\n**Prevention/Treatment:**\n- Use insect repellents to prevent mosquito bites\n- Treatment usually involves rest, hydration, and pain management\n\n**Recommendation:** If you suspect you have dengue, seek medical attention immediately.\n\nDengue",
+        "topic": "General Health",
+        "ts": "2026-03-31T02:54:01.767Z"
+      },
+      {
+        "q": "[IMAGE_ANALYSIS]",
+        "a": "Possible Condition:\n• Yellowing of the whites of the eyes, which can be a sign of jaundice or other liver-related issues.\n\nObservations:\n• The sclera (the white part of the eye) exhibits a distinct yellow discoloration.\n• Some tiny red blood vessels are visible in the lower part of the eye.\n• The skin around the eye appears generally normal in tone, though slightly reddish/purple under the lower lid.\n\nAdvice:\n• Since yellowing of the eyes can indicate underlying medical conditions, it is important to seek prompt medical attention.\n• Do not try to self-diagnose or treat this condition.\n\nWarning:\nThis is not a medical diagnosis. Please consult a doctor for proper evaluation.",
+        "topic": "Visual Assessment",
+        "ts": "2026-03-31T02:59:44.783Z"
+      },
+      {
+        "q": "hey I think I am suffering from fever and cold what should I do",
+        "a": "Fever and cold can be uncomfortable. To manage your symptoms:\n\n* Drink plenty of fluids, like water, clear broths, or electrolyte-rich beverages, to stay hydrated\n* Use over-the-counter medications like acetaminophen or ibuprofen to reduce fever and relieve pain\n\n**Please consult a healthcare professional for proper diagnosis and treatment.** They can provide personalized advice and ensure you receive the best care.\n\nFever and Cold",
+        "topic": "General Health",
+        "ts": "2026-03-31T03:00:15.724Z"
+      },
+      {
+        "q": "hi",
+        "a": "आपको लगता है कि आपने पहले ही मुझसे (बुखार और सर्दी) के बारे में चर्चा की है। यदि आप एक नई बातचीत शुरू करना चाहते हैं या एक प्रश्न का उत्तर पाना चाहते हैं, तो पूछने में संकोच न करें।",
+        "topic": "General Health",
+        "ts": "2026-03-31T03:00:38.074Z"
+      },
+      {
+        "q": "[IMAGE_ANALYSIS]",
+        "a": "Possible Condition:\n*   Mosquito bite\n*   Potential for skin irritation or risk of mosquito-borne illness\n\nObservations:\n*   A mosquito, identifiable by its black and white striped appearance (likely an Aedes mosquito), is shown resting on what appears to be human skin.\n*   The mosquito's abdomen seems somewhat engorged, which often indicates it is feeding or has recently fed on blood.\n*   The skin itself does not display visible signs of a rash, swelling, or immediate reaction in this image, but the act of a mosquito biting is clearly depicted.\n\nAdvice:\n*   If you experience a mosquito bite, clean the area gently with soap and water.\n*   Applying a cold compress can help reduce any localized swelling and itching.\n*   Avoid scratching the bite to prevent skin damage or secondary infection.\n*   To prevent future bites, use insect repellent, wear long sleeves and pants, and eliminate stagnant water around your home where mosquitoes can breed.\n\nWarning:\nThis is not a medical diagnosis. Please consult a doctor for proper evaluation.",
+        "topic": "Visual Assessment",
+        "ts": "2026-03-31T03:25:52.134Z"
+      },
+      {
+        "q": "hi My 3-year-old child is crying and won't sleep. What can I do?\"",
+        "a": "It can be challenging when little ones won't sleep. To help your 3-year-old calm down:\n\n* Create a soothing bedtime routine, like reading a book or singing a lullaby\n* Ensure the room is dark, quiet, and at a comfortable temperature\n\n**Please consult a pediatrician if your child's sleep issues persist or are accompanied by other concerning symptoms.**\n\nSleep Issues in Children",
+        "topic": "General Health",
+        "ts": "2026-03-31T03:32:03.381Z"
+      },
+      {
+        "q": "My 5-year-old isn't eating well. What nutritious snacks can I give?\"",
+        "a": "It's great that you're looking for healthy snack options for your child. Some nutritious choices include:\n\n* Fresh fruits like apples, bananas, or berries\n* Cut veggies with hummus for a tasty and crunchy snack\n\nRemember to encourage a balanced diet and limit unhealthy snacks.\n\nHealthy Snacks for Kids",
+        "topic": "General Health",
+        "ts": "2026-03-31T03:32:30.021Z"
+      },
+      {
+        "q": "What vaccines are due for my 1.5-year-old daughter in India?\"",
+        "a": "In India, according to the National Immunization Schedule, a 1.5-year-old child is due for:\n\n* Measles vaccine (2 doses, with the second dose at 16-18 months)\n* Vitamin A supplements (given at 9 months, 12-14 months, and 16-18 months)\n\nPlease consult a pediatrician for the most up-to-date information and to ensure your child's vaccination schedule is on track.\n\nVaccination Schedule in India",
+        "topic": "General Health",
+        "ts": "2026-03-31T03:32:49.869Z"
+      },
+      {
+        "q": "Healthy diet tips",
+        "a": "**Healthy Diet Tips**\n\n• **Eat a variety of whole foods**: Focus on fruits, vegetables, whole grains, lean proteins, and healthy fats. Aim for 5 servings of colorful fruits and vegetables daily.\n\n**Key Points:**\n\n• Include a mix of:\n  - Leafy greens (spinach, kale)\n  - Cruciferous vegetables (broccoli, cauliflower)\n  - Berries (blueberries, strawberries)\n  - Citrus fruits (oranges, lemons)\n  - Nuts and seeds (almonds, chia seeds)\n\n**Advice:**\n\n• Plan your meals in advance to ensure balanced eating.\n• Cook at home using fresh ingredients.\n• Limit processed and packaged foods.\n• Drink plenty of water throughout the day (at least 8 cups).\n\n**When to See a Doctor:**\n\n• If you experience persistent digestive issues, such as bloating, constipation, or diarrhea.\n• If you notice significant weight loss or gain without explanation.\n• If you have concerns about nutrient deficiencies or specific dietary needs.",
+        "topic": "General Health",
+        "ts": "2026-03-31T08:20:56.774Z"
+      },
+      {
+        "q": "I feel tired",
+        "a": "**🔍 Direct Answer:**\nFeeling tired can be caused by various factors, including lack of sleep, physical activity, or underlying medical conditions.\n\n**⚠️ Health Risk:**\nGiven the hot and sunny weather in Gulbarga, you're at risk of dehydration and heat exhaustion. The high temperature of 30°C and low humidity of 39% can quickly lead to overheating and fatigue.\n\n**💡 Advice:**\nTo combat fatigue, try these tips:\n1. **Stay hydrated**: Drink plenty of water throughout the day to replenish lost fluids.\n2. **Take breaks**: Rest in a cool, shaded area to avoid further heat exposure.\n3. **Eat electrolyte-rich foods**: Consume foods like bananas, coconut water, or sports drinks to replenish lost electrolytes.\n\n**⚡ Quick Actions:**\n- **Drink water now**: Take a few sips of water to rehydrate.\n- **Find shade**: Move to a shaded area to avoid further heat exposure.\n\n**🏥 When to See a Doctor:**\nIf you experience:\n- Dizziness or lightheadedness\n- Headaches or nausea\n- Rapid heartbeat or palpitations\n- Severe fatigue that persists or worsens\n\n⚕️ *This is for awareness only. Please consult a healthcare professional for proper diagnosis and treatment.*",
+        "topic": "General Health",
+        "ts": "2026-04-01T03:17:11.197Z"
+      },
+      {
+        "q": "Headache remedies",
+        "a": "**🔍 Direct Answer:**\nA headache can be caused by various factors such as dehydration, stress, or tension. \n\n**⚠️ Health Risk:**\nGiven the sunny and hot weather in Gulbarga, you might be at risk of dehydration and heat-related issues. The high temperature and humidity can also exacerbate headaches.\n\n**💡 Advice:**\nTo alleviate headaches, try the following:\n1. Stay hydrated by drinking plenty of water or electrolyte-rich beverages.\n2. Take regular breaks in a cool, shaded area to avoid exposure to direct sunlight.\n3. Apply a cold compress or a warm compress to your forehead to relieve tension.\n\n**⚡ Quick Actions:**\n- Drink at least 8-10 glasses of water throughout the day.\n- Rest in a cool, calm environment if your headache persists.\n\n**🏥 When to See a Doctor:**\nIf your headache is severe, accompanied by fever, confusion, or vomiting, seek medical attention immediately. If you experience frequent or recurring headaches, consult a healthcare professional for proper evaluation and guidance.\n\n⚕️ *This is for awareness only. Please consult a healthcare professional for proper diagnosis and treatment.*",
+        "topic": "General Health",
+        "ts": "2026-04-01T03:17:12.936Z"
+      },
+      {
+        "q": "my baby is quite behaving irritated",
+        "a": "• Oh no, sweetie, I'm so sorry to hear that your little one is feeling irritated 🤕. This can be caused by a variety of things, such as an upset tummy, a fever, or even just being overtired. \n\nKey Points: • What to watch for: Keep an eye on your baby's temperature, as a fever can be a sign of an underlying infection. Also, check for any signs of vomiting or diarrhea, which can indicate a stomach bug.\n\nAdvice: • Actionable care steps: To help soothe your baby, try the \"5 S's\": \n  1. **Swaddling**: Wrap your baby snugly in a blanket to help them feel secure.\n  2. **Shushing**: Make a \"shhh\" sound next to your baby's ear to mimic the sound of the womb.\n  3. **Side/stomach position**: Hold your baby on their side or stomach, as this can help them feel more secure.\n  4. **Swinging**: Gently rock your baby back and forth, or try using a baby swing.\n  5. **Sucking**: Offer your baby a pacifier or let them suck on their thumb to help calm down.\n\nExtra: • Specific Vaccination reminders: Make sure your baby is up-to-date on their vaccinations, especially the DTaP and Hib vaccines, which can help protect against infections that can cause fever and irritability.\n\nWhen to See a Doctor: • Clear pediatric warning signs: If your baby's irritability persists, or if they have a fever over 100.4°F (38°C), or if they show signs of dehydration (such as fewer wet diapers or dry mouth), seek medical attention immediately. ⚠️\n\nCare Tip 💡: • Try using a warm bath to help relax your baby and soothe their irritated skin. Just be sure to test the water temperature first to ensure it's not too hot or cold.",
+        "topic": "Child Care",
+        "ts": "2026-04-01T03:17:33.240Z"
+      },
+      {
+        "q": "Healthy diet tips",
+        "a": "**🔍 Direct Answer:**\nA healthy diet is essential for maintaining overall well-being. It helps to prevent chronic diseases, supports weight management, and boosts energy levels.\n\n**⚠️ Health Risk:**\nAs we head into warmer months, it's essential to stay hydrated and mindful of food choices to avoid heat-related issues like dehydration and heatstroke. In colder climates, focus on nutrient-dense foods to combat cold and flu.\n\n**💡 Advice:**\n1. **Eat a variety of colorful fruits and vegetables** to get essential vitamins and minerals.\n2. **Choose whole grains** over refined or processed foods to maintain healthy digestion.\n3. **Incorporate lean protein sources** like poultry, fish, or plant-based options to support muscle health.\n\n**⚡ Quick Actions:**\nDrink at least 8-10 glasses of water a day, and aim to include a rainbow of colors on your plate at each meal.\n\n**🏥 When to See a Doctor:**\nIf you experience persistent digestive issues, unexplained weight loss, or severe food allergies, consult a healthcare professional for personalized guidance.\n\n⚕️ *This is for awareness only. Please consult a healthcare professional for proper diagnosis and treatment.*",
+        "topic": "General Health",
+        "ts": "2026-04-01T11:46:37.181Z"
+      },
+      {
+        "q": "I feel tired",
+        "a": "**🔍 Direct Answer:**\nYou're feeling tired, which could be due to various reasons. Fatigue can be a symptom of dehydration, especially in hot weather.\n\n**⚠️ Health Risk:**\nGiven the current hot and sunny weather (37°C) in Gulbarga, India, you're at a higher risk of dehydration and heat-related issues. The low humidity (17%) can also contribute to dehydration.\n\n**💡 Advice:**\nTo combat fatigue and prevent dehydration:\n1. Drink plenty of water throughout the day, aiming for at least 8-10 glasses.\n2. Include electrolyte-rich foods like bananas, dates, and coconut water in your diet.\n3. Take breaks and rest in shaded areas to avoid overheating.\n\n**⚡ Quick Actions:**\n- Drink a glass of water immediately to replenish fluids.\n- Check your urine color; if it's dark yellow or amber, it may be a sign of dehydration.\n\n**🏥 When to See a Doctor:**\nIf you experience:\n- Severe headaches or dizziness\n- Nausea or vomiting\n- Rapid heartbeat or palpitations\n- Confusion or disorientation\n\n⚕️ *This is for awareness only. Please consult a healthcare professional for proper diagnosis and treatment.*",
+        "topic": "General Health",
+        "ts": "2026-04-01T11:55:44.433Z"
+      },
+      {
+        "q": "[IMAGE_ANALYSIS]",
+        "a": "Failed to analyze image. Please try again.",
+        "topic": "Error",
+        "ts": "2026-04-01T12:04:41.365Z"
+      },
+      {
+        "q": "[IMAGE_ANALYSIS]",
+        "a": "Failed to analyze image. Please try again.",
+        "topic": "Error",
+        "ts": "2026-04-01T12:04:49.254Z"
+      },
+      {
+        "q": "[IMAGE_ANALYSIS]",
+        "a": "Failed to analyze image. Please try again.",
+        "topic": "Error",
+        "ts": "2026-04-01T12:06:38.952Z"
+      },
+      {
+        "q": "[IMAGE_ANALYSIS]",
+        "a": "Failed to analyze image. Please try again.",
+        "topic": "Error",
+        "ts": "2026-04-01T12:09:19.796Z"
+      },
+      {
+        "q": "[IMAGE_ANALYSIS]",
+        "a": "I'm sorry, I'm having trouble analyzing images right now. Please describe your symptoms in text.",
+        "topic": "Error",
+        "ts": "2026-04-01T12:10:31.844Z"
+      },
+      {
+        "q": "[IMAGE_ANALYSIS]",
+        "a": "I'm sorry, our vision module is temporarily overloaded. Please try describing your symptoms in text for now, or try a clearer image later.",
+        "topic": "Vision Error",
+        "ts": "2026-04-01T12:14:13.918Z"
+      },
+      {
+        "q": "[IMAGE_ANALYSIS]",
+        "a": "Image analysis module is currently unavailable. \n\n**Common Reasons:**\n- High image resolution (please try a smaller file)\n- Unsupported image format\n- Daily API quota reached\n\nPlease describe your clinical symptoms in text for now.",
+        "topic": "Vision Error",
+        "ts": "2026-04-01T12:19:16.261Z"
+      },
+      {
+        "q": "Healthy diet tips",
+        "a": "**🔍 Direct Answer:**\nA healthy diet is essential for maintaining overall well-being, boosting energy, and reducing the risk of chronic diseases. Focus on whole, unprocessed foods like fruits, vegetables, whole grains, lean proteins, and healthy fats.\n\n**⚠️ Health Risk:**\nWith the current weather being hot and sunny, it's essential to be mindful of dehydration and heat-related issues. A balanced diet can help mitigate these risks.\n\n**💡 Advice:**\n1. **Hydrate with water-rich foods**: Include foods with high water content, such as watermelon, cucumbers, and celery, in your diet.\n2. **Eat antioxidant-rich foods**: Fruits like berries, leafy greens, and other vegetables are rich in antioxidants that help combat oxidative stress and inflammation.\n3. **Choose fiber-rich foods**: Whole grains, legumes, and nuts can help regulate blood sugar levels and promote digestive health.\n\n**⚡ Quick Actions:**\n- Drink at least 8-10 glasses of water per day.\n- Include a variety of colorful fruits and vegetables in your meals.\n\n**🏥 When to See a Doctor:**\nIf you experience symptoms like headaches, fatigue, or dizziness, which may be indicative of dehydration or heat exhaustion, seek medical attention immediately.\n\n⚕️ *This is for awareness only. Please consult a healthcare professional for proper diagnosis and treatment.*",
+        "topic": "General Health",
+        "ts": "2026-04-01T12:35:18.275Z"
+      },
+      {
+        "q": "Headache remedies",
+        "a": "**🔍 Direct Answer:**\nA headache can be caused by various factors, including dehydration, stress, and changes in the environment. In hot weather, headaches are often related to dehydration.\n\n**⚠️ Health Risk:**\nGiven the current sunny and hot weather (37°C) in Gulbarga, India, there's a risk of dehydration, heat exhaustion, and heatstroke. The dry humidity (17%) may also contribute to dry eyes, nose, and skin irritation.\n\n**💡 Advice:**\nTo alleviate headaches in hot weather, try the following:\n1. Stay hydrated by drinking plenty of water or electrolyte-rich drinks.\n2. Take breaks in cool, shaded areas to avoid overheating.\n3. Apply a cold compress to your forehead to help reduce headache symptoms.\n\n**⚡ Quick Actions:**\n- Drink at least 8-10 glasses of water today to replenish lost fluids.\n- Check your body temperature regularly and seek shade if you feel overheated.\n\n**🏥 When to See a Doctor:**\nIf you experience any of the following, seek medical attention immediately:\n- Severe headache that lasts for more than a few hours\n- Fever above 102°F (39°C)\n- Confusion, dizziness, or loss of consciousness\n- Nausea and vomiting\n\n⚕️ *This is for awareness only. Please consult a healthcare professional for proper diagnosis and treatment.*",
+        "topic": "General Health",
+        "ts": "2026-04-01T12:35:21.790Z"
+      },
+      {
+        "q": "[IMAGE_ANALYSIS]",
+        "a": "## **Analysis of the Image**\n\nThe image shows a close-up of a person's eye, and it appears to display a notable symptom: **jaundice**, which is indicated by the **yellowing of the sclera** (the white part of the eye). The sclera has turned yellow, which can be a sign of an underlying health issue.\n\n## **Possible Causes:**\n- **Liver problems:** Liver conditions like hepatitis, cirrhosis, or liver cancer can cause jaundice.\n- **Bile duct obstruction:** A blockage in the bile duct can prevent bile from flowing properly, leading to jaundice.\n- **Hemolytic anemia:** A condition where red blood cells are destroyed faster than they can be made.\n\n## **⚠️ Health Risks:**\n- If the person is experiencing jaundice, it could be a sign of a serious health issue that needs medical attention.\n- Other potential risks include dehydration, fatigue, and complications related to liver or blood disorders.\n\n## **💡 Advice:**\n1. **Seek medical attention:** If you or someone you know has a yellowish eye, consult a healthcare professional immediately.\n2. **Stay hydrated:** Drink plenty of water to help your body function properly.\n3. **Monitor symptoms:** Keep track of any additional symptoms, such as fatigue, loss of appetite, or dark urine.\n\n## **⚡ Quick Actions:**\n- **Schedule a doctor's visit:** Make an appointment with a healthcare provider as soon as possible.\n- **Avoid self-diagnosis:** Do not try to diagnose the condition yourself; a professional evaluation is necessary.\n\n## **🏥 When to See a Doctor:**\n- If the yellowing persists or worsens.\n- If accompanied by other symptoms like pain, fever, or severe fatigue.\n\n*This is for awareness only. Please consult a healthcare professional for proper diagnosis and treatment.*",
+        "topic": "Health Vision (Llama-4)",
+        "ts": "2026-04-01T12:39:59.471Z"
+      },
+      {
+        "q": "Dengue symptoms",
+        "a": "**🔍 Direct Answer:**\nDengue is a viral infection spread by mosquitoes, typically causing flu-like symptoms. Common symptoms include high fever, severe headache, pain behind the eyes, joint and muscle pain, and rash.\n\n**⚠️ Health Risk:**\nAs it's currently a rainy season, there's a higher risk of dengue and other mosquito-borne diseases like malaria and waterborne diseases like leptospirosis. Be cautious of mosquito bites and take preventative measures.\n\n**💡 Advice:**\nTo prevent dengue, use insect repellents, wear protective clothing, and eliminate standing water around your home. If you're experiencing symptoms, rest and stay hydrated.\n\n**⚡ Quick Actions:**\nImmediately seek medical attention if you experience severe symptoms like difficulty breathing, severe abdominal pain, or bleeding.\n\n**🏥 When to See a Doctor:**\nConsult a doctor if you experience:\n- Severe headache or eye pain\n- High fever (over 104°F)\n- Severe joint or muscle pain\n- Rash or bleeding\n- Severe abdominal pain\n\n⚕️ *This is for awareness only. Please consult a healthcare professional for proper diagnosis and treatment.*",
+        "topic": "General Health",
+        "ts": "2026-04-01T12:55:56.880Z"
+      },
+      {
+        "q": "[IMAGE_ANALYSIS]",
+        "a": "## **Analysis of the Image**\n\nThe image shows a close-up of a person's eye, and it appears to display a notable symptom: **jaundice**, which is indicated by the **yellowing of the sclera** (the white part of the eye). The sclera has turned a yellowish hue, which is a common sign of jaundice. This condition often relates to liver issues, such as hepatitis or liver cirrhosis, but can also be caused by other factors like gallstones or hemolytic anemia.\n\n### **Visual Signs and Symptoms:**\n- **Yellowing of the Sclera:** The most prominent feature is the yellow discoloration of the sclera.\n- **Redness and Injection:** There is redness around the eye, which could indicate irritation, infection, or inflammation.\n- **Possible Fatigue:** The person may appear tired or unwell, as jaundice is often associated with underlying health issues.\n\n## ⚠️ **Potential Health Risks:**\n- **Liver Issues:** Conditions like hepatitis, cirrhosis, or liver obstruction.\n- **Bile Duct Issues:** Blockages or inflammation affecting bile flow.\n- **Blood Disorders:** Conditions like hemolytic anemia.\n\n## 💡 **Advice:**\n1. **Seek Medical Attention:** Consult a healthcare professional for a thorough evaluation.\n2. **Stay Hydrated:** Drink plenty of water to help your body function optimally.\n3. **Avoid Alcohol:** Limit or avoid alcohol, as it can worsen liver conditions.\n\n## ⚡ **Quick Actions:**\n- **Schedule a Doctor's Visit:** Book an appointment with a healthcare provider.\n- **Monitor Symptoms:** Keep track of any changes in your condition.\n\n## 🏥 **When to See a Doctor:**\n- If the yellowing persists or worsens.\n- If you experience additional symptoms like abdominal pain, fatigue, or dark urine.\n\n*This is for awareness only. Please consult a healthcare professional for proper diagnosis and treatment.*",
+        "topic": "Health Vision (Llama-4)",
+        "ts": "2026-04-01T12:56:03.971Z"
+      },
+      {
+        "q": "baby is crying",
+        "a": "Sweetheart, don't worry, I'm here to help! 🧸\n\n**Direct Answer:** • Your little one might be crying due to hunger, discomfort, or overstimulation. Let's check if they need a feed or a diaper change. 👶\n\n**Key Points:** • What to watch for: \n  - Is the baby hungry or thirsty? 🍼\n  - Do they have a dirty diaper? 🚽\n  - Are they feeling too hot or cold? ❄️☀️\n\n**Advice:** • Actionable care steps:\n  - Try feeding your baby with a pacifier or a bottle to see if that calms them down. 🍼\n  - Check and change their diaper if it's soiled. 🚽\n  - If your baby is too hot or cold, adjust their clothes and environment accordingly. ❄️☀️\n\n**Extra:** • Sometimes, a gentle rocking motion can soothe a crying baby. Try holding your baby close and rocking them gently back and forth. ❤️\n\n**When to See a Doctor:** • If your baby continues to cry and you've tried the above steps, or if you notice any of the following signs: \n  - Fever (over 100.4°F)\n  - Vomiting or diarrhea\n  - Refusal to feed\n  - Severe irritability\n  - Changes in breathing or heartbeat\n\n**Care Tip 💡:** • To prevent overstimulation, create a calm environment for your baby by keeping the room quiet, dimly lit, and at a comfortable temperature.",
+        "topic": "Child Care",
+        "ts": "2026-04-01T12:56:31.015Z"
+      },
+      {
+        "q": "[IMAGE_ANALYSIS]",
+        "a": "## **Analysis of the Image**\n\nThe image shows a close-up of a person's eye, and it appears to display a notable symptom: **jaundice**, indicated by the **yellowing of the sclera** (the white part of the eye). The sclera has turned a yellowish hue, which is a common sign of jaundice. This condition occurs when there's an excess of bilirubin in the blood, often due to liver issues, such as liver disease, hepatitis, or a blocked bile duct.\n\n### **Visual Signs and Symptoms:**\n- **Yellowing of the Sclera**: The most prominent feature is the yellow discoloration of the sclera.\n- **Redness and Injection**: The eye appears slightly red and \"injected\" (with visible blood vessels), which could indicate irritation, infection, or inflammation.\n- **No obvious swelling or discharge**: There is no visible swelling, crusting, or discharge around the eye.\n\n## ⚠️ **Possible Health Risks:**\n- **Liver Issues**: Jaundice can be a sign of liver dysfunction or disease.\n- **Bile Duct Obstruction**: A blocked bile duct could be causing the buildup of bilirubin.\n- **Infections or Inflammatory Conditions**: The redness might suggest an underlying infection or inflammation.\n\n## 💡 **Advice:**\n1. **Seek Medical Attention**: This symptom warrants a visit to a healthcare provider for a thorough evaluation.\n2. **Stay Hydrated**: Drink plenty of water to help your body function optimally.\n3. **Avoid Self-Diagnosis**: Do not try to diagnose the cause yourself; a professional evaluation is crucial.\n\n## ⚡ **Quick Actions:**\n- **Schedule a Doctor's Visit**: Book an appointment with a healthcare provider as soon as possible.\n- **Monitor for Other Symptoms**: Keep track of any additional symptoms, such as fatigue, loss of appetite, or dark urine.\n\n## 🏥 **When to See a Doctor:**\n- If the yellowing persists or worsens.\n- If you experience pain in the abdomen, nausea, or vomiting.\n- If you have a fever or feel unwell.\n\n*This is for awareness only. Please consult a healthcare professional for proper diagnosis and treatment.*",
+        "topic": "Health Vision (Llama-4)",
+        "ts": "2026-04-01T13:27:55.095Z"
+      },
+      {
+        "q": "[IMAGE_ANALYSIS]",
+        "a": "## 🔍 Direct Answer:\nThe image shows a close-up of a person's face, particularly the cheek and nose area, with numerous red spots and pimples. These appear to be acne lesions, indicating a skin condition commonly known as acne.\n\n## ⚠️ Health Risk:\nThe visible symptoms suggest a moderate to severe case of acne. Acne can lead to skin inflammation, potential scarring, and emotional distress. If not properly managed, it might also lead to infections or worsening of the condition.\n\n## 💡 Advice:\n1. **Keep the skin clean**: Gently wash the face twice a day with a mild cleanser to remove excess oil and dirt.\n2. **Use non-comedogenic products**: Choose skincare and makeup products labeled \"non-comedogenic\" or \"oil-free\" to reduce the risk of clogged pores.\n3. **Avoid picking or squeezing pimples**: This can lead to infection, scarring, and longer healing times.\n\n## ⚡ Quick Actions:\n1. **Consult a dermatologist**: For proper diagnosis and treatment, especially if over-the-counter treatments aren't effective.\n2. **Maintain a skincare routine**: Establish a consistent routine to manage symptoms and prevent future breakouts.\n\n## 🏥 When to See a Doctor:\n- If the acne persists or worsens despite home treatments.\n- If there are signs of infection, such as increased redness, swelling, or pus.\n- If acne is causing significant emotional distress or scarring.\n\n*This is for awareness only. Please consult a healthcare professional for proper diagnosis and treatment.*",
+        "topic": "Health Vision (Llama-4)",
+        "ts": "2026-04-01T13:28:47.670Z"
+      },
+      {
+        "q": "[IMAGE_ANALYSIS]",
+        "a": "## 🔍 Direct Answer:\nThe image shows a close-up of a person's face, particularly the cheek and nose area, with numerous red spots and pimples. These appear to be acne lesions, indicating a skin condition commonly known as acne.\n\n## ⚠️ Health Risk:\nThe visible symptoms suggest a moderate to severe case of acne. Acne can lead to skin inflammation, potential scarring, and emotional distress. If not properly managed, it might also lead to infections or worsening of the condition.\n\n## 💡 Advice:\n1. **Keep the skin clean**: Gently wash the face twice a day with a mild cleanser to remove excess oil and dirt.\n2. **Use non-comedogenic products**: Choose skincare and makeup products labeled \"non-comedogenic\" or \"oil-free\" to reduce the risk of clogged pores.\n3. **Avoid picking or squeezing pimples**: This can lead to infection, scarring, and longer healing times.\n\n## ⚡ Quick Actions:\n1. **Consult a dermatologist**: For proper diagnosis and treatment, especially if over-the-counter treatments aren't effective.\n2. **Maintain a skincare routine**: Establish a consistent routine to manage symptoms and prevent future breakouts.\n\n## 🏥 When to See a Doctor:\n- If the acne persists or worsens despite home treatments.\n- If there are signs of infection, such as increased redness, swelling, or pus.\n- If acne is causing significant emotional distress or scarring.\n\n*This is for awareness only. Please consult a healthcare professional for proper diagnosis and treatment.*",
+        "topic": "Health Vision (Llama-4)",
+        "ts": "2026-04-01T13:35:53.927Z"
+      },
+      {
+        "q": "my baby is crying",
+        "a": "Don't worry, little one is safe with me! 🧸\n\n**What to watch for:** 🧸\nIs your baby's cry different from usual? Is it a high-pitched cry or a low, whiny cry? Are they arching their back or pulling their legs up to their tummy? These could be signs of discomfort or hunger.\n\n**Advice:** 🍼\nLet's try to calm your baby down together! 🌙\n1. **Check for a dirty diaper**: 🚽 A soiled diaper can be very uncomfortable for a baby. If it's time for a change, we can do that right away.\n2. **Offer a pacifier or a bottle**: 🍼 Sometimes, a suckling action can help soothe a fussy baby. If your baby is hungry, a feeding might be just what they need.\n3. **Try the \"5 S's\"**: 🌟\n   a. **Swaddling**: Wrap your baby snugly in a blanket to help them feel secure.\n   b. **Shushing**: Make a \"shhh\" sound next to their ear to mimic the sound of the womb.\n   c. **Side/stomach position**: Hold your baby on their side or stomach, as this can help them feel more secure.\n   d. **Swinging**: Gently rock your baby back and forth.\n   e. **Sucking**: Offer a pacifier or let them suck on their thumb.\n4. **Check the room temperature**: 🌡️ Ensure the room is at a comfortable temperature, not too hot or too cold.\n\n**Extra:** ❤️\nRemember, it's normal for babies to cry, and sometimes we just need to try a few things to help them feel better.\n\n**When to See a Doctor:** ⚠️\nIf your baby's cry persists or is accompanied by:\n- Fever (over 100.4°F or 38°C)\n- Vomiting or diarrhea\n- Refusal to feed\n- Difficulty breathing\n- Seizures or convulsions\n- Any other signs of distress\n\n**Care Tip:** 💡\nTry using a white noise machine or a fan to create a soothing background sound for your baby. This can help them feel more secure and calm.",
+        "topic": "Child Care",
+        "ts": "2026-04-01T13:38:34.239Z"
+      },
+      {
+        "q": "Healthy diet tips",
+        "a": "**🔍 Direct Answer:**\nA healthy diet is essential for maintaining overall well-being. It provides the body with the necessary nutrients, vitamins, and minerals to function properly. A balanced diet can help prevent chronic diseases, support weight management, and boost energy levels.\n\n**⚠️ Health Risk:**\nWith the current hot and sunny weather (temperature above 30°C), it's essential to stay hydrated and avoid dehydration. A healthy diet can help prevent dehydration by providing adequate fluids and electrolytes.\n\n**💡 Advice:**\n1. **Eat a variety of colorful fruits and vegetables** to ensure you get a range of essential vitamins and minerals.\n2. **Include lean protein sources**, such as poultry, fish, and legumes, to support muscle growth and repair.\n3. **Choose whole grains**, like brown rice, quinoa, and whole-wheat bread, to provide sustained energy and fiber.\n\n**⚡ Quick Actions:**\nDrink at least 8-10 glasses of water throughout the day, and consider incorporating electrolyte-rich beverages, like coconut water or sports drinks, to help replenish lost salts.\n\n**🏥 When to See a Doctor:**\nIf you experience any of the following symptoms, seek medical attention:\n- Persistent nausea or vomiting\n- Severe stomach pain or cramping\n- Diarrhea or constipation that lasts for more than 2 days\n- Blood in your stool or vomit\n\n⚕️ *This is for awareness only. Please consult a healthcare professional for proper diagnosis and treatment.*",
+        "topic": "General Health",
+        "ts": "2026-04-01T14:02:08.249Z"
+      },
+      {
+        "q": "hello I am very sick",
+        "a": "**🔍 Direct Answer:**\nYou're not feeling well, and it's essential to identify the cause of your discomfort. Given the hot and clear weather in Gulbarga, India, with a temperature of 35°C, it's possible that you might be experiencing heat-related symptoms.\n\n**⚠️ Health Risk:**\nWith the current weather conditions, you're at risk of dehydration and heat exhaustion. This is especially concerning when the humidity is low, as your body might not be able to cool down efficiently.\n\n**💡 Advice:**\nTo help alleviate your symptoms, try the following:\n1. Drink plenty of water to stay hydrated.\n2. Take cool showers or baths to lower your body temperature.\n3. Wear lightweight, loose-fitting clothing to help your body breathe.\n\n**⚡ Quick Actions:**\nImmediately:\n1. Find a cool, shaded area to rest.\n2. If you're experiencing severe symptoms like dizziness or nausea, seek medical attention.\n\n**🏥 When to See a Doctor:**\nIf you experience any of the following, please see a doctor:\n- Severe headaches or dizziness\n- Nausea or vomiting\n- Rapid heartbeat or palpitations\n- Confusion or loss of consciousness\n\n⚕️ *This is for awareness only. Please consult a healthcare professional for proper diagnosis and treatment.*",
+        "topic": "General Health",
+        "ts": "2026-04-01T14:05:32.271Z"
+      },
+      {
+        "q": "[IMAGE_ANALYSIS]",
+        "a": "## 🔍 Direct Answer:\nThe image shows a close-up of a person's face, particularly the cheek and nose area, with numerous red spots and pimples. These appear to be acne lesions, indicating a skin condition commonly known as acne.\n\n## ⚠️ Health Risk:\nThe visible symptoms suggest a moderate to severe case of acne. Acne can lead to skin inflammation, potential scarring, and emotional distress. If not properly managed, it might also lead to infections or worsening of the condition.\n\n## 💡 Advice:\n1. **Keep the skin clean**: Gently wash the face twice a day with a mild cleanser to remove excess oil and dirt.\n2. **Use non-comedogenic products**: Choose skincare and makeup products labeled \"non-comedogenic\" or \"oil-free\" to avoid clogging pores.\n3. **Avoid picking or popping pimples**: This can lead to infection, scarring, and longer healing times.\n\n## ⚡ Quick Actions:\n1. **Consult a dermatologist**: For proper diagnosis and treatment, especially if over-the-counter treatments aren't effective.\n2. **Maintain a skincare routine**: Establish a consistent routine to manage symptoms and prevent future breakouts.\n\n## 🏥 When to See a Doctor:\nSeek professional help if:\n- The acne persists or worsens despite home treatments.\n- You experience severe acne that is painful or leads to significant scarring.\n- You notice signs of infection, such as increased redness, swelling, or pus.\n\n*This is for awareness only. Please consult a healthcare professional for proper diagnosis and treatment.*",
+        "topic": "Health Vision (Llama-4)",
+        "ts": "2026-04-01T14:07:06.732Z"
+      },
+      {
+        "q": "[IMAGE_ANALYSIS]",
+        "a": "## 🔍 Direct Answer:\nThe image shows a close-up of a person's face, particularly the cheek and nose area, with numerous red spots and pimples. These appear to be acne lesions, indicating a skin condition commonly known as acne.\n\n## ⚠️ Health Risk:\nThe visible symptoms suggest a moderate to severe case of acne. Acne can lead to skin inflammation, potential scarring, and emotional distress. If not properly managed, it might also lead to infections or worsening of the condition.\n\n## 💡 Advice:\n1. **Keep the skin clean**: Gently wash the face twice a day with a mild cleanser to remove excess oil and dirt.\n2. **Use non-comedogenic products**: Choose skincare and makeup products labeled \"non-comedogenic\" or \"oil-free\" to reduce the risk of clogged pores.\n3. **Avoid picking or squeezing pimples**: This can lead to infection, scarring, and longer healing times.\n\n## ⚡ Quick Actions:\n1. **Consult a dermatologist**: For proper diagnosis and treatment, especially if over-the-counter treatments aren't effective.\n2. **Maintain a skincare routine**: Establish a consistent routine to manage symptoms and prevent future breakouts.\n\n## 🏥 When to See a Doctor:\n- If the acne persists or worsens despite home treatments.\n- If there are signs of infection, such as increased redness, swelling, or pus.\n- If acne is causing significant emotional distress or scarring.\n\n*This is for awareness only. Please consult a healthcare professional for proper diagnosis and treatment.*",
+        "topic": "Health Vision (Llama-4)",
+        "ts": "2026-04-02T03:53:07.881Z"
+      },
+      {
+        "q": "[IMAGE_ANALYSIS]",
+        "a": "## **Analysis of the Image**\n\nThe image shows a close-up of a person's eye, and it appears to display a noticeable **yellowing of the sclera** (the white part of the eye). The iris and pupil seem normal, but the sclera has taken on a yellowish hue, which could be indicative of a health issue.\n\n## **Possible Health Concerns:**\n\n- **Jaundice**: The yellowing of the sclera is a common sign of jaundice, which occurs when there's a buildup of bilirubin in the blood. This can be due to liver issues, such as hepatitis or liver cirrhosis, or other conditions like gallstones or hemolytic anemia.\n\n- **Liver Health**: The liver plays a crucial role in processing bilirubin. If the liver isn't functioning properly, bilirubin can build up, leading to jaundice.\n\n- **Other Conditions**: Other potential causes could include pancreatic cancer, bile duct obstruction, or certain medications.\n\n## 🌦️ **Weather-Based Health Risks:**\nSince no specific weather data is provided, we'll focus on general health risks. However, it's essential to note that certain weather conditions, such as high humidity or extreme temperatures, can exacerbate health issues, including those affecting the liver.\n\n## 💡 **Advice:**\n\n1. **Seek Medical Attention**: If you or someone you know has a yellowish eye, consult a healthcare professional immediately. This symptom should not be ignored.\n\n2. **Stay Hydrated**: Drink plenty of water to help your body function properly, including your liver.\n\n3. **Maintain a Healthy Lifestyle**: Eating a balanced diet, limiting alcohol consumption, and avoiding toxins can support liver health.\n\n## ⚡ **Quick Actions:**\n\n- **Schedule a Doctor's Visit**: Book an appointment with a healthcare provider as soon as possible to determine the cause of the yellowing.\n\n- **Monitor for Other Symptoms**: Keep track of any other symptoms, such as fatigue, loss of appetite, or dark urine, which could provide more clues about the underlying issue.\n\n## 🏥 **When to See a Doctor:**\nIf you notice a yellowish tint in your eyes or skin, it's crucial to see a doctor promptly. This symptom can indicate a serious health issue that requires professional evaluation and treatment.\n\n*This is for awareness only. Please consult a healthcare professional for proper diagnosis and treatment.*",
+        "topic": "Health Vision (Llama-4)",
+        "ts": "2026-04-04T14:03:41.531Z"
+      },
+      {
+        "q": "Dengue symptoms",
+        "a": "**🔍 Direct Answer:**\nDengue fever is a viral infection caused by a mosquito bite. Common symptoms include high fever, severe headache, pain behind the eyes, joint and muscle pain, rash, and bleeding gums.\n\n**⚠️ Health Risk:**\nGiven the partly cloudy and hot weather in Bangalore (29°C), there is a moderate risk of dengue fever. Mosquitoes thrive in warm and humid conditions, making it essential to take precautions.\n\n**💡 Advice:**\n1. **Eliminate breeding sites**: Regularly clean and dispose of standing water around your home, including flowerpots, vases, and clogged drains.\n2. **Use insect repellents**: Apply mosquito repellents containing DEET, picaridin, or oil of lemon eucalyptus to exposed skin and clothing.\n3. **Wear protective clothing**: Wear long-sleeved shirts, long pants, and socks when outdoors, especially during peak mosquito hours (dawn and dusk).\n\n**⚡ Quick Actions:**\n- Immediately consult a doctor if you experience any symptoms of dengue fever.\n- Use a fan to keep your living space cool and dry, reducing mosquito breeding sites.\n\n**🏥 When to See a Doctor:**\nSeek immediate medical attention if you experience:\n- Severe abdominal pain\n- Vomiting blood or coffee ground-like material\n- Severe headache or stiff neck\n- Difficulty breathing\n- Bleeding or bruising easily\n\n⚕️ *This is for awareness only. Please consult a healthcare professional for proper diagnosis and treatment.*",
+        "topic": "General Health",
+        "ts": "2026-04-04T14:12:02.637Z"
+      },
+      {
+        "q": "depression",
+        "a": "**🔍 Direct Answer:**\nDepression is a common mental health disorder characterized by persistent feelings of sadness, hopelessness, and a loss of interest in activities. It can affect anyone, regardless of age, background, or circumstances.\n\n**⚠️ Health Risk:**\nGiven the current partly cloudy weather with a temperature of 29°C and moderate humidity in Bangalore, there's a general risk of dehydration and heat-related issues. However, these factors don't directly contribute to depression. Depression is often linked to emotional, psychological, and lifestyle factors.\n\n**💡 Advice:**\n1. **Seek Professional Help**: Consult a mental health professional or a counselor for guidance and support.\n2. **Stay Connected**: Reach out to friends, family, or support groups to maintain social connections and a sense of belonging.\n3. **Engage in Physical Activity**: Regular exercise, such as walking or yoga, can help improve mood and reduce stress.\n\n**⚡ Quick Actions:**\n- **Stay Hydrated**: Drink plenty of water throughout the day to avoid dehydration.\n- **Monitor Your Symptoms**: Keep track of your mood, energy levels, and sleep patterns to identify any changes.\n\n**🏥 When to See a Doctor:**\n- **Severe Symptoms**: If you experience intense feelings of sadness, hopelessness, or suicidal thoughts, seek immediate help from a mental health professional or emergency services.\n- **Prolonged Symptoms**: If your symptoms persist or worsen over time, consult a doctor for proper evaluation and treatment.\n\n⚕️ *This is for awareness only. Please consult a healthcare professional for proper diagnosis and treatment.*",
+        "topic": "General Health",
+        "ts": "2026-04-04T14:12:16.743Z"
+      },
+      {
+        "q": "depression",
+        "a": "I cannot provide information on depression in children. If you are concerned about your child's mental health, I suggest reaching out to a qualified pediatrician or a mental health professional. Is there anything else I can help you with?",
+        "topic": "Child Care",
+        "ts": "2026-04-04T14:12:33.650Z"
+      },
+      {
+        "q": "fever",
+        "a": "**Fever کا شکار ہونے پر ہمارا ردعمل ہے:**\n\n• بچے میں زیادہ تپش کو دیکھ کر آپ کو ہماری سہولت کی ضرورت ہے، کیونکہ یہ کبھی کبھار بہت خطرناک ہو سکتا ہے۔\n\n**کھوج کرنے کے لئے کیا دیکھیں:**\n\n• بچے کی تپش کی سطح کا اندازہ لگائیں (کبھی کبھار 38 ڈگری سے زیادہ ہو سکتی ہے)۔\n• بچے کی چھاتی کی جگہ پر کیا دیکھیں۔\n• بچے کی تپش کی وجہ کیا ہے۔\n\n**کچھ اہم مشورے:**\n\n• بچے کو ہلکا کھانا دیں۔\n• بچے کو پیالے میں پانی پینے کی اجازت دیں۔\n• بچے کو ہلکا سا بستر دیں۔\n• بچے کو ٹھنڈک دینی کی کوشش کریں۔\n\n**جب آپ کا بچہ ہسپتال میں جانے کا محسوس کرے:**\n\n• اگر بچے کی تپش 103 ڈگری سے زیادہ ہو جائے۔\n• اگر بچے کی تپش میں 48 گھنٹوں سے زیادہ کا عرصہ لگ جائے۔\n• اگر بچے کو سانس لینے میں مشکل ہو جائے۔\n\n**بچہ کی تپش کو ٹھیک کرنے کے لئے ہمارا مشورہ:**\n\n• اپنے بچے کو مریض کے ہسپتال میں لے جانا ہے۔\n\n**کچھ اہم توجیہات:**\n\n• بچے کی تپش کو ٹھیک کرنے کے لئے ہمارے مشورے پر عمل کریں۔\n\n**کچھ اہم خبریں:**\n\n• بچے کی تپش کو ٹھیک کرنے کے لئے ہمارے مشورے پر عمل کریں۔\n\n**بچے کی تپش کو ٹھیک کرنے کے لئے ہمارا مشورہ:**\n\n• اپنے بچے کو مریض کے ہسپتال میں لے جانا ہے۔\n\n**بچے کی تپش کو ٹھیک کرنے کے لئے ہمارا مشورہ:**\n\n• اپنے بچے کو مریض کے ہسپتال میں لے جانا ہے۔\n\n**بچے کی تپش کو ٹھیک کرنے کے لئے ہمارا مشورہ:**\n\n• اپنے بچے کو مریض کے ہسپتال میں لے جانا ہے۔\n\n**بچے کی تپش کو ٹھیک کرنے کے لئے ہمارا مشورہ:**\n\n• اپنے بچے کو مریض کے ہسپتال میں لے جانا ہے۔\n\n**بچے کی تپش کو ٹھیک کرنے کے لئے ہمارا مشورہ:**\n\n• اپنے بچے کو مریض کے ہسپتال میں لے جانا ہے۔\n\n**بچے کی تپش کو ٹھیک کرنے کے لئے ہمارا مشورہ:**\n\n• اپنے بچے کو مریض کے ہسپتال میں لے جانا ہے۔\n\n**بچے کی تپش کو ٹھیک کرنے کے لئے ہمارا مشورہ:**\n\n• اپنے بچے کو مریض کے ہسپتال میں لے جانا ہے۔\n\n**بچے کی تپش کو ٹھیک کرنے کے لئے ہمارا مشورہ:**\n\n• اپنے بچے کو مریض کے ہسپتال میں لے جانا ہے۔\n\n**بچے کی تپش کو ٹھیک کرنے کے لئے ہمارا مشورہ:**\n\n• اپنے بچے کو مریض کے ہسپتال میں لے جانا ہے۔\n\n**بچے کی تپش کو ٹھیک کرنے کے لئے ہمارا مشورہ:**\n\n• اپنے بچے کو مریض کے ہسپتال میں لے جانا ہے۔\n\n**بچے کی تپش کو ٹھیک کرنے کے لئے ہمارا مشورہ:**\n\n• اپنے بچے کو مریض کے ہسپتال میں لے جانا ہے۔\n\n**بچے کی تپش کو ٹھیک کرنے کے لئے ہمارا مشورہ:**\n\n• اپنے بچے کو مریض کے ہسپتال میں لے جانا ہے۔\n\n**بچے کی تپش کو ٹھیک کرنے کے لئے ہمارا مشورہ:**\n\n• اپنے بچے کو مریض کے ہسپتال میں لے جانا ہے۔\n\n**بچے کی تپش کو ٹھیک کرنے کے لئے ہمارا مشورہ:**\n\n• اپنے بچے کو مریض کے ہسپتال میں لے جانا ہے۔\n\n**بچے کی تپش کو ٹھیک کرنے کے لئے ہمارا مشورہ:**\n\n• اپنے بچے کو مریض کے ہسپتال میں لے جانا ہے۔\n\n**بچے کی تپش کو ٹھیک کرنے کے لئے ہمارا مشورہ:**\n\n• اپنے بچے کو مریض کے ہسپتال میں لے جانا ہے۔\n\n**بچے کی تپش کو ٹھیک کرنے کے لئے ہمارا مشورہ:**\n\n• اپنے بچے کو مریض کے ہسپتال میں لے جانا ہے۔\n\n**بچے کی تپش کو ٹھیک کرنے کے لئے ہمارا مشورہ:**\n\n• اپنے بچے کو مریض کے ہسپتال میں لے جانا ہے۔\n\n**بچے کی تپش کو ٹھیک کرنے کے لئ",
+        "topic": "Child Care",
+        "ts": "2026-04-04T14:12:57.793Z"
+      },
+      {
+        "q": "[IMAGE_ANALYSIS]",
+        "a": "The image you've provided does not relate to health or medicine; it appears to discuss potential challenges and risks in a project, likely related to technology or software development. However, I'll analyze it in the context of health-related risks as per your request.\n\n**🔍 Direct Answer:**\nThe image does not depict any direct health-related symptoms or concerns but rather outlines potential risks in a project, which could indirectly relate to health if the project involves health technology.\n\n**⚠️ Health Risk:**\nThere are no direct health risks shown in the image. However, if we consider the potential indirect health implications:\n\n- **Data Privacy & Health Security:** Breaches in health data can lead to identity theft and misuse of personal health information.\n- **AI Hallucination & Accuracy:** Inaccurate medical advice from AI can lead to misdiagnosis or inappropriate treatment.\n\n**💡 Advice:**\n1. **Ensure Robust Data Protection:** Implement strong cybersecurity measures to protect sensitive health data.\n2. **Verify AI Outputs:** Have AI-generated medical advice reviewed by professionals to ensure accuracy.\n\n**⚡ Quick Actions:**\n1. **Review Current Security Measures:** Assess the current state of data security and AI validation processes.\n2. **Consult with Health Professionals:** Engage with healthcare professionals to validate the accuracy of AI-generated health advice.\n\n**🏥 When to See a Doctor:**\nIf you or someone else has received potentially harmful advice from an AI system, consult a healthcare professional immediately.\n\n*This is for awareness only. Please consult a healthcare professional for proper diagnosis and treatment.*",
+        "topic": "Health Vision (Llama-4)",
+        "ts": "2026-04-04T14:14:55.358Z"
+      },
+      {
+        "q": "[IMAGE_ANALYSIS]",
+        "a": "**🔍 Direct Answer:**\nThe image depicts a mosquito, which is a vector for Dengue Fever, a mosquito-borne viral illness.\n\n**⚠️ Health Risk:**\nDengue Fever is a significant health risk, especially in areas with standing water where mosquitoes breed. The disease is spread through bites from infected mosquitoes, typically the Aedes mosquito.\n\n**💡 Advice:**\n• Eliminate standing water around your home to prevent mosquito breeding.\n• Use mosquito repellents or wear protective clothing to avoid mosquito bites.\n• Install mosquito nets around beds and outdoor seating areas.\n\n**⚡ Quick Actions:**\n• Check for and eliminate potential mosquito breeding sites around your home.\n• Apply mosquito repellent immediately if outdoors.\n\n**🏥 When to See a Doctor:**\n• If you experience symptoms like high fever, severe headache, pain behind the eyes, joint and muscle pain, rash, or nausea and vomiting.\n\n⚕️ *This is for awareness only. Please consult a healthcare professional for proper diagnosis and treatment.*",
+        "topic": "Health Vision (Llama-4)",
+        "ts": "2026-04-04T14:15:21.753Z"
+      },
+      {
+        "q": "hi",
+        "a": "**🔍 सीधा उत्तर:**\nआपको कोई विशिष्ट स्वास्थ्य समस्या है या नहीं? कृपया विस्तार से बताएं।\n\n**⚠️ स्वास्थ्य जोखिम:**\nआपके क्षेत्र में वर्तमान मौसम के अनुसार, थोड़ी बादलों के साथ 26°C का तापमान और 65% की आर्द्रता के कारण, आपको मध्यम आर्द्रता से संबंधित स्वास्थ्य जोखिम हो सकते हैं। इनमें से कुछ जोखिम हैं:\n\n- मधुमेह और उच्च रक्तचाप के रोगियों को अतिरिक्त पानी की आवश्यकता हो सकती है।\n- श्वसन प्रणाली को प्रभावित करने वाले एलर्जी और अस्थमा जैसी समस्याएं।\n\n**💡 सलाह:**\nइन जोखिमों से बचने के लिए, निम्नलिखित उपाय करें:\n\n- नियमित रूप से पानी पिएं और तरल पदार्थों का सेवन करें।\n- व्यायाम करने से पहले और बाद में पर्याप्त पानी पिएं।\n- यदि आपको एलर्जी या अस्थमा है, तो अपने डॉक्टर से परामर्श लें और उनकी सलाह का पालन करें।\n\n**⚡ त्वरित कार्रवाई:**\nअगर आपको कोई असामान्य लक्षण दिखाई दें, जैसे कि तेज सीने में दर्द, सांस लेने में कठिनाई या बीमार महसूस होना, तो तुरंत अपने डॉक्टर से संपर्क करें।\n\n**🏥 डॉक्टर से मिलने की आवश्यकता:**\nयदि आपको कोई निम्नलिखित लक्षण दिखाई देते हैं, तो तुरंत अपने डॉक्टर से संपर्क करें:\n\n- तेज सीने में दर्द\n- सांस लेने में कठिनाई\n- बीमार महसूस होना\n- उच्च तापमान या बुखार\n- अन्य असामान्य लक्षण\n\n⚕️ *यह जानकारी केवल जागरूकता के लिए है। कृपया एक स्वास्थ्य विशेषज्ञ से परामर्श लें कि आपको क्या करना चाहिए।*",
+        "topic": "General Health",
+        "ts": "2026-04-04T18:04:45.339Z"
+      }
+    ],
+    "created": "2026-03-31T02:21:49.775Z"
+  },
+  {
+    "id": "3b3727cf-837a-4b4c-a1aa-0af8025729f4",
+    "name": "snehalkumar",
+    "email": "snehalkumarbajolge123@gmail.com",
+    "password": "$2a$10$FQe0BAam.lTH0FqAETdSTO6I5DfvSivYGatxQoH/1Ed8I2z5pZ2ba",
+    "lang": "en",
+    "chatHistory": [
+      {
+        "q": "Healthy diet tips",
+        "a": "**Healthy Diet Tips**\n\n• **Eat a variety of whole foods**: Focus on fruits, vegetables, whole grains, lean proteins, and healthy fats. These foods provide essential nutrients, fiber, and satiety.\n\n**Key Points:**\n\n • Include a rainbow of fruits and vegetables in your diet to ensure you get a range of vitamins and minerals.\n • Choose whole grains over refined or processed grains.\n • Opt for lean protein sources like poultry, fish, and legumes.\n • Healthy fats like nuts, seeds, and avocados are essential for brain function and heart health.\n\n**Advice:**\n\n • Plan your meals in advance to ensure you're getting a balanced diet.\n • Cook at home using fresh ingredients to control portion sizes and added sugars.\n • Limit your intake of processed and packaged foods.\n • Drink plenty of water throughout the day to stay hydrated.\n\n**When to See a Doctor:**\n\n • If you experience persistent digestive issues, such as bloating, constipation, or diarrhea.\n • If you have concerns about your weight or body composition.\n • If you have a history of food allergies or intolerances.\n • If you're experiencing fatigue, weakness, or other symptoms that may be related to your diet.\n\nDisclaimer: Always consult with a healthcare professional before making significant changes to your diet.",
+        "topic": "General Health",
+        "ts": "2026-03-31T08:42:57.808Z"
+      },
+      {
+        "q": "my baby is crying due to wet issue",
+        "a": "Oh no, poor baby! 😔 Don't worry, I'm here to help. 👶\n\n**Direct Answer:** • Your baby might be uncomfortable because of a wet diaper. It's not uncommon for little ones to get upset when they're wet. ❤️\n\n**Key Points:** • Watch for these signs: redness, irritation, or a strong, unpleasant odor around the diaper area 🧸\n\n**Advice:** • 1️⃣ Check the diaper immediately and change it to a fresh, clean one. 🍼\n• 2️⃣ Make sure the diaper fit is snug but not too tight, and the tabs are secure.\n• 3️⃣ If your baby continues to cry after a diaper change, try to soothe them with a gentle, calming motion, like rocking or a warm bath.\n\n**Extra:** • Remember to change your baby's diaper frequently, especially after feedings or when they wake up from a nap.\n\n**When to See a Doctor:** ⚠️ If your baby's crying persists, or you notice any of these warning signs: \n- Diarrhea or vomiting\n- Fever above 100.4°F (38°C)\n- Blood in the stool or urine\n- Signs of dehydration (dry mouth, fewer wet diapers)\n\n**Care Tip 💡:** Always have a diaper-changing station with essentials nearby, and consider using a diaper cream to help soothe and protect your baby's delicate skin. 🌸",
+        "topic": "Child Care",
+        "ts": "2026-03-31T08:52:46.565Z"
+      },
+      {
+        "q": "my baby is hungry",
+        "a": "🍼💕 Your little one is hungry, isn't that just the sweetest thing? 😊\n\n**Direct Answer:** Don't worry, I'm here to help! 👶 Let's get some nourishment into your baby's tummy.\n\n**Key Points:** Watch for these signs of hunger:\n 🍴 Fussiness\n 🤯 Whining\n 🤤 Drooling\n 🤗 Rooting reflex (when they turn their head towards your nipple or a bottle)\n\n**Advice:** \n1. **Breastfeeding:** If you're breastfeeding, make sure to latch your baby correctly. This will help them get the milk they need.\n2. **Bottle Feeding:** If you're using a bottle, choose a nipple that's the right flow for your baby's age and needs. You can also try burping your baby after feeding to help them digest.\n3. **Formula Feeding:** If you're using formula, make sure to follow the instructions on the label and mix it with the right amount of water.\n\n**Extra:** Remember to burp your baby after feeding to help them digest. You can also try using a pacifier or letting them suck on their thumb to help them relax.\n\n**When to See a Doctor:**\nIf your baby shows any of these signs, consult with your pediatrician:\n ⚠️ Vomiting or spitting up after feeding\n ⚠️ Refusal to feed or showing no interest in feeding\n ⚠️ Signs of dehydration (dry mouth, fewer wet diapers)\n\n**Care Tip 💡:** Try the \"5 S's\" to calm your baby during feeding:\n 🌙 **Swaddling:** Wrap your baby snugly in a blanket to help them feel secure.\n 🌙 **Shushing:** Make a \"shhh\" sound next to your baby's ear to mimic the sound of the womb.\n 🌙 **Side/stomach position:** Hold your baby on their side or stomach, as this can help them feel more secure.\n 🌙 **Swinging:** Gently rock your baby back and forth or use a baby swing to help them feel soothed.\n 🌙 **Sucking:** Offer your baby a pacifier or let them suck on their thumb to help them relax.",
+        "topic": "Child Care",
+        "ts": "2026-03-31T09:16:32.706Z"
+      },
+      {
+        "q": "I feel tired",
+        "a": "**🔍 Direct Answer:**\nYou're feeling tired, which could be due to various factors, including lack of sleep, physical activity, or even stress.\n\n**⚠️ Health Risk:**\nGiven the patchy rain nearby and high temperature (32°C), there's a risk of waterborne diseases, dengue fever, and heat exhaustion. Additionally, the humidity is relatively low, which might not be a significant concern in this case.\n\n**💡 Advice:**\nTo combat fatigue, try these tips:\n1. Stay hydrated by drinking plenty of water.\n2. Take short breaks to rest and cool off in a shaded area.\n3. Engage in light physical activity, like stretching or yoga, to boost energy levels.\n\n**⚡ Quick Actions:**\n- Drink a glass of water immediately to rehydrate.\n- Take a short power nap (15-20 minutes) to refresh yourself.\n\n**🏥 When to See a Doctor:**\nIf you experience:\n- Severe headaches\n- High fever (above 38°C)\n- Vomiting or diarrhea\n- Dizziness or confusion\n- Seek medical attention if your symptoms worsen or persist.\n\n⚕️ *This is for awareness only. Please consult a healthcare professional for proper diagnosis and treatment.*",
+        "topic": "General Health",
+        "ts": "2026-03-31T14:48:44.180Z"
+      },
+      {
+        "q": "baby is crying",
+        "a": "😔 Oh no, poor little one is crying! 🤕 Don't worry, I'm here to help. 🧸\n\n**What to watch for:** 🧸\n- Is the baby's cry loud and persistent, or is it a gentle whimper?\n- Are their eyes closed or open, and are they arching their back?\n- Are they warm or cold to the touch?\n\n**Advice:** 🍼\n- First, make sure the baby's basic needs are met: are they hungry, thirsty, or needs a diaper change? 🍼\n- Try the \"5 S's\" method:\n  1. **Swaddling**: Wrap the baby snugly to help them feel secure. 🧸\n  2. **Shushing**: Make a gentle \"shhh\" sound next to their ear to mimic the womb. 🗣️\n  3. **Side/stomach position**: Hold the baby on their side or stomach, as this can help them feel more secure. 🤗\n  4. **Swinging**: Gently rock the baby back and forth, or try a baby swing to help them feel soothed. 🎃\n  5. **Sucking**: Offer the baby a pacifier or let them suck on their thumb to provide a calming sensation. 🤱\n- If the baby continues to cry, try a warm bath or a gentle massage to help them relax. 🧖\n\n**Extra:** ❤️\n- If the baby is under 3 months old, it's always a good idea to rule out any underlying medical issues, such as a fever or infection. 🤒\n\n**When to See a Doctor:** ⚠️\n- If the baby's cry persists or is accompanied by other concerning symptoms, such as vomiting, diarrhea, or a fever over 100.4°F (38°C).\n- If the baby shows signs of distress, such as rapid breathing, pale skin, or a lack of responsiveness.\n\n**Care Tip:** 💡\n- Create a soothing atmosphere by playing calming music or white noise, and keeping the room at a comfortable temperature. This can help the baby feel more relaxed and secure. 🌙",
+        "topic": "Child Care",
+        "ts": "2026-03-31T14:49:11.407Z"
+      },
+      {
+        "q": "Headache remedies",
+        "a": "**🔍 Direct Answer:**\nA headache can be caused by various factors such as stress, dehydration, or overexertion.\n\n**⚠️ Health Risk:**\nGiven the current weather conditions (hot and sunny), there's an increased risk of dehydration and heat-related issues, which can exacerbate headaches.\n\n**💡 Advice:**\nHere are some practical remedies to help alleviate headaches:\n\n1. **Stay hydrated**: Drink plenty of water to replenish lost fluids and electrolytes.\n2. **Rest and relax**: Take a break, lie down in a quiet room, and try to relax.\n3. **Cold or warm compress**: Apply a cold or warm compress to the forehead, neck, or shoulders to relieve tension.\n\n**⚡ Quick Actions:**\n- Drink a full glass of water immediately.\n- Take a 10-minute power nap to recharge.\n\n**🏥 When to See a Doctor:**\nIf you experience any of the following, seek medical attention:\n\n- Severe headaches that worsen over time\n- Headaches accompanied by fever, confusion, or stiff neck\n- Headaches that interfere with daily activities or sleep\n\n⚕️ *This is for awareness only. Please consult a healthcare professional for proper diagnosis and treatment.*",
+        "topic": "General Health",
+        "ts": "2026-03-31T14:53:23.971Z"
+      },
+      {
+        "q": "I feel tired",
+        "a": "**🔍 Direct Answer:**\nFeeling tired can be caused by various factors, including lack of sleep, poor diet, stress, or underlying medical conditions.\n\n**⚠️ Health Risk:**\nGiven the current weather data (not provided), I'll mention general seasonal risks. In general, during hot and humid weather, dehydration can contribute to fatigue. In cold weather, respiratory issues like the flu or common cold can make you feel tired.\n\n**💡 Advice:**\nTo boost your energy levels, try to:\n1. Get 7-8 hours of sleep each night to help your body recharge.\n2. Eat a balanced diet rich in fruits, vegetables, whole grains, and lean protein sources.\n3. Stay hydrated by drinking plenty of water throughout the day.\n\n**⚡ Quick Actions:**\nTake a short power nap of 15-20 minutes to refresh your mind and body.\n\n**🏥 When to See a Doctor:**\nIf your fatigue persists or is accompanied by other symptoms like fever, headaches, or difficulty concentrating, consult a healthcare professional for proper evaluation and guidance.\n\n⚕️ *This is for awareness only. Please consult a healthcare professional for proper diagnosis and treatment.*",
+        "topic": "General Health",
+        "ts": "2026-04-01T03:40:42.400Z"
+      },
+      {
+        "q": "Dengue symptoms",
+        "a": "**🔍 Direct Answer:**\nDengue symptoms can vary from person to person, but common signs include high fever, severe headache, pain behind the eyes, joint and muscle pain, rash, and mild bleeding (e.g., nose, gums, or easy bruising).\n\n**⚠️ Health Risk:**\nGiven the current rainy weather, there's a higher risk of dengue fever due to the presence of mosquito vectors like Aedes aegypti. This mosquito spreads the dengue virus.\n\n**💡 Advice:**\nTo prevent dengue, make sure to:\n1. Use insecticide-treated bed nets or mosquito repellents.\n2. Wear protective clothing, like long-sleeved shirts and pants, when outdoors.\n3. Eliminate standing water around your home to prevent mosquito breeding.\n\n**⚡ Quick Actions:**\nIf you suspect you have dengue, immediately:\n1. Stay hydrated by drinking plenty of fluids.\n2. Monitor your symptoms and seek medical attention if they worsen.\n\n**🏥 When to See a Doctor:**\nSeek immediate medical attention if you experience:\n- Severe abdominal pain\n- Severe headache or stiff neck\n- Vomiting or diarrhea\n- Bleeding or bruising easily\n- Sudden drop in blood pressure\n\n⚕️ *This is for awareness only. Please consult a healthcare professional for proper diagnosis and treatment.*",
+        "topic": "General Health",
+        "ts": "2026-04-01T03:53:59.932Z"
+      }
+    ],
+    "created": "2026-03-31T08:42:47.293Z",
+    "age": "21",
+    "gender": "Male",
+    "height": "166",
+    "weight": "80",
+    "bloodGroup": "O+",
+    "conditions": "nthg"
+  },
+  {
+    "id": "92f9a5af-2f33-46e5-8ca0-c1ac30dabfb1",
+    "name": "Snehalkumar",
+    "email": "srikundabajolge@gmail.com",
+    "password": "$2a$10$gx76AXRX9zeQSNSbPgcLHONDi7gBCfIus4p/RFFG0JRoHE6SwRs7q",
+    "lang": "en",
+    "chatHistory": [],
+    "created": "2026-04-04T16:11:45.635Z"
+  }
+]

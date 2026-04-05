@@ -1,4 +1,4 @@
-# Backend files
+# Backend files (for Render only)
 server.js
 chatbot-engine.js
 find-model.js
@@ -7,23 +7,19 @@ get-id.js
 list-groq-models.js
 list-models.js
 model_id.txt
+test-*.js
 
 # Node files
+package.json
+package-lock.json
 node_modules/
 
 # Data files
 data/
 
+# Old public folder
+public/
+
 # Documentation
 *.md
 !README.md
-
-# Config files
-.env
-.env.example
-
-# Test files
-test-*.js
-
-# Old public folder (now using root)
-public/
