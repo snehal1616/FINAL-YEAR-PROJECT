@@ -746,47 +746,41 @@
             margin: 0;
         }
         
-        /* MAIN LAYOUT */
+        /* ===== BASE LAYOUT (DESKTOP FIRST) ===== */
         .chat-layout {
             display: flex;
-            flex-direction: column;
-            height: 100vh; /* ✅ FULL SCREEN FIX */
+            flex-direction: row;
+            height: calc(100vh - 60px);
+            gap: 20px;
         }
         
-        /* MAIN CHAT AREA */
         .chat-main {
             display: flex;
             flex-direction: column;
             flex: 1;
+            min-width: 0;
         }
         
-        /* TOP BAR */
         .chat-top-bar {
             flex-shrink: 0;
         }
         
-        /* MESSAGES AREA */
         .chat-messages {
             flex: 1;
             overflow-y: auto;
             padding: 15px;
+            min-height: 0;
         }
         
-        /* INPUT AREA */
         .chat-input-area {
             flex-shrink: 0;
             background: white;
             padding: 10px;
-            position: sticky;
-            bottom: 0;
         }
         
-        /* CHATBOT-SPECIFIC RESPONSIVE STYLES */
-        @media(max-width:1200px){
-            body .sidebar{width:200px !important}
-            body .main-content{margin-left:200px !important; padding:15px !important}
-            .chat-sidebar{width:260px}
-            .chat-messages{padding:15px}
+        .chat-sidebar {
+            width: 280px;
+            flex-shrink: 0;
         }
         
         /* ===== RESPONSIVE LAYOUT ===== */
@@ -803,124 +797,139 @@
             z-index: 150;
             opacity: 0;
             transition: opacity 0.3s ease;
+            pointer-events: none;
         }
         
-        @media (max-width: 768px) {
-            .sidebar.open ~ .sidebar-overlay {
-                display: block;
-                opacity: 1;
-            }
+        .sidebar.open + .sidebar-overlay {
+            display: block;
+            opacity: 1;
+            pointer-events: auto;
         }
         
-        /* Desktop/PC Layout - Default */
-        @media (min-width: 769px) {
-            .app-layout {
-                display: flex;
-            }
-            
+        /* Large Desktop */
+        @media (min-width: 1201px) {
             .sidebar {
-                display: flex !important;
-                transform: translateX(0) !important;
+                width: 260px;
             }
             
             .main-content {
-                margin-left: 220px !important;
-                padding: 15px 20px !important;
+                margin-left: 260px;
+                padding: 30px;
+            }
+        }
+        
+        /* Desktop/Laptop */
+        @media (min-width: 769px) and (max-width: 1200px) {
+            .sidebar {
+                width: 220px;
             }
             
-            .chat-layout {
-                display: flex;
-                flex-direction: row;
-                height: calc(100vh - 60px);
-            }
-            
-            .chat-main {
-                flex: 1;
-                max-width: none;
+            .main-content {
+                margin-left: 220px;
+                padding: 20px;
             }
             
             .chat-sidebar {
-                display: flex;
-                width: 280px;
+                width: 260px;
             }
         }
         
-        /* Tablet/Mobile Layout */
+        /* Tablet/Mobile */
         @media (max-width: 768px) {
-            /* FORCE MOBILE LAYOUT */
-            .app-layout {
-                display: block !important;
+            /* Mobile Toggle Button */
+            .mobile-toggle {
+                display: block;
             }
             
+            /* App Layout */
+            .app-layout {
+                display: block;
+            }
+            
+            /* Sidebar - Hidden by default, slides in when open */
             .sidebar {
-                display: flex !important;
                 transform: translateX(-100%);
                 position: fixed;
                 z-index: 200;
+                width: 280px;
+                transition: transform 0.3s ease;
             }
             
             .sidebar.open {
-                transform: translateX(0) !important;
+                transform: translateX(0);
             }
             
+            /* Main Content - Full width */
             .main-content {
-                margin: 0 !important;
+                margin-left: 0 !important;
                 padding: 0 !important;
-                width: 100% !important;
+                width: 100%;
             }
             
+            /* Chat Layout - Vertical stack, full height */
             .chat-layout {
-                display: flex !important;
                 flex-direction: column !important;
                 height: 100vh !important;
-                width: 100% !important;
+                gap: 0 !important;
             }
             
+            /* Chat Main - Full width, no border radius */
             .chat-main {
-                width: 100% !important;
-                max-width: 100% !important;
+                width: 100%;
+                max-width: 100%;
                 border-radius: 0 !important;
                 flex: 1;
-                display: flex;
-                flex-direction: column;
+                min-height: 0;
             }
             
+            /* Hide right sidebar on mobile */
             .chat-sidebar {
                 display: none !important;
             }
             
-            /* Enable zoom and scroll */
+            /* Chat Messages - Optimized padding */
             .chat-messages {
-                overflow-y: auto !important;
-                -webkit-overflow-scrolling: touch !important;
-                padding: 10px !important;
-                flex: 1;
+                padding: 12px !important;
+                -webkit-overflow-scrolling: touch;
             }
             
-            /* Make content zoomable */
-            .msg-bubble {
+            /* Message Bubbles - Larger on mobile */
+            body .msg-bubble {
                 max-width: 90% !important;
                 font-size: 14px !important;
-                word-wrap: break-word !important;
+                padding: 12px 16px !important;
             }
             
-            /* Fix input area */
-            .chat-input-area {
-                padding: 10px !important;
-                flex-shrink: 0;
+            /* Input Area - Compact */
+            body .chat-input-area {
+                padding: 12px !important;
             }
             
-            .chat-input-bar input {
+            body .chat-input-bar {
+                gap: 8px !important;
+            }
+            
+            body .chat-input-bar input {
                 font-size: 16px !important; /* Prevents iOS zoom */
+                padding: 12px 16px !important;
             }
             
-            /* Enable smooth touch scrolling */
+            body .chat-input-bar button {
+                width: 44px !important;
+                height: 44px !important;
+            }
+            
+            /* Top Bar - Compact */
+            .chat-top-bar {
+                padding: 12px 16px !important;
+            }
+            
+            /* Enable touch scrolling */
             body, html {
                 -webkit-overflow-scrolling: touch;
-                overflow-scrolling: touch;
             }
             
-            /* Allow pinch zoom on mobile */
+            /* Allow pinch zoom */
             .chat-messages, .msg-bubble {
                 touch-action: manipulation;
             }
@@ -928,23 +937,38 @@
         
         /* Small Mobile */
         @media (max-width: 480px) {
+            .sidebar {
+                width: 260px;
+            }
+            
             .chat-messages {
                 padding: 10px !important;
             }
             
-            .msg-bubble {
+            body .msg-bubble {
                 font-size: 13px !important;
                 padding: 10px 14px !important;
             }
             
-            .chat-input-bar input {
-                font-size: 16px !important;
-                padding: 12px 16px !important;
+            body .chat-input-bar input {
+                padding: 10px 14px !important;
             }
             
-            .chat-input-bar button {
-                width: 42px !important;
-                height: 42px !important;
+            body .chat-input-bar button {
+                width: 40px !important;
+                height: 40px !important;
+            }
+            
+            .chat-top-bar {
+                padding: 10px 12px !important;
+            }
+            
+            .chat-top-bar .bot-name {
+                font-size: 1rem !important;
+            }
+            
+            .chat-top-bar .bot-status {
+                font-size: 0.75rem !important;
             }
         }
     </style>
@@ -953,7 +977,6 @@
     <button class="mobile-toggle">
         <i class="fa-solid fa-bars"></i>
     </button>
-    <div class="sidebar-overlay"></div>
     <div class="app-layout">
         <aside class="sidebar">
             <div class="logo"><div class="logo-icon"></div><span>Cureastic</span></div>
@@ -973,6 +996,7 @@
                 <button class="btn btn-danger btn-sm btn-block" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
             </div>
         </aside>
+        <div class="sidebar-overlay"></div>
         <main class="main-content">
             <div class="chat-layout">
                 <div class="chat-main">
