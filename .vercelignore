@@ -1,6 +1,5 @@
+# Backend files
 server.js
-package.json
-package-lock.json
 chatbot-engine.js
 find-model.js
 find-vision.js
@@ -8,6 +7,28 @@ get-id.js
 list-groq-models.js
 list-models.js
 model_id.txt
-data/users.json
+
+# Node files
+package.json
+package-lock.json
+node_modules/
+
+# Data files
+data/
+
+# Documentation
 *.md
 !README.md
+
+# Config files
+.env
+.env.example
+.gitignore
+
+# Test files
+test-*.js
+
+# Root HTML/CSS/JS (only use public/ folder)
+index.html
+script.js
+styles.css

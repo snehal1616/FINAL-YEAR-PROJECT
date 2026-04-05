@@ -1,16 +1,18 @@
 {
+  "buildCommand": null,
+  "outputDirectory": "public",
   "rewrites": [
-    { "source": "/css/(.*)", "destination": "/public/css/$1" },
-    { "source": "/js/(.*)", "destination": "/public/js/$1" },
-    { "source": "/assets/(.*)", "destination": "/public/assets/$1" },
-    { "source": "/(.*).html", "destination": "/public/$1.html" },
-    { "source": "/login", "destination": "/public/login.html" },
-    { "source": "/signup", "destination": "/public/signup.html" },
-    { "source": "/dashboard", "destination": "/public/dashboard.html" },
-    { "source": "/chatbot", "destination": "/public/chatbot.html" },
-    { "source": "/wellness", "destination": "/public/wellness.html" },
-    { "source": "/reports", "destination": "/public/reports.html" },
-    { "source": "/profile", "destination": "/public/profile.html" },
-    { "source": "/", "destination": "/public/index.html" }
+    { "source": "/css/(.*)", "destination": "/css/$1" },
+    { "source": "/js/(.*)", "destination": "/js/$1" },
+    { "source": "/assets/(.*)", "destination": "/assets/$1" },
+    { "source": "/(.*).html", "destination": "/$1.html" },
+    { "source": "/login", "destination": "/login.html" },
+    { "source": "/signup", "destination": "/signup.html" },
+    { "source": "/dashboard", "destination": "/dashboard.html" },
+    { "source": "/chatbot", "destination": "/chatbot.html" },
+    { "source": "/wellness", "destination": "/wellness.html" },
+    { "source": "/reports", "destination": "/reports.html" },
+    { "source": "/profile", "destination": "/profile.html" },
+    { "source": "/", "destination": "/index.html" }
   ]
 }
