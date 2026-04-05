@@ -1,103 +1,231 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Healio AI | Smart Public Health Assistant</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
-    <style>
-        .hero { min-height: 100vh; display: flex; align-items: center; background: radial-gradient(circle at top right, rgba(14, 165, 233, 0.1), transparent); }
-        .hero-content h2 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px; color: var(--p); }
-        .hero-visual img { width: 100%; max-width: 500px; border-radius: 30px; box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
-        .navbar { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 15px 0; border-bottom: 1px solid var(--border); }
-        .section-title { font-size: 2.5rem; margin-bottom: 40px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cureastic - AI Healthcare Assistant</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+
+    background: linear-gradient(-45deg, #f0f9ff, #e0f2fe, #ffffff, #bae6fd);
+    background-size: 400% 400%;
+    animation: gradientMove 12s ease infinite;
+}
+
+/* Background Animation */
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Floating Animation */
+@keyframes floatCard {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Container */
+.container {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    padding: 40px;
+
+    /* ✅ ADD THIS */
+    border: 2px solid rgba(14, 165, 233, 0.4);
+
+    /* Optional better shadow */
+    box-shadow: 
+    0 20px 60px rgba(14,165,233,0.15),
+    0 0 0 1px rgba(14,165,233,0.1);
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    font-size: 1.4rem;
+}
+
+.logo-box {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.6rem;
+}
+
+.live-demo-btn {
+    background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+    color: white;
+    padding: 10px 22px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 6px 20px rgba(14,165,233,0.25);
+}
+
+/* Hero */
+.hero {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.hero h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #0ea5e9, #0284c7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 4px 20px rgba(14,165,233,0.25);
+}
+
+.hero p {
+    color: #475569;
+    margin: 15px 0 25px;
+}
+
+.try-btn {
+    background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+    color: white;
+    padding: 14px 34px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 6px 20px rgba(14,165,233,0.25);
+}
+
+/* Features */
+.features {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 18px;
+}
+
+.feature-card {
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(12px);
+    padding: 25px;
+    border-radius: 16px;
+    text-align: center;
+    border: 1px solid rgba(14,165,233,0.15);
+    box-shadow: 0 8px 24px rgba(14,165,233,0.08);
+    animation: floatCard 4s ease-in-out infinite;
+    transition: 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(14,165,233,0.2);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+/* CTA */
+.cta-section {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.launch-btn {
+    background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+    color: white;
+    padding: 16px 40px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 6px 20px rgba(14,165,233,0.25);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #64748b;
+    font-size: 0.85rem;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .features {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
 </head>
+
 <body>
-    <header class="navbar glass-panel">
-        <div class="container nav-container" style="display:flex; justify-content:space-between; align-items:center">
-            <h1 class="logo" style="font-size: 1.5rem; margin:0"><i class="fa-solid fa-heart-pulse"></i> Healio AI</h1>
-            <nav class="nav-menu">
-                <div style="display:flex; gap:20px; align-items:center">
-                    <a href="/login" class="btn btn-secondary btn-sm">Login</a>
-                    <a href="/signup" class="btn btn-primary btn-sm">Join Healio</a>
-                </div>
-            </nav>
-        </div>
-    </header>
 
-    <section class="hero">
-        <div class="container grid-2-col" style="align-items:center">
-            <div class="hero-content fade-up">
-                <div class="badge" style="background:var(--p); color:white; padding:5px 15px; border-radius:20px; font-size:0.8rem; display:inline-block; margin-bottom:20px">✨ Final Year Project Showcase</div>
-                <h2>AI-Driven Public Health Awareness</h2>
-                <p style="font-size:1.2rem; color:var(--muted); margin-bottom:30px">
-                    Empowering rural and urban communities with instant, WHO-verified health information in multiple languages.
-                </p>
-                <div class="hero-buttons" style="display:flex; gap:15px">
-                    <a href="/signup" class="btn btn-primary btn-lg">Get Started Now <i class="fa-solid fa-arrow-right"></i></a>
-                    <a href="/login" class="btn btn-secondary btn-lg">Live Demo</a>
-                </div>
-                <div class="hero-stats" style="display:flex; gap:30px; margin-top:40px">
-                    <div><strong>95%</strong><p style="font-size:0.8rem; color:var(--muted)">AI Accuracy</p></div>
-                    <div><strong>3+</strong><p style="font-size:0.8rem; color:var(--muted)">Local Languages</p></div>
-                    <div><strong>10+</strong><p style="font-size:0.8rem; color:var(--muted)">Health Topics</p></div>
-                </div>
-            </div>
-            <div class="hero-visual text-right">
-                <img src="https://images.unsplash.com/photo-1576091160550-217359f42f8c?auto=format&fit=crop&q=80&w=800" alt="Healthcare AI" class="floating-anim">
-            </div>
-        </div>
-    </section>
+<div class="container">
 
-    <section class="features section-padding" id="features" style="background:var(--bg)">
-        <div class="container text-center">
-            <h2 class="section-title">Why Healio?</h2>
-            <div class="feature-grid">
-                <div class="card feature-card">
-                    <div class="icon-wrap icon-blue"><i class="fa-solid fa-robot"></i></div>
-                    <h3>Gemini AI Fallback</h3>
-                    <p>Advanced intelligent responses for complex health queries.</p>
-                </div>
-                <div class="card feature-card">
-                    <div class="icon-wrap icon-green"><i class="fa-solid fa-language"></i></div>
-                    <h3>Multilingual Support</h3>
-                    <p>Communicate in English, Hindi, or Kannada seamlessly.</p>
-                </div>
-                <div class="card feature-card">
-                    <div class="icon-wrap icon-purple"><i class="fa-solid fa-location-dot"></i></div>
-                    <h3>Hospital Locator</h3>
-                    <p>Find nearest medical care based on your GPS location.</p>
-                </div>
-                <div class="card feature-card">
-                    <div class="icon-wrap icon-orange"><i class="fa-solid fa-file-waveform"></i></div>
-                    <h3>Health Analytics</h3>
-                    <p>Visualize search trends and download health reports.</p>
-                </div>
-            </div>
+    <div class="header">
+        <div class="logo">
+            <div class="logo-box">+</div>
+            Cureastic
         </div>
-    </section>
+        <a href="/login" class="live-demo-btn">Live Demo</a>
+    </div>
 
-    <footer class="footer" style="padding: 60px 0; background: var(--bg); border-top: 1px solid var(--border)">
-        <div class="container text-center">
-            <h3>Healio AI</h3>
-            <p style="color:var(--muted); max-width:600px; margin: 20px auto">
-                A production-grade AI solution for public health accessibility.
-                <br>Built with Node.js, Express, and Google Generative AI.
-            </p>
-            <div class="footer-links" style="display:flex; justify-content:center; gap:20px; font-size:1.5rem; margin-top:30px">
-                <a href="#"><i class="fa-brands fa-github"></i></a>
-                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-            </div>
-        </div>
-    </footer>
+    <div class="hero">
+        <h1>AI-Powered Healthcare Assistant</h1>
+        <p>Smart, preventive, and personalized health guidance for everyone.</p>
+        <a href="/login" class="try-btn">Try Cureastic</a>
+    </div>
 
-    <script>
-        // Init theme
-        const t = localStorage.getItem('theme') || 'light';
-        document.documentElement.setAttribute('data-theme', t);
-    </script>
+    <div class="features">
+        <div class="feature-card">🤖<br><b>AI Chatbot</b><br>Instant health answers</div>
+        <div class="feature-card">👶<br><b>Child Mode</b><br>Care for kids</div>
+        <div class="feature-card">🌤️<br><b>Weather Tips</b><br>Smart alerts</div>
+        <div class="feature-card">📸<br><b>Image Analysis</b><br>Check symptoms</div>
+        <div class="feature-card">💪<br><b>Wellness</b><br>Stay fit</div>
+        <div class="feature-card">🏥<br><b>Nearby Hospitals</b><br>Find instantly</div>
+    </div>
+
+    <div class="cta-section">
+        <h2>Start Your Smart Health Journey</h2><br>
+        <a href="/login" class="launch-btn">Launch Cureastic</a>
+    </div>
+
+    <div class="footer">
+        © 2026 Cureastic <br>
+        Developed by Snehalkumar SB <br>
+        Co-Lead: Soumya R
+    </div>
+
+</div>
+
 </body>
 </html>

@@ -1,0 +1,358 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Cureastic</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/i18n.js"></script>
+    <style>
+        :root {
+            --p: #2563eb;
+            --p-light: #dbeafe;
+            --p-vivid: #1d4ed8;
+            --bg: #fdfcff;
+            --sidebar-bg: #f5f3ff;
+            --card: #ffffff;
+            --text: #1e293b;
+            --text-heading: #0f172a;
+            --border: #cbd5e1;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --font-main: 'Inter', sans-serif;
+            --font-heading: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --sidebar-bg: #1e293b;
+            --card: #1e293b;
+            --text: #f1f5f9;
+            --text-heading: #ffffff;
+            --border: #334155;
+            --p-light: #1e3a8a;
+            --shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        body { 
+            font-family: var(--font-main);
+            color: var(--text); 
+            transition: all 0.3s ease; 
+        }
+
+        .app-layout { display: flex; height: 100vh; overflow: hidden; }
+        .sidebar { 
+            background: var(--sidebar-bg); 
+            border-right: 1.5px solid var(--border); 
+            width: 260px;
+            backdrop-filter: blur(10px);
+            background: var(--glass);
+        }
+        
+        .main-content {
+            padding: 2.5rem;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .impact-card {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.2);
+            color: white;
+            padding: 40px;
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .stat-card {
+            border-radius: 24px;
+            padding: 25px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover { transform: translateY(-5px); }
+
+        .action-card {
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .action-card:hover { border-color: var(--p); transform: scale(1.02); }
+
+        .impact-card h2 { font-family: var(--font-heading); font-size: 2.2rem; margin-bottom: 12px; position: relative; z-index: 1; font-weight: 700; letter-spacing: -0.03em; }
+        .impact-card p { opacity: 0.95; position: relative; z-index: 1; font-size: 1.1rem; max-width: 600px; line-height: 1.6; font-weight: 400; }
+        .impact-card i {
+            position: absolute;
+            right: -30px;
+            bottom: -30px;
+            font-size: 12rem;
+            opacity: 0.15;
+            transform: rotate(-15deg);
+            color: white;
+        }
+
+        .sidebar-nav { flex: 1; padding: 10px 0; }
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 20px;
+            border-radius: 12px;
+            color: var(--text);
+            font-weight: 600;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .sidebar-nav a:hover, .sidebar-nav a.active {
+            background: var(--p-light);
+            color: var(--p);
+        }
+
+        .sidebar-nav a i { width: 24px; font-size: 1.2rem; }
+
+        .emergency-bar {
+            background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+            color: white;
+            padding: 20px 28px;
+            border-radius: 22px;
+            margin-bottom: 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 15px 35px rgba(239, 68, 68, 0.4);
+            font-family: var(--font-heading);
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+
+        .emergency-bar i { font-size: 1.5rem; margin-right: 12px; animation: pulse 2s infinite; }
+        .emergency-bar strong { font-family: var(--font-heading); font-weight: 700; font-size: 1.4rem; letter-spacing: -0.02em; text-transform: uppercase; }
+        .emergency-bar span { font-weight: 500; font-size: 1.1rem; opacity: 0.95; }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Stylish Checklist Stats */
+        .checklist-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: var(--shadow);
+            border-left: 6px solid var(--p);
+        }
+        .checklist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            background: var(--bg);
+            border-radius: 15px;
+            font-weight: 700;
+            font-family: var(--font-heading);
+            color: var(--text-heading);
+            transition: 0.3s;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+        .check-item:hover { border-color: var(--p); transform: translateY(-3px); background: var(--p-light); }
+        .check-item i { color: var(--p); font-size: 1.2rem; }
+        .check-item.done { opacity: 0.6; text-decoration: line-through; }
+        
+        .btn-sm { font-family: var(--font-heading); font-weight: 700; border-radius: 12px; letter-spacing: 0.02em; text-transform: uppercase; padding: 10px 20px; }
+    </style>
+
+</head>
+<body>
+    <button class="mobile-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="logo"><div class="logo-icon"></div><span>Cureastic</span></div>
+            <nav class="sidebar-nav">
+                <a href="/dashboard" class="active"><i class="fa-solid fa-house"></i> <span data-i18n="nav_dashboard">Dashboard</span></a>
+                <a href="/chatbot"><i class="fa-solid fa-comment-dots"></i> <span data-i18n="nav_chatbot">AI Chatbot</span></a>
+                <a href="/wellness"><i class="fa-solid fa-person-running"></i> Wellness</a>
+                <a href="/reports"><i class="fa-solid fa-chart-line"></i> <span data-i18n="nav_reports">Health Reports</span></a>
+                <a href="/profile"><i class="fa-solid fa-user-gear"></i> <span data-i18n="nav_profile">Profile Settings</span></a>
+            </nav>
+            <div class="sidebar-bottom">
+                <button class="theme-toggle" id="themeToggleBtn">
+                    <i class="fa-solid fa-moon"></i> <span data-i18n="theme_dark">Dark Mode</span>
+                </button>
+                <button class="btn btn-danger btn-sm btn-block" onclick="logout()">
+                    <i class="fa-solid fa-right-from-bracket"></i> <span data-i18n="nav_logout">Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="emergency-bar">
+                <span><i class="fa-solid fa-triangle-exclamation"></i> <strong data-i18n="emergency_title">Medical Emergency?</strong> <span data-i18n="emergency_desc">Call 108 or 112 immediately.</span></span>
+                <a href="tel:108" class="btn btn-sm" style="background:white; color:var(--danger)" data-i18n="emergency_call">Call Now</a>
+            </div>
+
+            <div class="impact-card">
+                <h2 id="welcomeHeading">Welcome, <span id="userName">User</span>! 👋</h2>
+                <p data-i18n="welcome_desc">Cureastic is ready to assist you with AI-powered health awareness and medical guidance.</p>
+                <i class="fa-solid fa-stethoscope"></i>
+            </div>
+
+            <div class="stats-grid">
+                <div class="card stat-card">
+                    <i class="fa-solid fa-comments"></i>
+                    <h3 id="totalQueries">0</h3>
+                    <p data-i18n="stat_queries">Queries Made</p>
+                </div>
+                <div class="card stat-card">
+                    <i class="fa-solid fa-shield-virus"></i>
+                    <h3 id="topDisease">None</h3>
+                    <p data-i18n="stat_interest">Primary Interest</p>
+                </div>
+                <div class="card stat-card">
+                    <i class="fa-solid fa-language"></i>
+                    <h3>3+</h3>
+                    <p data-i18n="stat_languages">Available Languages</p>
+                </div>
+                <div class="card stat-card">
+                    <i class="fa-solid fa-user-check"></i>
+                    <h3 id="userStatus" data-i18n="stat_active">Active</h3>
+                    <p data-i18n="stat_status">Account Status</p>
+                </div>
+            </div>
+
+            <h3 style="margin-bottom:20px">Quick Actions</h3>
+            <div class="quick-actions">
+                <a href="/chatbot" class="card action-card">
+                    <div class="icon-wrap icon-blue"><i class="fa-solid fa-robot"></i></div>
+                    <div>
+                        <h4 data-i18n="action_chat_title">AI Chat Assistant</h4>
+                        <p data-i18n="action_chat_desc">Discuss symptoms and prevention.</p>
+                    </div>
+                </a>
+
+                <a href="/chatbot?action=hospitals" class="card action-card">
+                    <div class="icon-wrap icon-green"><i class="fa-solid fa-hospital"></i></div>
+                    <div>
+                        <h4 data-i18n="action_hosp_title">Find Nearby Hospitals</h4>
+                        <p data-i18n="action_hosp_desc">Locate care centers near you.</p>
+                    </div>
+                </a>
+                <a href="/reports" class="card action-card">
+                    <div class="icon-wrap icon-purple"><i class="fa-solid fa-chart-pie"></i></div>
+                    <div>
+                        <h4 data-i18n="action_rep_title">View Health Insights</h4>
+                        <p data-i18n="action_rep_desc">See charts and query history.</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="tips-section" style="margin-top:40px">
+                <div class="card" style="border-left:5px solid var(--s)">
+                    <div style="display:flex; align-items:center; gap:20px">
+                        <div style="font-size:2.5rem; color:var(--s)"><i class="fa-solid fa-lightbulb"></i></div>
+                        <div>
+                            <h4 style="margin-bottom:5px" data-i18n="today_tip_title">Today's Health Awareness</h4>
+                            <p id="dailyTip" style="color:var(--muted)">Stay hydrated and maintain hygiene to stay safe.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        async function loadProfile() {
+            try {
+                const res = await fetch('/api/me');
+                if (!res.ok) { window.location = '/login'; return; }
+                const user = await res.json();
+                
+                // Update i18n and welcome message
+                window.i18n.currentLang = user.lang || 'en';
+                document.getElementById('userName').textContent = user.name || 'User';
+                document.getElementById('welcomeHeading').innerHTML = window.i18n.t('welcome_user', { name: user.name || 'User' });
+                window.i18n.applyTranslations();
+
+                // Load stats
+                const repRes = await fetch('/api/reports');
+                const stats = await repRes.json();
+                document.getElementById('totalQueries').textContent = stats.stats.total || 0;
+                
+                const topics = Object.entries(stats.stats.topics || {});
+                if (topics.length > 0) {
+                    const top = topics.sort((a,b) => b[1] - a[1])[0][0];
+                    document.getElementById('topDisease').textContent = top.charAt(0).toUpperCase() + top.slice(1);
+                }
+
+            } catch (err) {
+                console.error(err);
+                window.location = '/login';
+            }
+        }
+
+        const tips = [
+            "Wash hands for 20 seconds before eating.",
+            "Stay hydrated—drink 8 glasses of water daily.",
+            "Keep your surroundings free of stagnant water to avoid Dengue.",
+            "Complete your full course of vaccination on time.",
+            "Walk at least 30 minutes a day for heart health.",
+            "Eat fresh fruits and vegetables daily for immunity.",
+            "Always wear a mask in crowded health centers."
+        ];
+        document.getElementById('dailyTip').textContent = tips[Math.floor(Math.random() * tips.length)];
+
+        // Theme Toggle
+        const themeBtn = document.getElementById('themeToggleBtn');
+        function updateThemeIcon(theme) {
+            themeBtn.innerHTML = theme === 'dark' ? '<i class="fa-solid fa-sun"></i> Light Mode' : '<i class="fa-solid fa-moon"></i> Dark Mode';
+        }
+        
+        themeBtn.addEventListener('click', () => {
+            const h = document.documentElement;
+            const next = h.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            h.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            updateThemeIcon(next);
+        });
+
+        // Initialize Theme
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        async function logout() {
+            await fetch('/api/logout', { method: 'POST' });
+            window.location = '/login';
+        }
+
+        loadProfile();
+    </script>
+</body>
+</html>

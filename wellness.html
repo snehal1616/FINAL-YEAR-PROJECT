@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Wellness | Cureastic</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/i18n.js"></script>
+    <style>
+        :root {
+            --p: #2563eb;
+            --p-light: #dbeafe;
+            --p-vivid: #1d4ed8;
+            --bg: #fdfcff;
+            --sidebar-bg: #f5f3ff;
+            --card: #ffffff;
+            --text: #1e293b;
+            --text-heading: #0f172a;
+            --border: #cbd5e1;
+            --shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --font-heading: 'Outfit', sans-serif;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --sidebar-bg: #1e293b;
+            --card: #1e293b;
+            --text: #f1f5f9;
+            --text-heading: #ffffff;
+            --border: #334155;
+            --p-light: #1e3a8a;
+            --shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        body { 
+            font-family: var(--font-main); 
+            color: var(--text); 
+            transition: all 0.3s ease; 
+        }
+
+        .app-layout { display: flex; height: 100vh; overflow: hidden; }
+        .sidebar { background: var(--sidebar-bg); border-right: 1.5px solid var(--border); width: 260px; backdrop-filter: blur(10px); background: var(--glass); }
+        .main-content { padding: 2.5rem; overflow-y: auto; flex: 1; position: relative; z-index: 1; }
+
+        .ai-plan-card {
+            background: var(--card);
+            border: 2px solid var(--p);
+            border-radius: 28px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+        }
+        
+        .ai-plan-card::after {
+            content: 'Cureastic INTEL';
+            position: absolute;
+            top: 25px;
+            right: -35px;
+            background: var(--p);
+            color: white;
+            padding: 6px 45px;
+            transform: rotate(45deg);
+            font-size: 0.6rem;
+            font-weight: 800;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+
+        .task-list { list-style: none; padding: 0; min-height: 200px; }
+        .task-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 700;
+            font-family: var(--font-heading);
+            color: var(--text-heading);
+        }
+        .task-item:hover { transform: translateX(8px); border-color: var(--p); background: var(--p-light); }
+        .task-item.done { opacity: 0.5; text-decoration: line-through; border-color: #10b981; background: rgba(16, 185, 129, 0.05); }
+        .task-item i { font-size: 1.3rem; color: var(--p); width: 28px; text-align: center; }
+        .task-item.done i { color: #10b981; }
+
+        .motivational-quote {
+            margin-top: 25px;
+            padding: 22px;
+            border-radius: 18px;
+            background: var(--p-light);
+            color: var(--p-vivid);
+            font-weight: 800;
+            font-size: 1.1rem;
+            font-style: italic;
+            text-align: center;
+            border-left: 8px solid var(--p);
+            font-family: var(--font-heading);
+        }
+        
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+        @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+
+        .btn-refresh {
+            margin-top: 30px;
+            width: 100%;
+            border-radius: 18px;
+            padding: 18px;
+            font-size: 1rem;
+            font-weight: 800;
+            background: var(--p);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+        }
+        .btn-refresh:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(37, 99, 235, 0.4); }
+    </style>
+</head>
+<body>
+    <button class="mobile-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="logo"><div class="logo-icon"></div><span>Cureastic</span></div>
+            <nav class="sidebar-nav">
+                <a href="/dashboard"><i class="fa-solid fa-house"></i> Dashboard</a>
+                <a href="/chatbot"><i class="fa-solid fa-comment-dots"></i> AI Chatbot</a>
+                <a href="/wellness" class="active"><i class="fa-solid fa-person-running"></i> Wellness</a>
+                <a href="/reports"><i class="fa-solid fa-chart-line"></i> Health Reports</a>
+                <a href="/profile"><i class="fa-solid fa-user-gear"></i> Profile Settings</a>
+            </nav>
+            <div class="sidebar-bottom">
+                <button class="theme-toggle" id="themeToggleBtn"><i class="fa-solid fa-moon"></i> Dark Mode</button>
+                <button class="btn btn-danger btn-sm btn-block" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <h2 style="font-family:var(--font-heading); font-weight:800; font-size:2.4rem; letter-spacing:-1px; margin-bottom:10px;">My Wellness Strategy</h2>
+            <p style="margin-bottom:35px; opacity:0.8; font-weight:600">Daily preventive healthcare routines optimized by Cureastic.</p>
+
+            <div class="ai-plan-card">
+                <h4 style="margin-bottom:25px; display:flex; align-items:center; gap:12px; font-weight:800; font-family:var(--font-heading);">
+                    <i class="fa-solid fa-wand-magic-sparkles" style="color:var(--p)"></i> ⚡ Today's Intelligent Routine
+                </h4>
+                
+                <div id="taskList" class="task-list">
+                    <!-- Standard Fallback Tasks Rendered Immediately -->
+                    <div class="task-item" onclick="this.classList.toggle('done')"><i class="fa-solid fa-droplet"></i> <span>Drink 3L of water today</span></div>
+                    <div class="task-item" onclick="this.classList.toggle('done')"><i class="fa-solid fa-person-running"></i> <span>Complete a 20-min brisk walk</span></div>
+                    <div class="task-item" onclick="this.classList.toggle('done')"><i class="fa-solid fa-apple-whole"></i> <span>Eat 2 servings of fresh fruit</span></div>
+                    <div class="task-item" onclick="this.classList.toggle('done')"><i class="fa-solid fa-bed"></i> <span>Sleep for 8 hours tonight</span></div>
+                </div>
+
+                <div id="motivationalLine" class="motivational-quote">"Your health is your greatest wealth. Take care of it today!"</div>
+                
+                <button onclick="generateTasks()" class="btn-refresh" id="refreshBtn">
+                    <i class="fa-solid fa-rotate"></i> RE-SYNC AI STRATEGY
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        async function logout() { await fetch('/api/logout', { method: 'POST' }); window.location = '/login'; }
+
+        // Theme Logic
+        const themeBtn = document.getElementById('themeToggleBtn');
+        function updateThemeIcon(t) {
+            themeBtn.innerHTML = t === 'dark' ? '<i class="fa-solid fa-sun"></i> Light Mode' : '<i class="fa-solid fa-moon"></i> Dark Mode';
+        }
+        themeBtn.addEventListener('click', () => {
+            const h = document.documentElement;
+            const next = h.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            h.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            updateThemeIcon(next);
+        });
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        async function generateTasks() {
+            const list = document.getElementById('taskList');
+            const quote = document.getElementById('motivationalLine');
+            const btn = document.getElementById('refreshBtn');
+            const btnText = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> GENERATING AI PLAN...';
+            btn.disabled = true;
+
+            try {
+                const userRes = await fetch('/api/me');
+                if (!userRes.ok) throw new Error("Unauthorized");
+                const user = await userRes.json();
+                const mode = (user.conditions && user.conditions.toLowerCase().includes('child')) ? 'child' : 'normal';
+
+                const weatherRes = await fetch('/api/weather');
+                const weather = await weatherRes.json();
+
+                const res = await fetch(`/api/wellness-tasks?mode=${mode}&weather=${encodeURIComponent(JSON.stringify(weather))}`);
+                const data = await res.json();
+                
+                if (data.tasks && data.tasks.length > 20) {
+                    const lines = data.tasks.split('\n');
+                    list.innerHTML = '';
+                    let foundTasks = false;
+
+                    lines.forEach(line => {
+                        const cleanLine = line.trim();
+                        if (cleanLine.startsWith('•') || cleanLine.startsWith('-') || cleanLine.match(/^\d\./)) {
+                            const taskText = cleanLine.replace(/^[•\-\d\.]+\s*/, '');
+                            if (taskText.length < 5) return;
+                            
+                            const div = document.createElement('div');
+                            div.className = 'task-item';
+                            div.onclick = () => div.classList.toggle('done');
+                            
+                            let icon = 'fa-check-circle';
+                            const t = taskText.toLowerCase();
+                            if (t.includes('water') || t.includes('drink')) icon = 'fa-droplet';
+                            else if (t.includes('walk') || t.includes('exercise')) icon = 'fa-person-running';
+                            else if (t.includes('eat') || t.includes('fruit')) icon = 'fa-apple-whole';
+                            else if (t.includes('sleep') || t.includes('rest')) icon = 'fa-bed';
+                            else if (t.includes('wash') || t.includes('hand')) icon = 'fa-soap';
+                            else if (t.includes('coat') || t.includes('clothe') || t.includes('warm')) icon = 'fa-shirt';
+
+                            div.innerHTML = `<i class="fa-solid ${icon}"></i> <span>${taskText}</span>`;
+                            list.appendChild(div);
+                            foundTasks = true;
+                        } else if (cleanLine.length > 30 && !cleanLine.includes(':')) {
+                            quote.innerHTML = `<i class="fa-solid fa-quote-left" style="opacity:0.3; margin-right:10px"></i>${cleanLine}`;
+                        }
+                    });
+                }
+            } catch (e) {
+                console.error("AI Fetch Failed:", e);
+                // Fallback already exists in HTML
+            } finally {
+                btn.innerHTML = btnText;
+                btn.disabled = false;
+            }
+        }
+
+        // Initial sync
+        setTimeout(generateTasks, 1000);
+    </script>
+</body>
+</html>

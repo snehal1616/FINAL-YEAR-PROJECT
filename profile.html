@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Settings | Cureastic</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        :root {
+            --p: #2563eb;
+            --p-light: #eff6ff;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #0f172a;
+            --border: #e2e8f0;
+            --shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f1f5f9;
+            --border: #334155;
+            --p-light: #1e3a8a;
+            --shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        body { 
+            font-family: 'Outfit', sans-serif; 
+            color: var(--text); 
+            transition: all 0.3s ease; 
+            margin: 0; 
+        }
+        .app-layout { display: flex; height: 100vh; }
+        .sidebar { 
+            background: var(--sidebar-bg); 
+            border-right: 1.5px solid var(--border); 
+            width: 260px;
+            backdrop-filter: blur(10px);
+            background: var(--glass);
+        }
+        .main-content { flex: 1; overflow-y: auto; padding: 2rem; position: relative; z-index: 1; }
+        .card { background: var(--card); border-radius: 20px; padding: 1.5rem; box-shadow: var(--shadow); border: 1px solid var(--border); margin-bottom: 20px; }
+        .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; align-items: start; }
+        @media(max-width: 900px) { .profile-grid { grid-template-columns: 1fr; } }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .health-card { border-left: 5px solid var(--p); }
+        input, select, textarea { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg); color: var(--text); outline: none; transition: border-color 0.2s; }
+        input:focus { border-color: var(--p); }
+    </style>
+</head>
+<body>
+    <button class="mobile-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="logo"><div class="logo-icon"></div><span>Cureastic</span></div>
+            <nav class="sidebar-nav">
+                <a href="/dashboard"><i class="fa-solid fa-house"></i> Dashboard</a>
+                <a href="/chatbot"><i class="fa-solid fa-comment-dots"></i> AI Chatbot</a>
+                <a href="/wellness"><i class="fa-solid fa-person-running"></i> Wellness</a>
+                <a href="/reports"><i class="fa-solid fa-chart-line"></i> Health Reports</a>
+                <a href="/profile" class="active"><i class="fa-solid fa-user-gear"></i> Profile Settings</a>
+            </nav>
+            <div class="sidebar-bottom">
+                <button class="theme-toggle" id="themeToggleBtn">
+                    <i class="fa-solid fa-moon"></i> Dark Mode
+                </button>
+                <button class="btn btn-danger btn-sm btn-block" onclick="logout()">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="page-header">
+                <h2>Health Profile & Settings</h2>
+                <p>Manage your medical details for better AI-assisted health guidance.</p>
+            </header>
+
+            <form id="profileForm">
+                <div class="profile-grid">
+                    <!-- Basic Info -->
+                    <div class="card">
+                        <h4 style="margin-bottom:20px"><i class="fa-solid fa-user-circle"></i> Basic Account</h4>
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="nameInput" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Preferred Language</label>
+                            <select id="langInput">
+                                <option value="en">English (Global)</option>
+                                <option value="hi">Hindi (हिन्दी)</option>
+                                <option value="bn">Bengali (বাংলা)</option>
+                                <option value="mr">Marathi (मराठी)</option>
+                                <option value="gu">Gujarati (ગુજરાતી)</option>
+                                <option value="ta">Tamil (தமிழ்)</option>
+                                <option value="te">Telugu (తెలుగు)</option>
+                                <option value="kn">Kannada (ಕನ್ನಡ)</option>
+                                <option value="ml">Malayalam (മലയാളം)</option>
+                                <option value="pa">Punjabi (ਪੰਜਾਬੀ)</option>
+                                <option value="ur">Urdu (اردو)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Personal Health Details -->
+                    <div class="card health-card">
+                        <h4 style="margin-bottom:20px"><i class="fa-solid fa-file-medical"></i> Physical Metrics</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Age</label>
+                                <input type="number" id="ageInput" placeholder="Years">
+                            </div>
+                            <div class="form-group">
+                                <label>Gender</label>
+                                <select id="genderInput">
+                                    <option value="">Select</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Height (cm)</label>
+                                <input type="number" id="heightInput" placeholder="e.g. 170">
+                            </div>
+                            <div class="form-group">
+                                <label>Weight (kg)</label>
+                                <input type="number" id="weightInput" placeholder="e.g. 70">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Blood Group</label>
+                            <select id="bloodInput">
+                                <option value="">Select</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Medical Conditions Section -->
+                    <div class="card" style="grid-column: 1 / -1">
+                        <h4 style="margin-bottom:20px"><i class="fa-solid fa-notes-medical" style="color:var(--p)"></i> Medical Conditions & Diseases</h4>
+                        <p style="font-size:0.85rem; color:var(--muted); margin-bottom:15px">Specify any chronic conditions like High BP, Sugar/Diabetes, Thyroid, Heart issues, or Allergies.</p>
+                        <div class="form-group">
+                            <textarea id="conditionsInput" style="width:100%; height:100px; border-radius:12px; padding:15px; font-family:inherit;" placeholder="e.g. Type 2 Diabetes, High Blood Pressure (since 2023), Nut Allergy..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width:200px">Update Profile</button>
+                        <div id="saveMsg" style="margin-top:15px; color:var(--s); display:none; font-weight:600">
+                             <i class="fa-solid fa-circle-check"></i> Profile & Medical data updated!
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <script>
+        async function loadProfile() {
+            try {
+                const res = await fetch('/api/me');
+                if (!res.ok) { window.location = '/login'; return; }
+                const user = await res.json();
+                
+                document.getElementById('nameInput').value = user.name;
+                document.getElementById('langInput').value = user.lang || 'en';
+                document.getElementById('ageInput').value = user.age || '';
+                document.getElementById('genderInput').value = user.gender || '';
+                document.getElementById('heightInput').value = user.height || '';
+                document.getElementById('weightInput').value = user.weight || '';
+                document.getElementById('bloodInput').value = user.bloodGroup || '';
+                document.getElementById('conditionsInput').value = user.conditions || '';
+
+            } catch (err) { window.location = '/login'; }
+        }
+
+        document.getElementById('profileForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = {
+                name: document.getElementById('nameInput').value,
+                lang: document.getElementById('langInput').value,
+                age: document.getElementById('ageInput').value,
+                gender: document.getElementById('genderInput').value,
+                height: document.getElementById('heightInput').value,
+                weight: document.getElementById('weightInput').value,
+                bloodGroup: document.getElementById('bloodInput').value,
+                conditions: document.getElementById('conditionsInput').value
+            };
+
+            try {
+                const res = await fetch('/api/profile', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                if (res.ok) {
+                    const msg = document.getElementById('saveMsg');
+                    msg.style.display = 'block'; setTimeout(() => msg.style.display = 'none', 3000);
+                }
+            } catch (err) { alert("Failed to update profile."); }
+        });
+
+        const themeBtn = document.getElementById('themeToggleBtn');
+        themeBtn.addEventListener('click', () => {
+            const h = document.documentElement;
+            const next = h.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            h.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            themeBtn.innerHTML = next === 'light' ? '<i class="fa-solid fa-moon"></i> Dark Mode' : '<i class="fa-solid fa-sun"></i> Light Mode';
+        });
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        themeBtn.innerHTML = currentTheme === 'light' ? '<i class="fa-solid fa-moon"></i> Dark Mode' : '<i class="fa-solid fa-sun"></i> Light Mode';
+
+        function logout() { fetch('/api/logout', { method: 'POST' }).then(() => window.location = '/login'); }
+        loadProfile();
+    </script>
+</body>
+</html>
