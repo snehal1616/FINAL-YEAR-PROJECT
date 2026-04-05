@@ -1,8 +1,8 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>AI Wellness | Cureastic</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -157,7 +157,7 @@
 
             <div class="ai-plan-card">
                 <h4 style="margin-bottom:25px; display:flex; align-items:center; gap:12px; font-weight:800; font-family:var(--font-heading);">
-                    <i class="fa-solid fa-wand-magic-sparkles" style="color:var(--p)"></i> ⚡ Today's Intelligent Routine
+                    <i class="fa-solid fa-wand-magic-sparkles" style="color:var(--p)"></i> ? Today's Intelligent Routine
                 </h4>
                 
                 <div id="taskList" class="task-list">
@@ -224,8 +224,8 @@
 
                     lines.forEach(line => {
                         const cleanLine = line.trim();
-                        if (cleanLine.startsWith('•') || cleanLine.startsWith('-') || cleanLine.match(/^\d\./)) {
-                            const taskText = cleanLine.replace(/^[•\-\d\.]+\s*/, '');
+                        if (cleanLine.startsWith('�') || cleanLine.startsWith('-') || cleanLine.match(/^\d\./)) {
+                            const taskText = cleanLine.replace(/^[�\-\d\.]+\s*/, '');
                             if (taskText.length < 5) return;
                             
                             const div = document.createElement('div');
