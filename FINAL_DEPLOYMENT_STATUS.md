@@ -2,16 +2,18 @@
 
 ## ✅ What's Working
 
-- **Frontend deployed on Vercel**: https://final-year-project-rjja.vercel.app/
+- **Frontend deployed on Vercel**: https://final-year-project-mu-rose.vercel.app/
 - **Backend deployed on Render**: https://final-year-project-bms9.onrender.com/
-- **CORS configured** in server.js to allow Vercel domain
+- **CORS configured** in server.js to allow all Vercel domains
 - **Environment variables added** to Render
+- **Fixed BOM issue** in package.json
+- **Simplified Vercel config** to avoid build errors
 
-## ❌ Current Issue
+## 🔄 Latest Fix (Commit 69623d3)
 
-**Error**: "Clinical database connection failed"
-
-**Meaning**: Frontend can't reach backend API
+**Issue**: Vercel build was failing with "Unexpected token" error in package.json
+**Cause**: Vercel was trying to run build process and read package.json before ignore rules applied
+**Solution**: Changed vercel.json from "builds" to "rewrites" configuration - this deploys as pure static site without build step
 
 ---
 
@@ -199,7 +201,23 @@ Your app will be fully functional:
 ## 🚀 Your Live URLs
 
 **Share these:**
-- Frontend: https://final-year-project-rjja.vercel.app/
+- Frontend: https://final-year-project-mu-rose.vercel.app/
 - Backend: https://final-year-project-bms9.onrender.com/
 
 **GitHub**: https://github.com/snehal1616/FINAL-YEAR-PROJECT
+
+## 📋 Next Steps
+
+1. **Wait for Vercel to redeploy** (commit 69623d3) - takes 1-2 minutes
+2. **Visit your frontend**: https://final-year-project-mu-rose.vercel.app/
+3. **Click "Try Cureastic"** then **"Guest Demo"**
+4. **Wait 30-60 seconds** for Render backend to wake up (first time)
+5. **Test chatbot** - send a message like "Hello"
+
+## ✅ Expected Behavior
+
+- Landing page loads instantly
+- Guest Demo creates session and redirects to dashboard
+- Chatbot responds to health questions
+- Weather shows current conditions
+- Hospital finder shows nearby facilities
