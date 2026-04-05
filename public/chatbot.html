@@ -789,82 +789,63 @@
             .chat-messages{padding:15px}
         }
         
-        @media(max-width:768px){
-            body .sidebar{width:220px !important}
-            body .main-content{margin-left:0 !important; padding:10px !important}
-            .chat-sidebar{display:none}
-            .chat-main{max-width:100% !important}
-            .chat-messages{padding:15px}
-            body .msg-bubble{max-width:95% !important;padding:14px 18px !important}
-            body .chat-input-area{padding:15px 20px !important}
-            body .chat-input-bar input{padding:14px 20px !important}
-        }
+        /* ===== RESPONSIVE LAYOUT ===== */
         
-        @media(max-width:480px){
-            .chat-messages{padding:15px}
-            body .msg-bubble{font-size:0.9rem !important;padding:12px 16px !important}
-            body .chat-input-bar input{font-size:0.95rem !important;padding:12px 18px !important}
-            body .chat-input-bar button{width:45px !important;height:45px !important}
-        }
-        
-        /* SIMPLE FINAL FIX */
-        .chat-layout {
-            display: flex;
-            height: 100vh;
-        }
-        
-        .chat-main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .chat-messages {
-            flex: 1;
-            overflow-y: auto;
+        /* Sidebar Overlay for Mobile */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 150;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
         @media (max-width: 768px) {
+            .sidebar.open ~ .sidebar-overlay {
+                display: block;
+                opacity: 1;
+            }
+        }
+        
+        /* Desktop/PC Layout - Default */
+        @media (min-width: 769px) {
+            .app-layout {
+                display: flex;
+            }
+            
             .sidebar {
-                display: none;
+                display: flex !important;
+                transform: translateX(0) !important;
+            }
+            
+            .main-content {
+                margin-left: 220px !important;
+                padding: 15px 20px !important;
             }
             
             .chat-layout {
-                flex-direction: column;
+                display: flex;
+                flex-direction: row;
+                height: calc(100vh - 60px);
+            }
+            
+            .chat-main {
+                flex: 1;
+                max-width: none;
+            }
+            
+            .chat-sidebar {
+                display: flex;
+                width: 280px;
             }
         }
         
-        /* ===== FINAL WIDTH FIX ===== */
-        
-        /* Enable smooth scrolling on mobile */
-        html {
-            -webkit-overflow-scrolling: touch;
-            overflow-scrolling: touch;
-        }
-        
-        /* remove side spacing */
-        .main-content {
-            margin-left: 0 !important;
-            padding: 0 !important;
-        }
-        
-        /* full width layout */
-        .chat-layout {
-            width: 100%;
-        }
-        
-        /* chat must fill screen */
-        .chat-main {
-            width: 100% !important;
-            max-width: 100% !important;
-        }
-        
-        /* remove extra container spacing */
-        body .main-content {
-            padding: 0 !important;
-        }
-        
-        /* mobile */
+        /* Tablet/Mobile Layout */
         @media (max-width: 768px) {
             /* FORCE MOBILE LAYOUT */
             .app-layout {
@@ -872,7 +853,14 @@
             }
             
             .sidebar {
-                display: none !important;
+                display: flex !important;
+                transform: translateX(-100%);
+                position: fixed;
+                z-index: 200;
+            }
+            
+            .sidebar.open {
+                transform: translateX(0) !important;
             }
             
             .main-content {
@@ -892,6 +880,13 @@
                 width: 100% !important;
                 max-width: 100% !important;
                 border-radius: 0 !important;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .chat-sidebar {
+                display: none !important;
             }
             
             /* Enable zoom and scroll */
@@ -899,6 +894,7 @@
                 overflow-y: auto !important;
                 -webkit-overflow-scrolling: touch !important;
                 padding: 10px !important;
+                flex: 1;
             }
             
             /* Make content zoomable */
@@ -911,6 +907,7 @@
             /* Fix input area */
             .chat-input-area {
                 padding: 10px !important;
+                flex-shrink: 0;
             }
             
             .chat-input-bar input {
@@ -928,12 +925,35 @@
                 touch-action: manipulation;
             }
         }
+        
+        /* Small Mobile */
+        @media (max-width: 480px) {
+            .chat-messages {
+                padding: 10px !important;
+            }
+            
+            .msg-bubble {
+                font-size: 13px !important;
+                padding: 10px 14px !important;
+            }
+            
+            .chat-input-bar input {
+                font-size: 16px !important;
+                padding: 12px 16px !important;
+            }
+            
+            .chat-input-bar button {
+                width: 42px !important;
+                height: 42px !important;
+            }
+        }
     </style>
 </head>
 <body>
-    <button class="mobile-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">
+    <button class="mobile-toggle">
         <i class="fa-solid fa-bars"></i>
     </button>
+    <div class="sidebar-overlay"></div>
     <div class="app-layout">
         <aside class="sidebar">
             <div class="logo"><div class="logo-icon"></div><span>Cureastic</span></div>
@@ -1644,6 +1664,53 @@
         fetchWeather();
         // Refresh weather every 15 minutes
         setInterval(fetchWeather, 15 * 60 * 1000);
+
+        // ===== MOBILE SIDEBAR TOGGLE =====
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        const sidebarOverlay = document.querySelector('.sidebar-overlay');
+        const mainContent = document.querySelector('.main-content');
+
+        if (mobileToggle) {
+            // Toggle sidebar when clicking hamburger button
+            mobileToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                sidebar.classList.toggle('open');
+            });
+
+            // Close sidebar when clicking overlay
+            if (sidebarOverlay) {
+                sidebarOverlay.addEventListener('click', function() {
+                    sidebar.classList.remove('open');
+                });
+            }
+
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    if (!sidebar.contains(e.target) && !mobileToggle.contains(e.target)) {
+                        sidebar.classList.remove('open');
+                    }
+                }
+            });
+
+            // Close sidebar when clicking a nav link on mobile
+            const navLinks = sidebar.querySelectorAll('.sidebar-nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        sidebar.classList.remove('open');
+                    }
+                });
+            });
+
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    sidebar.classList.remove('open');
+                }
+            });
+        }
     </script>
 </body>
 </html>
