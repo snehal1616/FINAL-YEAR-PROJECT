@@ -833,6 +833,45 @@
                 flex-direction: column;
             }
         }
+        
+        /* ===== FINAL WIDTH FIX ===== */
+        
+        /* remove side spacing */
+        .main-content {
+            margin-left: 0 !important;
+            padding: 0 !important;
+        }
+        
+        /* full width layout */
+        .chat-layout {
+            width: 100%;
+        }
+        
+        /* chat must fill screen */
+        .chat-main {
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+        
+        /* remove extra container spacing */
+        body .main-content {
+            padding: 0 !important;
+        }
+        
+        /* mobile */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none !important;
+            }
+            
+            .chat-layout {
+                width: 100%;
+            }
+            
+            .chat-main {
+                width: 100% !important;
+            }
+        }
     </style>
 </head>
 <body>
