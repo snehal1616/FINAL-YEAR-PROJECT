@@ -2314,6 +2314,7 @@
         
         // ===== DRAGGABLE HAMBURGER BUTTON =====
         if (mobileToggle) {
+            console.log('Initializing draggable hamburger button');
             let isDragging = false;
             let hasMoved = false;
             let currentX = 0;
@@ -2323,15 +2324,19 @@
             let xOffset = 0;
             let yOffset = 0;
             
-            mobileToggle.addEventListener('touchstart', dragStart, false);
-            mobileToggle.addEventListener('touchend', dragEnd, false);
-            mobileToggle.addEventListener('touchmove', drag, false);
+            // Prevent default touch behavior
+            mobileToggle.style.touchAction = 'none';
+            
+            mobileToggle.addEventListener('touchstart', dragStart, { passive: false });
+            mobileToggle.addEventListener('touchend', dragEnd, { passive: false });
+            mobileToggle.addEventListener('touchmove', drag, { passive: false });
             
             mobileToggle.addEventListener('mousedown', dragStart, false);
             mobileToggle.addEventListener('mouseup', dragEnd, false);
-            mobileToggle.addEventListener('mousemove', drag, false);
+            document.addEventListener('mousemove', drag, false);
             
             function dragStart(e) {
+                console.log('Drag start', e.type);
                 if (e.type === "touchstart") {
                     initialX = e.touches[0].clientX - xOffset;
                     initialY = e.touches[0].clientY - yOffset;
@@ -2348,6 +2353,7 @@
             }
             
             function dragEnd(e) {
+                console.log('Drag end', hasMoved);
                 if (isDragging) {
                     initialX = currentX;
                     initialY = currentY;
@@ -2356,6 +2362,7 @@
                     
                     // If barely moved, treat as click
                     if (!hasMoved) {
+                        console.log('Opening sidebar (click)');
                         sidebar.classList.toggle('open');
                         if (chatSidebar) chatSidebar.classList.remove('open');
                     }
@@ -2378,6 +2385,7 @@
                     const moveDistance = Math.sqrt(Math.pow(currentX - xOffset, 2) + Math.pow(currentY - yOffset, 2));
                     if (moveDistance > 5) {
                         hasMoved = true;
+                        console.log('Dragging...', currentX, currentY);
                     }
                     
                     xOffset = currentX;
