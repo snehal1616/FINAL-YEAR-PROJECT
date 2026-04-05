@@ -523,7 +523,7 @@
             color: white;
             border: none;
             cursor: pointer;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -603,6 +603,44 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+        
+        /* Draggable Floating Button */
+        .floating-menu-btn {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--p);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            cursor: move;
+            z-index: 150;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            touch-action: none;
+        }
+        
+        .floating-menu-btn:active {
+            transform: translateY(-50%) scale(0.95);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .floating-menu-btn.dragging {
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .floating-menu-btn {
+                display: flex;
             }
         }
         
@@ -1264,7 +1302,7 @@
                 overflow-y: auto !important;
                 overflow-x: hidden !important;
                 padding: 12px !important;
-                padding-bottom: 100px !important; /* Increased from 80px to 100px */
+                padding-bottom: 110px !important; /* Increased from 100px to 110px */
                 -webkit-overflow-scrolling: touch !important;
                 scroll-behavior: smooth !important;
                 position: relative !important;
@@ -1305,26 +1343,32 @@
             }
             
             .add-action-btn {
-                width: 32px !important;
-                height: 32px !important;
-                font-size: 0.9rem !important;
+                width: 40px !important;
+                height: 40px !important;
+                font-size: 1rem !important;
                 flex-shrink: 0 !important;
+                border-radius: 50% !important;
             }
             
             body .chat-input-bar input {
                 font-size: 14px !important;
-                padding: 9px 12px !important;
+                padding: 10px 14px !important;
                 flex: 1 !important;
-                border-radius: 18px !important;
+                border-radius: 20px !important;
                 min-width: 0 !important;
             }
             
             body .chat-input-bar #sendBtn {
-                width: 32px !important;
-                height: 32px !important;
-                font-size: 0.9rem !important;
+                width: 40px !important;
+                height: 40px !important;
+                font-size: 1rem !important;
                 flex-shrink: 0 !important;
                 border-radius: 50% !important;
+            }
+            
+            /* Hide top bar three-dot button on mobile */
+            .mobile-sidebar-toggle {
+                display: none !important;
             }
             
             /* Action Menu Popup - Mobile */
@@ -1435,9 +1479,9 @@
             }
             
             .add-action-btn {
-                width: 30px !important;
-                height: 30px !important;
-                font-size: 0.85rem !important;
+                width: 38px !important;
+                height: 38px !important;
+                font-size: 0.95rem !important;
             }
             
             body .chat-input-bar {
@@ -1445,14 +1489,20 @@
             }
             
             body .chat-input-bar input {
-                padding: 8px 10px !important;
+                padding: 9px 12px !important;
                 font-size: 14px !important;
             }
             
             body .chat-input-bar #sendBtn {
-                width: 30px !important;
-                height: 30px !important;
-                font-size: 0.85rem !important;
+                width: 38px !important;
+                height: 38px !important;
+                font-size: 0.95rem !important;
+            }
+            
+            .floating-menu-btn {
+                width: 44px !important;
+                height: 44px !important;
+                font-size: 1.1rem !important;
             }
             
             .action-menu-popup {
@@ -1475,6 +1525,9 @@
 <body>
     <button class="mobile-toggle">
         <i class="fa-solid fa-bars"></i>
+    </button>
+    <button class="floating-menu-btn" id="floatingMenuBtn">
+        <i class="fa-solid fa-ellipsis-vertical"></i>
     </button>
     <div class="app-layout">
         <aside class="sidebar">
@@ -2234,11 +2287,86 @@
         // ===== MOBILE SIDEBAR TOGGLE =====
         const mobileToggle = document.querySelector('.mobile-toggle');
         const mobileSidebarToggle = document.getElementById('mobileSidebarToggle');
+        const floatingMenuBtn = document.getElementById('floatingMenuBtn');
         const sidebar = document.querySelector('.sidebar');
         const chatSidebar = document.querySelector('.chat-sidebar');
         const sidebarOverlay = document.querySelector('.sidebar-overlay');
         const rightSidebarOverlay = document.querySelector('.right-sidebar-overlay');
         const mainContent = document.querySelector('.main-content');
+        
+        // ===== DRAGGABLE FLOATING BUTTON =====
+        if (floatingMenuBtn) {
+            let isDragging = false;
+            let currentX;
+            let currentY;
+            let initialX;
+            let initialY;
+            let xOffset = 0;
+            let yOffset = 0;
+            
+            floatingMenuBtn.addEventListener('touchstart', dragStart, false);
+            floatingMenuBtn.addEventListener('touchend', dragEnd, false);
+            floatingMenuBtn.addEventListener('touchmove', drag, false);
+            
+            floatingMenuBtn.addEventListener('mousedown', dragStart, false);
+            floatingMenuBtn.addEventListener('mouseup', dragEnd, false);
+            floatingMenuBtn.addEventListener('mousemove', drag, false);
+            
+            function dragStart(e) {
+                if (e.type === "touchstart") {
+                    initialX = e.touches[0].clientX - xOffset;
+                    initialY = e.touches[0].clientY - yOffset;
+                } else {
+                    initialX = e.clientX - xOffset;
+                    initialY = e.clientY - yOffset;
+                }
+                
+                if (e.target === floatingMenuBtn) {
+                    isDragging = true;
+                    floatingMenuBtn.classList.add('dragging');
+                }
+            }
+            
+            function dragEnd(e) {
+                if (isDragging) {
+                    initialX = currentX;
+                    initialY = currentY;
+                    isDragging = false;
+                    floatingMenuBtn.classList.remove('dragging');
+                    
+                    // If barely moved, treat as click
+                    if (Math.abs(currentX - initialX) < 5 && Math.abs(currentY - initialY) < 5) {
+                        if (chatSidebar) {
+                            chatSidebar.classList.toggle('open');
+                            sidebar.classList.remove('open');
+                        }
+                    }
+                }
+            }
+            
+            function drag(e) {
+                if (isDragging) {
+                    e.preventDefault();
+                    
+                    if (e.type === "touchmove") {
+                        currentX = e.touches[0].clientX - initialX;
+                        currentY = e.touches[0].clientY - initialY;
+                    } else {
+                        currentX = e.clientX - initialX;
+                        currentY = e.clientY - initialY;
+                    }
+                    
+                    xOffset = currentX;
+                    yOffset = currentY;
+                    
+                    setTranslate(currentX, currentY, floatingMenuBtn);
+                }
+            }
+            
+            function setTranslate(xPos, yPos, el) {
+                el.style.transform = `translate3d(${xPos}px, calc(-50% + ${yPos}px), 0)`;
+            }
+        }
         
         // Mode Switch Modal
         const botInfoClick = document.getElementById('botInfoClick');
