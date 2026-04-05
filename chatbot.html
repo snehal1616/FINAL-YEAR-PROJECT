@@ -1195,10 +1195,23 @@
                 z-index: 200 !important;
                 cursor: move !important;
                 touch-action: none !important;
+                transition: none !important;
+                width: 44px !important;
+                height: 44px !important;
+                background: var(--p) !important;
+                color: white !important;
+                border: none !important;
+                border-radius: 10px !important;
+                font-size: 1.2rem !important;
+                box-shadow: 0 4px 12px rgba(14,165,233,0.3) !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
             }
             
             .mobile-toggle.dragging {
                 opacity: 0.8 !important;
+                transition: none !important;
             }
             
             /* App Layout */
@@ -1528,7 +1541,14 @@
             </nav>
             <!-- Hospital Map in left sidebar -->
             <div class="sidebar-map-section" style="display: none;">
-                <div id="hospitalMapOld" style="display:none"></div>
+                <button class="find-doctor-btn" onclick="findHospitals()">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Find Nearby Hospitals</span>
+                </button>
+                <div id="hospitalMapLoading" style="display:none; text-align:center; padding:20px; color:var(--muted);">
+                    <i class="fa-solid fa-spinner fa-spin"></i> Searching...
+                </div>
+                <div id="hospitalMap"></div>
             </div>
             <div class="sidebar-bottom">
                 <button class="theme-toggle" id="themeToggleBtn"><i class="fa-solid fa-moon"></i> Dark Mode</button>
@@ -2140,6 +2160,18 @@
         async function findHospitals() {
             const mapDiv = document.getElementById('hospitalMap');
             const loadingDiv = document.getElementById('hospitalMapLoading');
+            const sidebarMapSection = document.querySelector('.sidebar-map-section');
+            
+            // Show the left sidebar map section
+            if (sidebarMapSection) {
+                sidebarMapSection.style.display = 'flex';
+            }
+            
+            // On mobile, open the left sidebar to show the map
+            if (window.innerWidth <= 768 && sidebar) {
+                sidebar.classList.add('open');
+                if (chatSidebar) chatSidebar.classList.remove('open');
+            }
             
             mapDiv.style.display = 'none';
             loadingDiv.style.display = 'block';
