@@ -314,12 +314,13 @@
                 btn.disabled = true;
 
                 const report = document.createElement('div');
-                report.style.padding = '50px';
+                report.style.padding = '40px';
                 report.style.background = 'white';
                 report.style.fontFamily = "'Poppins', sans-serif";
                 report.style.color = '#1e293b';
-                report.style.width = '210mm'; // A4 width
-                report.style.minHeight = '297mm'; // A4 height
+                report.style.width = '794px'; // A4 width in pixels at 96 DPI
+                report.style.minHeight = '1123px'; // A4 height in pixels
+                report.style.boxSizing = 'border-box';
 
                 // Get current date for report
                 const now = new Date();
@@ -427,7 +428,7 @@
                             This report is for informational purposes only and does not replace professional medical advice.
                         </div>
                         <div style="font-size:14px; color:#667eea; font-weight: 700;">
-                            CUREASTIC HEALTH INSIGHTS • © 2026
+                            CUREASTIC HEALTH INSIGHTS ï¿½ ï¿½ 2026
                         </div>
                     </div>
                 `;
@@ -443,14 +444,17 @@
                         useCORS: true,
                         logging: false,
                         backgroundColor: '#ffffff',
-                        windowWidth: 1200,
-                        windowHeight: 1600
+                        windowWidth: 794,
+                        windowHeight: 1123,
+                        width: 794,
+                        height: 1123
                     },
                     jsPDF: { 
-                        unit: 'mm', 
-                        format: 'a4', 
+                        unit: 'px', 
+                        format: [794, 1123], 
                         orientation: 'portrait',
-                        compress: true
+                        compress: true,
+                        hotfixes: ['px_scaling']
                     },
                     pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
                     enableLinks: false
