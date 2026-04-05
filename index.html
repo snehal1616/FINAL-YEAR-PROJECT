@@ -152,7 +152,7 @@ body {
 /* ===== FEATURES ===== */
 .features {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: clamp(12px, 3vw, 18px);
     margin-bottom: clamp(24px, 5vw, 40px);
 }
@@ -236,17 +236,19 @@ body {
     }
     
     .features {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
     }
     
     .feature-card {
-        padding: 16px 12px;
+        padding: 14px 10px;
     }
 }
 
 @media (max-width: 480px) {
     .features {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
     }
     
     .header {
