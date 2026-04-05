@@ -17,6 +17,7 @@ const upload = multer({ limits: { fileSize: 5 * 1024 * 1024 } }); // 5MB limit
 app.use(cors({
     origin: [
         'https://final-year-project-rjja.vercel.app',
+        'https://final-year-project-flame-three.vercel.app',
         'http://localhost:3005'
     ],
     credentials: true
