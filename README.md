@@ -2,6 +2,8 @@
 
 An intelligent healthcare platform that provides personalized health guidance, disease awareness, and preventive care recommendations using AI.
 
+**Live Demo**: https://final-year-project-rjja.vercel.app/
+
 ## ✨ Features
 
 - 🤖 **AI Chatbot** - Get instant health answers powered by Groq/Gemini AI
