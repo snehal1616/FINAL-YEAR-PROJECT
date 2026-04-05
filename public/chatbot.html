@@ -933,55 +933,6 @@
         /* ===== LEFT SIDEBAR MAP ===== */
         .sidebar { display: flex; flex-direction: column; }
         .sidebar-nav { flex-shrink: 0; }
-        .sidebar-map-section {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            padding: 12px;
-            overflow: hidden;
-            min-height: 0;
-        }
-
-        .sidebar-map-section .find-doctor-btn {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 14px;
-            background: linear-gradient(135deg, var(--p), var(--p-vivid, #1d4ed8));
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-            width: 100%;
-            margin-bottom: 10px;
-        }
-
-        .sidebar-map-section .find-doctor-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.4);
-        }
-
-        .sidebar-map-section .find-doctor-btn i {
-            font-size: 1rem;
-        }
-
-        #hospitalMap {
-            width: 100%;
-            height: 350px;
-            border-radius: 10px;
-            border: 2px solid var(--p-light);
-            box-shadow: var(--shadow);
-            z-index: 1;
-        }
-
-        [data-mode="child"] .sidebar-map-section .find-doctor-btn {
-            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
-            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
-        }
         
         /* 🔥 FINAL MOBILE FIX */
         html, body {
@@ -1526,10 +1477,6 @@
                 <a href="/reports"><i class="fa-solid fa-chart-line"></i> <span data-i18n="nav_reports">Health Reports</span></a>
                 <a href="/profile"><i class="fa-solid fa-user-gear"></i> <span data-i18n="nav_profile">Profile Settings</span></a>
             </nav>
-            <!-- Hospital Map in left sidebar -->
-            <div class="sidebar-map-section" style="display: none;">
-                <div id="hospitalMapOld" style="display:none"></div>
-            </div>
             <div class="sidebar-bottom">
                 <button class="theme-toggle" id="themeToggleBtn"><i class="fa-solid fa-moon"></i> Dark Mode</button>
                 <button class="btn btn-danger btn-sm btn-block" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
@@ -2140,6 +2087,14 @@
         async function findHospitals() {
             const mapDiv = document.getElementById('hospitalMap');
             const loadingDiv = document.getElementById('hospitalMapLoading');
+            const chatSidebar = document.querySelector('.chat-sidebar');
+            
+            // On mobile, open the right sidebar to show the map
+            if (window.innerWidth <= 768 && chatSidebar) {
+                chatSidebar.classList.add('open');
+                const sidebar = document.querySelector('.sidebar');
+                if (sidebar) sidebar.classList.remove('open');
+            }
             
             mapDiv.style.display = 'none';
             loadingDiv.style.display = 'block';
