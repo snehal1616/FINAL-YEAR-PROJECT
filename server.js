@@ -321,4 +321,4 @@ app.get('/wellness', (req, res) => res.sendFile(path.join(__dirname, 'public', '
 app.get('/reports', (req, res) => res.sendFile(path.join(__dirname, 'public', 'reports.html')));
 app.get('/profile', (req, res) => res.sendFile(path.join(__dirname, 'public', 'profile.html')));
 
-app.listen(PORT, () => console.log(`✅ Cureastic Server running at http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`✅ Cureastic Server running at http://localhost:${PORT} - Deployed: ${new Date().toISOString()}`));
