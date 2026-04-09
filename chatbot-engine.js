@@ -150,6 +150,8 @@ User's health query: ${message}`;
         return { text: chatCompletion.choices[0].message.content, topic: mode === 'child' ? "Child Care" : "General Health" };
     } catch (error) {
         console.error("Groq Error:", error);
+        console.error("Error details:", error.message);
+        console.error("API Key present:", !!process.env.GROQ_API_KEY);
         return { text: "I encountered an error. Please try again.", topic: "Error" };
     }
 }
